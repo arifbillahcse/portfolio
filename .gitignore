@@ -1,0 +1,8 @@
+/.tools/
+/backend/.env
+/backend/vendor/
+/backend/node_modules/
+/backend/database/*.sqlite*
+/backend/public/storage
+/backend/storage/*.key
+/backend/storage/logs/*.log
