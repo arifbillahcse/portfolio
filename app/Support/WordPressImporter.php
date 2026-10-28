@@ -17,9 +17,9 @@ class WordPressImporter
 {
     public function __construct(private WordPressXml $xml, private WordPressMedia $media, private WordPressMarkdown $markdown) {}
 
-    public function start(string $path, string $filename): WordPressImport
+    public function start(string $path, string $filename, bool $cleanInvalidCharacters = false): WordPressImport
     {
-        $posts = $this->xml->read($path);
+        $posts = $this->xml->read($path, $cleanInvalidCharacters);
         $import = DB::transaction(function () use ($posts, $filename): WordPressImport {
             $import = WordPressImport::query()->create(['filename' => mb_substr(basename($filename), 0, 255), 'total' => count($posts)]);
             foreach ($posts as $post) {

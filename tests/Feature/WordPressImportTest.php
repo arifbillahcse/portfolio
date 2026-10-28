@@ -405,4 +405,68 @@ class WordPressImportTest extends TestCase
         $this->assertDatabaseCount('word_press_imports', 0);
         Queue::assertNothingPushed();
     }
+
+    public function test_cleanup_is_explicit_and_validation_preserves_the_original_export(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = $this->export("<p>বাংলা\x02 লেখা 😊\x00</p>\n<pre>code\tline\r\nnext\x0B</pre>");
+        $original = file_get_contents($file->getRealPath());
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath(), '--validate-only' => true])->assertFailed();
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath(), '--validate-only' => true, '--clean-invalid-characters' => true])
+            ->expectsOutputToContain('Forbidden characters removed in memory: 3.')
+            ->expectsOutputToContain('Valid WordPress XML: 1 importable posts.')->assertSuccessful();
+        $this->assertSame($original, file_get_contents($file->getRealPath()));
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_cleaned_exports_queue_drafts_with_unicode_text_and_a_cleanup_report(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = $this->export('<h2>বাংলা heading</h2><p>Hello'."\x02".' world 😊</p>');
+        $original = file_get_contents($file->getRealPath());
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath(), '--clean-invalid-characters' => true])->assertSuccessful();
+        $import = WordPressImport::query()->sole();
+        $item = $this->finish($import);
+        $post = Post::query()->findOrFail($item->post_id);
+        $this->assertFalse($post->is_published);
+        $this->assertStringContainsString('বাংলা heading', $post->body);
+        $this->assertStringContainsString('Hello world 😊', $post->body);
+        $this->assertStringContainsString('cleanup removed 1 forbidden characters', implode(' ', $item->payload['notes']));
+        $this->assertSame($original, file_get_contents($file->getRealPath()));
+        Queue::assertPushed(ImportWordPressItem::class);
+    }
+
+    public function test_cleanup_does_not_recover_broken_xml_structure_or_accept_obfuscated_entities(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = $this->export('<p>Broken'."\x02".'</p>');
+        $broken = str_replace(']]></content:encoded>', '</content:encoded>', file_get_contents($file->getRealPath()));
+        $brokenFile = UploadedFile::fake()->createWithContent('broken.xml', $broken);
+        $this->artisan('portfolio:import-wordpress', ['file' => $brokenFile->getRealPath(), '--clean-invalid-characters' => true])->assertFailed();
+        $entity = UploadedFile::fake()->createWithContent('entity.xml', '<!DOC'."\x02".'TYPE rss SYSTEM "file:///etc/passwd"><rss/>');
+        $this->artisan('portfolio:import-wordpress', ['file' => $entity->getRealPath(), '--clean-invalid-characters' => true])
+            ->expectsOutputToContain('XML document types and entities are not allowed.')->assertFailed();
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_cleanup_refuses_non_utf8_exports_without_rewriting_the_file(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $originalFile = $this->export();
+        $contents = str_replace('encoding="UTF-8"', 'encoding="UTF-16"', file_get_contents($originalFile->getRealPath()));
+        $contents = "\xFF\xFE".mb_convert_encoding($contents, 'UTF-16LE', 'UTF-8');
+        $file = UploadedFile::fake()->createWithContent('utf16.xml', $contents);
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath(), '--validate-only' => true])->assertSuccessful();
+        $otherEncodings = [$contents, str_replace('encoding="UTF-8"', 'encoding="ISO-8859-1"', file_get_contents($originalFile->getRealPath())), "\xFF<rss/>"];
+        foreach ($otherEncodings as $encodedContents) {
+            $encoded = UploadedFile::fake()->createWithContent('encoded.xml', $encodedContents);
+            $this->artisan('portfolio:import-wordpress', ['file' => $encoded->getRealPath(), '--clean-invalid-characters' => true])
+                ->expectsOutputToContain('Character cleanup supports UTF-8 exports only.')->assertFailed();
+            $this->assertSame($encodedContents, file_get_contents($encoded->getRealPath()));
+        }
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
 }

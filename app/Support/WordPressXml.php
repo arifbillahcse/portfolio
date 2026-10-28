@@ -10,9 +10,12 @@ use Illuminate\Validation\ValidationException;
 
 class WordPressXml
 {
+    private int $removedCharacters = 0;
+
     /** @return array<int, array<string, mixed>> */
-    public function read(string $path): array
+    public function read(string $path, bool $cleanInvalidCharacters = false): array
     {
+        $this->removedCharacters = 0;
         if (! is_file($path) || filesize($path) > config('wordpress.max_xml_bytes')) {
             throw ValidationException::withMessages(['xml' => 'Choose a WordPress XML export up to 8 MB.']);
         }
@@ -23,6 +26,14 @@ class WordPressXml
         $prefix = preg_replace('/^\xEF\xBB\xBF/', '', substr($contents, 0, 2048));
         if (preg_match('/^\s*(?:<\?xml[^?]*\?>\s*)?(?:<!doctype\s+html\b|<html\b)/i', $prefix)) {
             throw ValidationException::withMessages(['xml' => 'This is an HTML page, not a WordPress XML export. Download the file from WordPress Tools → Export → All content.']);
+        }
+        if ($cleanInvalidCharacters) {
+            $declaresEncoding = preg_match('/\A(?:\xEF\xBB\xBF)?\s*<\?xml\b[^?]*\bencoding\s*=\s*["\x27]([^"\x27]+)["\x27]/i', $contents, $encoding);
+            if (! mb_check_encoding($contents, 'UTF-8') || str_contains(substr($contents, 0, 4), "\0")
+                || ($declaresEncoding && ! in_array(strtoupper($encoding[1]), ['UTF-8', 'UTF8', 'US-ASCII', 'ASCII'], true))) {
+                throw ValidationException::withMessages(['xml' => 'Character cleanup supports UTF-8 exports only. Re-export as UTF-8; no file was changed.']);
+            }
+            $contents = preg_replace('/[\x{0000}-\x{0008}\x{000B}\x{000C}\x{000E}-\x{001F}\x{FFFE}\x{FFFF}]/u', '', $contents, -1, $this->removedCharacters);
         }
         if (preg_match('/<!DOCTYPE|<!ENTITY/i', $contents)) {
             throw ValidationException::withMessages(['xml' => 'XML document types and entities are not allowed.']);
@@ -89,6 +100,7 @@ class WordPressXml
                     'cover' => $cover,
                     'media' => array_map(fn (string $url): array => ['url' => $url, 'path' => null, 'attempted' => false, 'error' => null], $images),
                     'notes' => array_values(array_filter([
+                        $this->removedCharacters ? 'Source XML cleanup removed '.$this->removedCharacters.' forbidden characters in memory. Original export file unchanged; review this post before publishing.' : null,
                         $xpath->query('category[@domain="category"]', $node)->length > 1 ? 'Only the first category is used; this blog supports one category per post.' : null,
                         $xpath->query('category[@domain="post_tag"]', $node)->length > 0 ? 'Tags are not imported; the blog currently has no tag field.' : null,
                         preg_match('/\[(?:\/?[a-zA-Z_])[\w\s="\x27,.:\/-]*\]/', $html) ? 'Review WordPress shortcodes or page-builder content before publishing.' : null,
@@ -105,6 +117,11 @@ class WordPressXml
             libxml_clear_errors();
             libxml_use_internal_errors($previous);
         }
+    }
+
+    public function removedCharacters(): int
+    {
+        return $this->removedCharacters;
     }
 
     /** @return list<string> */

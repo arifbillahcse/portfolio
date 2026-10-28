@@ -9,7 +9,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Validation\ValidationException;
 
-#[Signature('portfolio:import-wordpress {file : Path to a WordPress WXR XML export} {--validate-only : Check the XML without saving posts or queuing jobs}')]
+#[Signature('portfolio:import-wordpress {file : Path to a WordPress WXR XML export} {--validate-only : Check the XML without saving posts or queuing jobs} {--clean-invalid-characters : Remove forbidden XML 1.0 characters in memory from a UTF-8 export; leave the source file unchanged}')]
 #[Description('Queue a WordPress post and image import from a local XML file')]
 class ImportWordPress extends Command
 {
@@ -25,13 +25,20 @@ class ImportWordPress extends Command
             return self::FAILURE;
         }
         try {
+            $cleanInvalidCharacters = (bool) $this->option('clean-invalid-characters');
+            if ($cleanInvalidCharacters) {
+                $this->warn('XML character cleanup enabled. The original file will not be changed.');
+            }
             if ($this->option('validate-only')) {
-                $posts = $xml->read($path);
+                $posts = $xml->read($path, $cleanInvalidCharacters);
+                if ($cleanInvalidCharacters) {
+                    $this->line('Forbidden characters removed in memory: '.$xml->removedCharacters().'.');
+                }
                 $this->info('Valid WordPress XML: '.count($posts).' importable posts. No data was saved and no jobs were queued.');
 
                 return self::SUCCESS;
             }
-            $import = $importer->start($path, basename($path));
+            $import = $importer->start($path, basename($path), $cleanInvalidCharacters);
         } catch (ValidationException $exception) {
             foreach ($exception->errors() as $messages) {
                 foreach ($messages as $message) {
