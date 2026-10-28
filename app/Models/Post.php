@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'sort_order',
     'seo_title',
     'seo_description',
+    'wordpress_id',
+    'wordpress_path',
 ])]
 class Post extends Model
 {
