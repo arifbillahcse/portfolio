@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $description }}">
+    @if(filled($site->google_site_verification))
+    <meta name="google-site-verification" content="{{ $site->google_site_verification }}">
+    @endif
     @php($effectiveRobots = !config('portfolio.indexable') ? 'noindex, nofollow' : (($seo['robots'] ?? null) ?: $robots))
     @if ($effectiveRobots)
         <meta name="robots" content="{{ $effectiveRobots }}">
@@ -41,5 +44,8 @@
 
     @php($scriptVersion = is_file(public_path('assets/js/script.js')) ? filemtime(public_path('assets/js/script.js')) : '1')
     <script src="{{ asset('assets/js/script.js') }}?v={{ $scriptVersion }}" defer></script>
+    @if($site->chat_widget_enabled && filled($site->chat_widget_code))
+        {!! $site->chat_widget_code !!}
+    @endif
 </body>
 </html>

@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
     'seo_title',
     'seo_description',
     'footer_text',
+    'google_site_verification',
+    'chat_widget_enabled',
+    'chat_widget_code',
 ])]
 class SiteSetting extends Model
 {
@@ -27,8 +30,6 @@ class SiteSetting extends Model
 
     protected function casts(): array
     {
-        return [
-
-        ];
+        return ['chat_widget_enabled' => 'boolean'];
     }
 }
