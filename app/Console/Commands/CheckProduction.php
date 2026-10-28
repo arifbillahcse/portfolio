@@ -37,7 +37,7 @@ class CheckProduction extends Command
 
         $mailer = config('mail.default');
         try {
-            if (! $this->option('before-migrate') && Schema::hasColumn('site_settings', 'smtp_enabled')) {
+            if (Schema::hasColumn('site_settings', 'smtp_enabled')) {
                 $mailer = app(InquiryMailSettings::class)->mailer() ?? 'not_configured';
             }
         } catch (Throwable) {

@@ -59,7 +59,14 @@ class ProductionReadinessTest extends TestCase
         $this->artisan('portfolio:check-production')->expectsOutput('FAIL Database migrations')->assertFailed();
     }
 
-    public function test_admin_smtp_settings_are_recognized_without_environment_mail_configuration(): void
+    /** @return array<string, array{bool}> */
+    public static function smtpCheckModes(): array
+    {
+        return ['final check' => [false], 'pre-deployment check' => [true]];
+    }
+
+    #[DataProvider('smtpCheckModes')]
+    public function test_admin_smtp_settings_are_recognized_without_environment_mail_configuration(bool $beforeMigrate): void
     {
         $this->prepareProduction();
         config(['mail.default' => 'log', 'mail.from.address' => 'hello@example.com']);
@@ -69,8 +76,12 @@ class ProductionReadinessTest extends TestCase
             'lead_notifications_enabled' => true, 'lead_notification_email' => 'leads@portfolio.company',
         ]);
 
-        $this->artisan('portfolio:check-production')->expectsOutput('PASS Mail transport')->expectsOutput('PASS Mail sender')
-            ->expectsOutput('PASS Profile and recipient')->doesntExpectOutputToContain('private-smtp-password')->assertSuccessful();
+        $command = $this->artisan('portfolio:check-production', ['--before-migrate' => $beforeMigrate])
+            ->expectsOutput('PASS Mail transport')->expectsOutput('PASS Mail sender')->doesntExpectOutputToContain('private-smtp-password');
+        if (! $beforeMigrate) {
+            $command->expectsOutput('PASS Profile and recipient');
+        }
+        $command->assertSuccessful();
     }
 
     public static function unsafeConfiguration(): array

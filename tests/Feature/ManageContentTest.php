@@ -164,6 +164,48 @@ class ManageContentTest extends TestCase
         $this->assertDatabaseCount('projects', 0);
     }
 
+    public function test_admin_can_upload_an_inline_blog_image_and_publish_it_in_the_article(): void
+    {
+        $this->signInAsAdmin();
+        Storage::fake('public');
+        $page = Livewire::test(CreatePost::class);
+        $componentKey = $page->instance()->form->getComponentByStatePath('body')->getKey();
+
+        $page->set('componentFileAttachments.data.body', UploadedFile::fake()->image('article.png'))
+            ->call('callSchemaComponentMethod', $componentKey, 'saveUploadedFileAttachmentAndGetUrl');
+
+        $paths = Storage::disk('public')->allFiles('posts/content');
+        $this->assertCount(1, $paths);
+        $url = Storage::disk('public')->url($paths[0]);
+        $page->assertReturned($url);
+        $page->fillForm([...$this->validContent('post', 'excerpt'), 'body' => '![Article screenshot]('.$url.')', 'is_published' => true])
+            ->call('create')->assertHasNoFormErrors();
+
+        $post = Post::query()->sole();
+        $this->get('/blog/'.$post->slug)->assertOk()->assertSee('src="'.$url.'"', false)->assertSee('alt="Article screenshot"', false);
+    }
+
+    /** @return array<string, array{bool}> */
+    public static function invalidInlineImages(): array
+    {
+        return ['executable attachment' => [false], 'image larger than 4 MB' => [true]];
+    }
+
+    #[DataProvider('invalidInlineImages')]
+    public function test_inline_blog_image_upload_rejects_invalid_attachments(bool $oversized): void
+    {
+        $this->signInAsAdmin();
+        Storage::fake('public');
+        $page = Livewire::test(CreatePost::class);
+        $componentKey = $page->instance()->form->getComponentByStatePath('body')->getKey();
+        $file = $oversized ? UploadedFile::fake()->image('large.png')->size(5000) : UploadedFile::fake()->create('script.php', 10, 'text/x-php');
+
+        $page->set('componentFileAttachments.data.body', $file)->call('callSchemaComponentMethod', $componentKey, 'saveUploadedFileAttachmentAndGetUrl')
+            ->assertReturned(null);
+
+        $this->assertSame([], Storage::disk('public')->allFiles('posts/content'));
+    }
+
     public function test_admin_title_is_escaped_in_the_table(): void
     {
         $this->signInAsAdmin();

@@ -121,6 +121,19 @@ class PublicPagesTest extends TestCase
         $this->get('/')->assertOk()->assertSee('/assets/images/arif-formal.png', false);
     }
 
+    public function test_hire_link_and_resume_content_are_available_without_javascript(): void
+    {
+        $document = new DOMDocument;
+        $document->loadHTML($this->get('/')->assertOk()->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $link = (new DOMXPath($document))->query('//a[@id="openHire"]')->item(0);
+        $this->assertNotNull($link);
+        $this->assertSame(route('contact').'#contactForm', $link->getAttribute('href'));
+
+        $document->loadHTML($this->get('/about')->assertOk()->getContent(), LIBXML_NOERROR | LIBXML_NOWARNING);
+        $xpath = new DOMXPath($document);
+        $this->assertCount(3, $xpath->query('//*[@role="tabpanel" and not(@hidden)]'));
+    }
+
     public function test_unpublished_pages_and_original_workspace_files_are_not_served(): void
     {
         $this->get('/not-a-public-page')->assertNotFound();

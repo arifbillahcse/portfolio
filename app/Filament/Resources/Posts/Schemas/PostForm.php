@@ -17,7 +17,11 @@ class PostForm
                 ContentFields::title(), ContentFields::slug('posts'), ContentFields::category('post'),
                 TextInput::make('reading_minutes')->numeric()->integer()->minValue(1)->maxValue(120)->required()->default(5),
                 Textarea::make('excerpt')->required()->maxLength(1000)->rows(3)->columnSpanFull(),
-                ContentFields::body()->required(),
+                ContentFields::body()->required()
+                    ->toolbarButtons(['bold', 'italic', 'link', 'heading', 'bulletList', 'orderedList', 'blockquote', 'codeBlock', 'table', 'attachFiles'])
+                    ->fileAttachmentsDisk('public')->fileAttachmentsDirectory('posts/content')
+                    ->fileAttachmentsAcceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->fileAttachmentsMaxSize(4096)
+                    ->helperText('Use the attachment button to insert JPG, PNG or WebP images into the article. Maximum 4 MB per image.'),
                 ContentFields::image('cover_image', 'posts')->columnSpanFull(),
             ])->columns(2)->columnSpanFull(),
             ContentFields::publishing(featured: true, demo: true), ContentFields::seo(),
