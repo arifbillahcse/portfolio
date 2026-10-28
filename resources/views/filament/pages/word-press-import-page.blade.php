@@ -4,6 +4,7 @@
             <p>In WordPress, open Tools → Export → All content. Upload the XML here (up to 8 MB). Images are downloaded automatically from <strong>old.arifbillah.com</strong> into this website’s storage.</p>
             <p>Posts are imported as drafts. Existing imported posts are skipped, preserving your edits. Standard text, links, headings, code, lists and images are converted to Markdown. Review tables, shortcodes and page-builder layouts before publishing. One category per post is supported; tags and comments are not imported.</p>
             <p>The cPanel queue Cron must be running for <code>mail,default</code>. Keep your old WordPress site online until all images have been verified.</p>
+            <p>Literal Rank Math or Yoast SEO titles, descriptions and focus topics are imported for new drafts when present in the XML. Plugin template variables and old canonical/robots settings require manual review; existing post edits are preserved.</p>
             <p>Hosting PHP limits: <strong>upload_max_filesize={{ $phpUploadLimit }}</strong>, <strong>post_max_size={{ $phpPostLimit }}</strong>. If your XML is larger than either limit, increase it in cPanel MultiPHP INI Editor. The importer accepts up to 8 MB.</p>
             @if(session('wordpress_import_success'))<p role="status">{{ session('wordpress_import_success') }}</p>@endif
             <form action="{{ route('wordpress.import.upload') }}" method="post" enctype="multipart/form-data" class="space-y-4" wire:ignore>

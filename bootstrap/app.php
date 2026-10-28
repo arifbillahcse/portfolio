@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\RobotsHeaders;
+use App\Http\Middleware\SeoRedirectMiddleware;
 use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Bootstrap\LoadConfiguration;
@@ -19,7 +20,16 @@ $app = Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(fn (): string => route('filament.admin.auth.login'));
         $middleware->append(RobotsHeaders::class);
-        $middleware->trustHosts(at: fn (): array => ['^'.preg_quote(parse_url(config('app.url'), PHP_URL_HOST) ?? '', '/').'$'], subdomains: false);
+        $middleware->append(SeoRedirectMiddleware::class);
+        $middleware->trustHosts(at: function (): array {
+            $host = parse_url(config('app.url'), PHP_URL_HOST) ?? '';
+            $hosts = [$host];
+            if (config('seo.canonical_origin_redirects')) {
+                $hosts[] = str_starts_with($host, 'www.') ? substr($host, 4) : 'www.'.$host;
+            }
+
+            return array_map(fn (string $host): string => '^'.preg_quote($host, '/').'$', $hosts);
+        }, subdomains: false);
         $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PORT);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

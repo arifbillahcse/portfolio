@@ -9,7 +9,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Validation\ValidationException;
 
-#[Signature('portfolio:import-wordpress {file : Path to a WordPress WXR XML export} {--validate-only : Check the XML without saving posts or queuing jobs} {--clean-invalid-characters : Remove forbidden XML 1.0 characters in memory from a UTF-8 export; leave the source file unchanged}')]
+#[Signature('portfolio:import-wordpress {file : Path to a WordPress WXR XML export} {--only-id= : Queue only this WordPress post ID; preserve existing posts} {--validate-only : Check the XML without saving posts or queuing jobs} {--clean-invalid-characters : Remove forbidden XML 1.0 characters in memory from a UTF-8 export; leave the source file unchanged}')]
 #[Description('Queue a WordPress post and image import from a local XML file')]
 class ImportWordPress extends Command
 {
@@ -25,12 +25,23 @@ class ImportWordPress extends Command
             return self::FAILURE;
         }
         try {
+            $selected = $this->option('only-id');
+            if ($selected !== null && (! ctype_digit((string) $selected) || (int) $selected < 1)) {
+                throw ValidationException::withMessages(['only-id' => 'Choose a positive WordPress post ID.']);
+            }
+            $onlyId = $selected !== null ? (int) $selected : null;
             $cleanInvalidCharacters = (bool) $this->option('clean-invalid-characters');
             if ($cleanInvalidCharacters) {
                 $this->warn('XML character cleanup enabled. The original file will not be changed.');
             }
             if ($this->option('validate-only')) {
                 $posts = $xml->read($path, $cleanInvalidCharacters);
+                if ($onlyId !== null) {
+                    $posts = array_filter($posts, fn (array $post): bool => $post['wordpress_id'] === $onlyId);
+                    if ($posts === []) {
+                        throw ValidationException::withMessages(['xml' => 'The selected WordPress post ID is not in this export.']);
+                    }
+                }
                 if ($cleanInvalidCharacters) {
                     $this->line('Forbidden characters removed in memory: '.$xml->removedCharacters().'.');
                 }
@@ -38,7 +49,7 @@ class ImportWordPress extends Command
 
                 return self::SUCCESS;
             }
-            $import = $importer->start($path, basename($path), $cleanInvalidCharacters);
+            $import = $importer->start($path, basename($path), $cleanInvalidCharacters, $onlyId);
         } catch (ValidationException $exception) {
             foreach ($exception->errors() as $messages) {
                 foreach ($messages as $message) {

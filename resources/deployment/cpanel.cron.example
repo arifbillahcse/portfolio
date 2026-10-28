@@ -3,3 +3,5 @@
 # Example: /home/CPANEL_USER/portfolio contains the backend; document root is portfolio/public.
 # Leave Cron Email enabled to receive failures. This worker stays quiet when idle.
 * * * * * PHP_BIN=PHP_PATH /bin/bash /home/CPANEL_USER/portfolio/resources/deployment/cpanel-mail-worker.sh
+# Optional daily SEO log cleanup; adjust the application directory as above.
+0 3 * * * PHP_PATH /home/CPANEL_USER/portfolio/artisan portfolio:prune-seo-404 --quiet

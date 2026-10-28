@@ -22,11 +22,20 @@ class PortfolioController extends Controller
 {
     public function home(Request $request): View|RedirectResponse
     {
-        if ($request->query('p') && is_scalar($request->query('p')) && ctype_digit((string) $request->query('p'))) {
+        if ($request->query->has('p')) {
+            abort_unless(is_scalar($request->query('p')) && ctype_digit((string) $request->query('p')), 404);
             $post = Post::query()->published()->where('wordpress_id', $request->query('p'))->first();
             if ($post) {
                 return redirect()->route('blog.show', ['slug' => $post->slug], 301);
             }
+            abort(404);
+        }
+        if ($request->query->has('page_id')) {
+            abort_unless(is_scalar($request->query('page_id')), 404);
+            $page = ['3730' => 'about', '3761' => 'services'][(string) $request->query('page_id')] ?? null;
+            abort_unless($page, 404);
+
+            return redirect()->route($page, [], 301);
         }
 
         return $this->page('home', [

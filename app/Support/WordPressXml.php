@@ -89,6 +89,7 @@ class WordPressXml
                 $images = array_values(array_unique(array_filter([$cover, ...$this->images($html)])));
                 $category = $xpath->query('category[@domain="category"]', $node)->item(0);
                 $posts[] = [
+                    'seo' => $this->seo($node, $xpath),
                     'wordpress_id' => (int) $id,
                     'title' => mb_substr(trim($xpath->evaluate('string(title)', $node)) ?: 'Untitled post '.$id, 0, 255),
                     'slug' => rawurldecode($xpath->evaluate('string(wp:post_name)', $node)),
@@ -122,6 +123,28 @@ class WordPressXml
     public function removedCharacters(): int
     {
         return $this->removedCharacters;
+    }
+
+    /** @return array<string, string> */
+    private function seo(DOMElement $node, DOMXPath $xpath): array
+    {
+        $fields = [
+            'seo_title' => ['rank_math_title', '_yoast_wpseo_title'],
+            'seo_description' => ['rank_math_description', '_yoast_wpseo_metadesc'],
+            'seo_focus_keyword' => ['rank_math_focus_keyword', '_yoast_wpseo_focuskw'],
+        ];
+        $result = [];
+        foreach ($fields as $target => $keys) {
+            foreach ($keys as $key) {
+                $value = trim($xpath->evaluate('string(wp:postmeta[wp:meta_key="'.$key.'"]/wp:meta_value)', $node));
+                if ($value !== '' && ! preg_match('/%[a-z_]+%|\{[a-z_]+\}/i', $value)) {
+                    $result[$target] = mb_substr(trim(strip_tags($value)), 0, $target === 'seo_description' ? 320 : 255);
+                    break;
+                }
+            }
+        }
+
+        return $result;
     }
 
     /** @return list<string> */

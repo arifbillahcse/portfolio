@@ -1,0 +1,229 @@
+{
+  "source": {
+    "filename": "mdarifbillahcse.WordPress.2026-10-28.xml",
+    "sha256": "D70BDB967191F0BEB755ABD8C38ABC1010E5041CE27FE62C1817EDE7928CF00C",
+    "posts": 36,
+    "attachments": 136,
+    "rank_math_or_yoast_metadata_records": 0,
+    "forbidden_characters_removed_in_memory": 1,
+    "original_file_unchanged": true
+  },
+  "posts": [
+    {
+      "id": 965,
+      "title": "How to install cyber panel using command line",
+      "source_url": "https://old.arifbillah.com/?p=965",
+      "proposed_path": "/blog/how-to-install-cyber-panel-using-command-line"
+    },
+    {
+      "id": 1012,
+      "title": "How to connect s3 bucket to wordpress using wp offload media lite plugin",
+      "source_url": "https://old.arifbillah.com/?p=1012",
+      "proposed_path": "/blog/how-to-connect-s3-bucket-to-wordpress-using-wp-offload-media-lite-plugin"
+    },
+    {
+      "id": 1032,
+      "title": "How to Install Apache",
+      "source_url": "https://old.arifbillah.com/?p=1032",
+      "proposed_path": "/blog/how-to-install-apache"
+    },
+    {
+      "id": 1035,
+      "title": "How to increase EC2 Instance root volume size",
+      "source_url": "https://old.arifbillah.com/?p=1035",
+      "proposed_path": "/blog/how-to-increase-ec2-instance-root-volume-size"
+    },
+    {
+      "id": 1038,
+      "title": "Common Firewall (UFW) command",
+      "source_url": "https://old.arifbillah.com/?p=1038",
+      "proposed_path": "/blog/commont-ufw-command"
+    },
+    {
+      "id": 1041,
+      "title": "How to install WordPress in ubuntu server",
+      "source_url": "https://old.arifbillah.com/?p=1041",
+      "proposed_path": "/blog/how-to-install-wordpress-in-ubuntu-server"
+    },
+    {
+      "id": 1056,
+      "title": "How to setup amazon CloudFront with WordPress",
+      "source_url": "https://old.arifbillah.com/?p=1056",
+      "proposed_path": "/blog/how-to-setup-amazon-cloudfront-with-wordpress"
+    },
+    {
+      "id": 1092,
+      "title": "How to Download and upload files using SCP in linux",
+      "source_url": "https://old.arifbillah.com/?p=1092",
+      "proposed_path": "/blog/how-to-copy-files-using-the-scp-command-in-linux"
+    },
+    {
+      "id": 1106,
+      "title": "Linux most common script.",
+      "source_url": "https://old.arifbillah.com/?p=1106",
+      "proposed_path": "/blog/linux-most-common-script"
+    },
+    {
+      "id": 1113,
+      "title": "Server error (500 internal Server Error) in the ubuntu server",
+      "source_url": "https://old.arifbillah.com/?p=1113",
+      "proposed_path": "/blog/server-error-500-internal-server-error-in-ubuntu-server"
+    },
+    {
+      "id": 1116,
+      "title": "How to learn Linux || All in one Linux system adminstration",
+      "source_url": "https://old.arifbillah.com/?p=1116",
+      "proposed_path": "/blog/how-to-learn-linux-all-in-one-linux-system"
+    },
+    {
+      "id": 1280,
+      "title": "Disable Linux public key authentication",
+      "source_url": "https://old.arifbillah.com/?p=1280",
+      "proposed_path": "/blog/disable-linux-public-key-authentication"
+    },
+    {
+      "id": 1297,
+      "title": "Environmental strategies adopted by the Green University of Bangladesh to achieve sustainability",
+      "source_url": "https://old.arifbillah.com/?p=1297",
+      "proposed_path": "/blog/environmental-strategies-adopted-by-the-green-university-of-bangladesh-to-achieve-sustainability"
+    },
+    {
+      "id": 1391,
+      "title": "Change the ssh key from aws",
+      "source_url": "https://old.arifbillah.com/?p=1391",
+      "proposed_path": "/blog/change-the-ssh-key-from-aws"
+    },
+    {
+      "id": 1428,
+      "title": "What is ec2 used for?  ec2 feature, ec2 future, ec2 Market and ec2 job in current market in 2023",
+      "source_url": "https://old.arifbillah.com/?p=1428",
+      "proposed_path": "/blog/what-is-ec2-used-for-ec2-feature-ec2-future-ec2-market-and-ec2-job-in-current-market-in-2023"
+    },
+    {
+      "id": 1470,
+      "title": "What is DevOps? Which skill needs for DevOps",
+      "source_url": "https://old.arifbillah.com/?p=1470",
+      "proposed_path": "/blog/what-is-devops-which-skill-needs-for-devops"
+    },
+    {
+      "id": 2799,
+      "title": "AWS public lost solution and enable password log in system in linux",
+      "source_url": "https://old.arifbillah.com/?p=2799",
+      "proposed_path": "/blog/aws-public-lost-solution-and-enable-password-log-in-system-in-linux"
+    },
+    {
+      "id": 2800,
+      "title": "A complete tutorial of ngnix server configuration in ubuntu 22.04",
+      "source_url": "https://old.arifbillah.com/?p=2800",
+      "proposed_path": "/blog/a-complete-tutorial-of-ngnix-server-configuration-in-ubuntu-22-04"
+    },
+    {
+      "id": 2801,
+      "title": "How to connect github to you windows or linux computer.",
+      "source_url": "https://old.arifbillah.com/?p=2801",
+      "proposed_path": "/blog/how-to-connect-github-to-you-windows-or-linux-computer"
+    },
+    {
+      "id": 2802,
+      "title": "How to create an ssh or secure shell on your server",
+      "source_url": "https://old.arifbillah.com/?p=2802",
+      "proposed_path": "/blog/how-to-create-an-ssh-key-on-your-server"
+    },
+    {
+      "id": 3461,
+      "title": "how to redirect domain to another domain",
+      "source_url": "https://old.arifbillah.com/?p=3461",
+      "proposed_path": "/blog/how-to-redirect-domain-to-another-domain"
+    },
+    {
+      "id": 3485,
+      "title": "Express.js Project Deployment on The Ubuntu Server",
+      "source_url": "https://old.arifbillah.com/?p=3485",
+      "proposed_path": "/blog/express-js-project-deployment-on-the-ubuntu-server"
+    },
+    {
+      "id": 3508,
+      "title": "WordPress Website build Services",
+      "source_url": "https://old.arifbillah.com/?p=3508",
+      "proposed_path": "/blog/wordpress-website-build-services"
+    },
+    {
+      "id": 3548,
+      "title": "Domain Hosting Provider Company Werbsite",
+      "source_url": "https://old.arifbillah.com/?p=3548",
+      "proposed_path": "/blog/domain-hosting-provider-company-werbsite"
+    },
+    {
+      "id": 3555,
+      "title": "Agency Website using WordPress",
+      "source_url": "https://old.arifbillah.com/?p=3555",
+      "proposed_path": "/blog/agency-website-using-wordpress"
+    },
+    {
+      "id": 3563,
+      "title": "Wordpress Website Migration on the AWS lightsail",
+      "source_url": "https://old.arifbillah.com/?p=3563",
+      "proposed_path": "/blog/wordpress-website-migration-on-the-aws-lightsail"
+    },
+    {
+      "id": 3572,
+      "title": "OVH web server setup",
+      "source_url": "https://old.arifbillah.com/?p=3572",
+      "proposed_path": "/blog/ovh-web-server-setup"
+    },
+    {
+      "id": 3614,
+      "title": "cPanel/WHM install on the Almalinux",
+      "source_url": "https://old.arifbillah.com/?p=3614",
+      "proposed_path": "/blog/cpanel-whm-install-on-the-almalinux"
+    },
+    {
+      "id": 3643,
+      "title": "Lightsail configuration and Migration WordPress website on the AWS",
+      "source_url": "https://old.arifbillah.com/?p=3643",
+      "proposed_path": "/blog/lightsail-configuration-and-migration-wordpress-website-on-the-aws"
+    },
+    {
+      "id": 3665,
+      "title": "Apache Engine config and WP website Build",
+      "source_url": "https://old.arifbillah.com/?p=3665",
+      "proposed_path": "/blog/apache-engine-config-and-wp-website-build"
+    },
+    {
+      "id": 3677,
+      "title": "CloudFlare Configuration and Increase Server Security",
+      "source_url": "https://old.arifbillah.com/?p=3677",
+      "proposed_path": "/blog/cloudflare-configuration-and-increase-server-security"
+    },
+    {
+      "id": 3724,
+      "title": "Domain registrar transfer Namecheap to hostinger",
+      "source_url": "https://old.arifbillah.com/?p=3724",
+      "proposed_path": "/blog/domain-registrar-transfer-namecheap-to-hostinger"
+    },
+    {
+      "id": 5892,
+      "title": "14 steps to grow your business.",
+      "source_url": "https://old.arifbillah.com/?p=5892",
+      "proposed_path": "/blog/14-steps-to-grow-your-business"
+    },
+    {
+      "id": 5893,
+      "title": "eCommerce Website build by Woocommerce using Wordpress",
+      "source_url": "https://old.arifbillah.com/?p=5893",
+      "proposed_path": "/blog/ecommerce-website-build-by-woocommerce-using-wordpress"
+    },
+    {
+      "id": 5894,
+      "title": "Install Plesk Web Panel and Security setup.",
+      "source_url": "https://old.arifbillah.com/?p=5894",
+      "proposed_path": "/blog/install-plesk-web-panel-and-security-setup"
+    },
+    {
+      "id": 6065,
+      "title": "Give information about Md Arif Billah CSE's education and career.",
+      "source_url": "https://old.arifbillah.com/?p=6065",
+      "proposed_path": "/blog/give-information-about-md-arif-billah-cses-education-and-career"
+    }
+  ]
+}

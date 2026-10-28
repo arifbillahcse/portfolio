@@ -11,15 +11,22 @@ use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class WordPressImporter
 {
     public function __construct(private WordPressXml $xml, private WordPressMedia $media, private WordPressMarkdown $markdown) {}
 
-    public function start(string $path, string $filename, bool $cleanInvalidCharacters = false): WordPressImport
+    public function start(string $path, string $filename, bool $cleanInvalidCharacters = false, ?int $onlyWordPressId = null): WordPressImport
     {
         $posts = $this->xml->read($path, $cleanInvalidCharacters);
+        if ($onlyWordPressId !== null) {
+            $posts = array_values(array_filter($posts, fn (array $post): bool => $post['wordpress_id'] === $onlyWordPressId));
+            if ($posts === []) {
+                throw ValidationException::withMessages(['xml' => 'The selected WordPress post ID is not in this export.']);
+            }
+        }
         $import = DB::transaction(function () use ($posts, $filename): WordPressImport {
             $import = WordPressImport::query()->create(['filename' => mb_substr(basename($filename), 0, 255), 'total' => count($posts)]);
             foreach ($posts as $post) {
@@ -121,6 +128,7 @@ class WordPressImporter
                 $path = parse_url($payload['link'], PHP_URL_PATH);
                 $body = $this->markdown->convert($payload['html'], $images);
                 $post = Post::query()->create([
+                    ...($payload['seo'] ?? []),
                     'wordpress_id' => $payload['wordpress_id'],
                     'wordpress_path' => is_string($path) && strlen($path) <= 512 && $path !== '/' ? '/'.trim(rawurldecode($path), '/') : null,
                     'title' => $payload['title'], 'slug' => $slug, 'body' => $body,

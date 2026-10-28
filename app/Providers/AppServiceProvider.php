@@ -8,11 +8,14 @@ use App\Models\Post;
 use App\Models\Profile;
 use App\Models\Project;
 use App\Models\ResumeEntry;
+use App\Models\SeoRedirect;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Policies\ContentPolicy;
 use App\Policies\SingletonContentPolicy;
+use App\Support\SeoRedirects;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\DiagnosingHealth;
 use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Http\Request;
@@ -48,8 +51,12 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        foreach ([Category::class, Project::class, Post::class, Service::class, ResumeEntry::class] as $model) {
+        foreach ([Category::class, Project::class, Post::class, Service::class, ResumeEntry::class, SeoRedirect::class] as $model) {
             Gate::policy($model, ContentPolicy::class);
+        }
+
+        foreach ([Post::class, Project::class, Service::class] as $model) {
+            $model::updated(fn (Model $record) => app(SeoRedirects::class)->suggest($record));
         }
 
         foreach ([Profile::class, SiteSetting::class, Inquiry::class] as $model) {
