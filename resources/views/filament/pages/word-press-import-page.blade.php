@@ -4,13 +4,17 @@
             <p>In WordPress, open Tools → Export → All content. Upload the XML here (up to 8 MB). Images are downloaded automatically from <strong>old.arifbillah.com</strong> into this website’s storage.</p>
             <p>Posts are imported as drafts. Existing imported posts are skipped, preserving your edits. Standard text, links, headings, code, lists and images are converted to Markdown. Review tables, shortcodes and page-builder layouts before publishing. One category per post is supported; tags and comments are not imported.</p>
             <p>The cPanel queue Cron must be running for <code>mail,default</code>. Keep your old WordPress site online until all images have been verified.</p>
-            <form wire:submit="startImport" class="space-y-4">
+            <p>Hosting PHP limits: <strong>upload_max_filesize={{ $phpUploadLimit }}</strong>, <strong>post_max_size={{ $phpPostLimit }}</strong>. If your XML is larger than either limit, increase it in cPanel MultiPHP INI Editor. The importer accepts up to 8 MB.</p>
+            @if(session('wordpress_import_success'))<p role="status">{{ session('wordpress_import_success') }}</p>@endif
+            <form action="{{ route('wordpress.import.upload') }}" method="post" enctype="multipart/form-data" class="space-y-4" wire:ignore>
+                @csrf
                 <label for="wordpress-xml" class="block font-medium">WordPress export (.xml)</label>
-                <input id="wordpress-xml" type="file" wire:model="xml" accept=".xml,text/xml,application/xml" required>
+                <input id="wordpress-xml" name="xml" type="file" accept=".xml,text/xml,application/xml" required aria-describedby="wordpress-upload-help">
                 @error('xml') <p role="alert" class="text-danger-600">{{ $message }}</p> @enderror
-                <p wire:loading wire:target="xml">Uploading XML…</p>
-                <div><x-filament::button type="submit" wire:loading.attr="disabled" wire:target="xml,startImport">Import as drafts</x-filament::button></div>
+                <p id="wordpress-upload-help">Upload goes directly to the importer. Wait for the page to return before uploading again.</p>
+                <div><x-filament::button type="submit">Upload XML &amp; import as drafts</x-filament::button></div>
             </form>
+            <details><summary>Alternative: import from the hosting terminal</summary><p>Upload the XML to your private home folder with cPanel File Manager. From the Laravel folder, run:</p><code>php artisan portfolio:import-wordpress /home/arifbillah/wordpress.xml</code><p>This avoids browser upload limits. The same 8 MB import limit and draft review apply.</p></details>
         </div>
     </x-filament::section>
 

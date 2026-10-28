@@ -8,12 +8,10 @@ use BackedEnum;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Livewire\Attributes\Locked;
-use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class WordPressImportPage extends Page
 {
-    use WithFileUploads;
     use WithPagination;
 
     protected static ?string $title = 'WordPress import';
@@ -23,8 +21,6 @@ class WordPressImportPage extends Page
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-arrow-down-tray';
 
     protected string $view = 'filament.pages.word-press-import-page';
-
-    public mixed $xml = null;
 
     #[Locked]
     public ?int $runId = null;
@@ -37,19 +33,9 @@ class WordPressImportPage extends Page
     public function mount(): void
     {
         abort_unless(static::canAccess(), 403);
-        $this->runId = WordPressImport::query()->latest('id')->value('id');
-    }
-
-    public function startImport(): void
-    {
-        abort_unless(static::canAccess(), 403);
-        $this->validate(['xml' => ['required', 'file', 'extensions:xml', 'max:8192']]);
-        $import = app(WordPressImporter::class)->start($this->xml->getRealPath(), $this->xml->getClientOriginalName());
-        $this->runId = $import->id;
-        $this->xml->delete();
-        $this->xml = null;
-        $this->resetPage();
-        Notification::make()->title('Import queued. Posts will be saved as drafts.')->success()->send();
+        $requested = session('wordpress_import_id');
+        $this->runId = $requested && WordPressImport::query()->whereKey($requested)->exists()
+            ? (int) $requested : WordPressImport::query()->latest('id')->value('id');
     }
 
     public function selectRun(int $id): void
@@ -81,6 +67,8 @@ class WordPressImportPage extends Page
             'run' => $run,
             'counts' => $run?->items()->selectRaw('status, COUNT(*) AS total')->groupBy('status')->pluck('total', 'status')->all() ?? [],
             'items' => $run?->items()->orderBy('id')->paginate(20),
+            'phpUploadLimit' => ini_get('upload_max_filesize'),
+            'phpPostLimit' => ini_get('post_max_size'),
         ];
     }
 }

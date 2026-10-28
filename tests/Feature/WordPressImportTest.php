@@ -61,12 +61,16 @@ class WordPressImportTest extends TestCase
     {
         Queue::fake([ImportWordPressItem::class]);
         $this->get('/admin/wordpress-import')->assertRedirect('/admin/login');
+        $this->post(route('wordpress.import.upload'), ['xml' => $this->export()])->assertRedirect('/admin/login');
         $this->actingAs(User::factory()->create(['is_admin' => false]))->get('/admin/wordpress-import')->assertForbidden();
+        $this->post(route('wordpress.import.upload'), ['xml' => $this->export()])->assertForbidden();
         $this->actingAs(User::factory()->create(['is_admin' => true]));
         Filament::setCurrentPanel('admin');
         $this->get('/admin/wordpress-import')->assertOk();
-        Livewire::test(WordPressImportPage::class)->set('xml', $this->export())->call('startImport')
-            ->assertHasNoErrors()->assertSee('Cloud computing guide')->assertSee('Queued');
+        $this->post(route('wordpress.import.upload'), ['xml' => $this->export()])
+            ->assertRedirect('/admin/wordpress-import')->assertSessionHas('wordpress_import_success');
+        $this->get('/admin/wordpress-import')->assertOk()->assertSee('Cloud computing guide')->assertSee('Queued')
+            ->assertSee('enctype="multipart/form-data"', false)->assertSee('upload_max_filesize=');
         $this->assertDatabaseHas('word_press_imports', ['total' => 1]);
         Queue::assertPushed(ImportWordPressItem::class, fn (ImportWordPressItem $job): bool => $job->connection === 'database' && $job->queue === 'default');
     }
@@ -260,9 +264,8 @@ class WordPressImportTest extends TestCase
         Queue::fake([ImportWordPressItem::class]);
         $this->actingAs(User::factory()->create(['is_admin' => true]));
         Filament::setCurrentPanel('admin');
-        Livewire::test(WordPressImportPage::class)
-            ->set('xml', UploadedFile::fake()->createWithContent('invalid.xml', '<not-wordpress/>'))
-            ->call('startImport')->assertHasErrors(['xml']);
+        $this->post(route('wordpress.import.upload'), ['xml' => UploadedFile::fake()->createWithContent('invalid.xml', '<not-wordpress/>')])
+            ->assertRedirect('/admin/wordpress-import')->assertSessionHasErrors(['xml']);
         $this->assertDatabaseCount('word_press_imports', 0);
         Queue::assertNothingPushed();
     }
@@ -295,5 +298,72 @@ class WordPressImportTest extends TestCase
         }
         $this->assertSame([], Storage::disk('public')->allFiles());
         Http::assertSentCount(1);
+    }
+
+    public function test_a_three_megabyte_xml_export_uploads_directly_and_queues_posts(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $this->actingAs(User::factory()->create(['is_admin' => true]));
+        $small = $this->export();
+        $contents = str_replace('</channel>', '<!--'.str_repeat('x', 3 * 1024 * 1024).'--></channel>', file_get_contents($small->getRealPath()));
+        $this->post(route('wordpress.import.upload'), ['xml' => UploadedFile::fake()->createWithContent('large.xml', $contents)])
+            ->assertRedirect('/admin/wordpress-import')->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('word_press_imports', ['filename' => 'large.xml', 'total' => 1]);
+        Queue::assertPushed(ImportWordPressItem::class, 1);
+    }
+
+    public function test_php_rejected_upload_has_an_actionable_error_and_creates_no_import(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $this->actingAs(User::factory()->create(['is_admin' => true]));
+        $file = $this->export();
+        $rejected = new UploadedFile($file->getRealPath(), 'export.xml', 'application/xml', UPLOAD_ERR_INI_SIZE, true);
+        $response = $this->post(route('wordpress.import.upload'), ['xml' => $rejected]);
+        $response->assertRedirect('/admin/wordpress-import')->assertSessionHasErrors(['xml']);
+        $this->assertStringContainsString('cPanel MultiPHP INI Editor', session('errors')->first('xml'));
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_missing_wrong_extension_and_oversized_exports_are_rejected(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $this->actingAs(User::factory()->create(['is_admin' => true]));
+        foreach ([null, UploadedFile::fake()->createWithContent('export.php', '<rss/>'), UploadedFile::fake()->create('export.xml', 8193, 'application/xml')] as $file) {
+            $this->post(route('wordpress.import.upload'), ['xml' => $file])
+                ->assertRedirect('/admin/wordpress-import')->assertSessionHasErrors(['xml']);
+        }
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_browser_import_requires_csrf_protection(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $this->actingAs(User::factory()->create(['is_admin' => true]));
+        $this->app->instance('env', 'production');
+        $this->post(route('wordpress.import.upload'), ['xml' => $this->export()])->assertStatus(419);
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_xml_can_be_imported_from_the_terminal_without_a_browser_upload(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = $this->export();
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath()])
+            ->expectsOutputToContain('Queued import #')->assertSuccessful();
+        $this->assertDatabaseCount('word_press_imports', 1);
+        Queue::assertPushed(ImportWordPressItem::class, 1);
+    }
+
+    public function test_terminal_import_rejects_missing_files_and_invalid_exports(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $this->artisan('portfolio:import-wordpress', ['file' => storage_path('app/private/missing-export.xml')])->assertFailed();
+        $invalid = UploadedFile::fake()->createWithContent('invalid.xml', '<invalid/>');
+        $this->artisan('portfolio:import-wordpress', ['file' => $invalid->getRealPath()])->assertFailed();
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
     }
 }

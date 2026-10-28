@@ -17,6 +17,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->redirectGuestsTo(fn (): string => route('filament.admin.auth.login'));
         $middleware->append(RobotsHeaders::class);
         $middleware->trustHosts(at: fn (): array => ['^'.preg_quote(parse_url(config('app.url'), PHP_URL_HOST) ?? '', '/').'$'], subdomains: false);
         $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PORT);
