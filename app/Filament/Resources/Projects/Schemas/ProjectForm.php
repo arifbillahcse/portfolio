@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Projects\Schemas;
 
 use App\Filament\Support\ContentFields;
+use App\Models\Project;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -20,12 +21,22 @@ class ProjectForm
                 ContentFields::body(), TagsInput::make('tools')->nestedRecursiveRules(['string', 'max:80'])->columnSpanFull(),
                 TextInput::make('external_url')->label('Live website URL')->url()->regex('/^https?:\/\//i')->maxLength(2048),
                 TextInput::make('repository_url')->url()->regex('/^https?:\/\//i')->maxLength(2048),
+                TextInput::make('video_url')->label('Video demonstration URL')->url()->regex(Project::VIDEO_URL_PATTERN)->maxLength(2048)
+                    ->helperText('YouTube watch or youtu.be URL. Use a verified project demonstration; leave blank when the link needs review.'),
             ])->columns(2)->columnSpanFull(),
             Section::make('Project images')->schema([
                 ContentFields::image('cover_image', 'projects'),
                 ContentFields::image('gallery', 'projects/gallery')->multiple()->reorderable()->maxFiles(12),
             ])->columns(2)->columnSpanFull(),
             ContentFields::publishing(featured: true, demo: true), ContentFields::seo(),
+            Section::make('Catalogue source & review')->description('Notes from the original link review. These are admin-only source annotations, not a claim that the full video or project results were verified.')->schema([
+                TextInput::make('catalogue_key')->label('Import reference')->disabled()->dehydrated(false),
+                TextInput::make('catalogue_metadata.status')->label('Mapping status at import')->disabled()->dehydrated(false),
+                TextInput::make('catalogue_metadata.source_title')->label('Original project title')->disabled()->dehydrated(false)->columnSpanFull(),
+                TextInput::make('catalogue_metadata.original_url')->label('Original evidence URL')->disabled()->dehydrated(false)->columnSpanFull(),
+                TextInput::make('catalogue_metadata.candidate_url')->label('Candidate URL requiring review')->disabled()->dehydrated(false)->columnSpanFull(),
+                Textarea::make('catalogue_metadata.notes')->label('Review notes')->rows(5)->disabled()->dehydrated(false)->columnSpanFull(),
+            ])->columns(2)->columnSpanFull()->visible(fn (?Project $record): bool => filled($record?->catalogue_key)),
         ]);
     }
 }

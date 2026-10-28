@@ -1,0 +1,1414 @@
+{
+  "schema_version": 1,
+  "catalogue_id": "arif-cloud-portfolio",
+  "source": {
+    "filename": "Arif_Cloud_Portfolio_Complete.docx",
+    "sha256": "528104e63cab204b0eff09fb8d03e25ee0eba377212d3d2bc76742cac777774d"
+  },
+  "entries": [
+    {
+      "source_id": 1,
+      "title": "WordPress Deployment on AWS EC2",
+      "slug": "wordpress-deployment-on-aws-ec2",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Launched and configured a complete WordPress website on an AWS EC2 instance using Ubuntu and LAMP stack, including Apache, MySQL, and PHP setup from scratch.",
+      "body": "## Overview\n\nLaunched and configured a complete WordPress website on an AWS EC2 instance using Ubuntu and LAMP stack, including Apache, MySQL, and PHP setup from scratch.\n\n## Technical focus\n\n- AWS EC2\n- Ubuntu\n- Apache\n- MySQL\n- PHP\n- WordPress\n- LAMP Stack",
+      "tools": [
+        "AWS EC2",
+        "Ubuntu",
+        "Apache",
+        "MySQL",
+        "PHP",
+        "WordPress",
+        "LAMP Stack"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Launched and configured a complete WordPress website on an AWS EC2 instance using Ubuntu and LAMP stack, including Apache, MySQL, and PHP setup from scratch.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Deployed a Full WordPress Site on AWS EC2 (Ubuntu + LAMP)",
+        "original_url": "https://youtu.be/Y7bMa_o5TBM",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 2,
+      "title": "DigitalOcean VPS Setup with CyberPanel",
+      "slug": "digitalocean-vps-setup-with-cyberpanel",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Provisioned a DigitalOcean Droplet and installed CyberPanel for managing websites, emails, and databases through a modern hosting panel.",
+      "body": "## Overview\n\nProvisioned a DigitalOcean Droplet and installed CyberPanel for managing websites, emails, and databases through a modern hosting panel.\n\n## Technical focus\n\n- DigitalOcean\n- VPS\n- CyberPanel\n- OpenLiteSpeed\n- DNS",
+      "tools": [
+        "DigitalOcean",
+        "VPS",
+        "CyberPanel",
+        "OpenLiteSpeed",
+        "DNS"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Provisioned a DigitalOcean Droplet and installed CyberPanel for managing websites, emails, and databases through a modern hosting panel.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Set Up a Cloud VPS with CyberPanel on DigitalOcean",
+        "original_url": "https://youtu.be/Q-VBXP5f9Zk",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 3,
+      "title": "Cloudflare CDN and DNS Configuration",
+      "slug": "cloudflare-cdn-and-dns-configuration",
+      "category": {
+        "slug": "dns-domains-email",
+        "name": "DNS, Domains & Email",
+        "order": 2
+      },
+      "excerpt": "Integrated Cloudflare with a live website for CDN caching, DDoS protection, and DNS management to optimize performance and security.",
+      "body": "## Overview\n\nIntegrated Cloudflare with a live website for CDN caching, DDoS protection, and DNS management to optimize performance and security.\n\n## Technical focus\n\n- Cloudflare\n- CDN\n- DNS Management\n- SSL\n- DDoS Protection",
+      "tools": [
+        "Cloudflare",
+        "CDN",
+        "DNS Management",
+        "SSL",
+        "DDoS Protection"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Integrated Cloudflare with a live website for CDN caching, DDoS protection, and DNS management to optimize performance and security.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Configured Cloudflare CDN & DNS for Website Performance",
+        "original_url": "https://youtu.be/fwH3p0dZpBQ",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 4,
+      "title": "Apache SSL Setup on Ubuntu",
+      "slug": "apache-ssl-setup-on-ubuntu",
+      "category": {
+        "slug": "security-ssl",
+        "name": "Security & SSL",
+        "order": 4
+      },
+      "excerpt": "Generated and installed a free Let's Encrypt SSL certificate on Apache running on Ubuntu, ensuring secure HTTPS connections.",
+      "body": "## Overview\n\nGenerated and installed a free Let's Encrypt SSL certificate on Apache running on Ubuntu, ensuring secure HTTPS connections.\n\n## Technical focus\n\n- SSL/TLS\n- Apache\n- Let's Encrypt\n- Ubuntu\n- HTTPS",
+      "tools": [
+        "SSL/TLS",
+        "Apache",
+        "Let's Encrypt",
+        "Ubuntu",
+        "HTTPS"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Generated and installed a free Let's Encrypt SSL certificate on Apache running on Ubuntu, ensuring secure HTTPS connections.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Installed SSL Certificate on Apache (Ubuntu VPS)",
+        "original_url": "https://youtu.be/PiqMJdxKXVo",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 5,
+      "title": "cPanel Email Configuration",
+      "slug": "cpanel-email-configuration",
+      "category": {
+        "slug": "dns-domains-email",
+        "name": "DNS, Domains & Email",
+        "order": 2
+      },
+      "excerpt": "Set up and configured a professional email server using cPanel webmail, including MX records, SPF, DKIM, and DMARC for email deliverability.",
+      "body": "## Overview\n\nSet up and configured a professional email server using cPanel webmail, including MX records, SPF, DKIM, and DMARC for email deliverability.\n\n## Technical focus\n\n- cPanel\n- Webmail\n- MX Records\n- SPF\n- DKIM\n- DMARC",
+      "tools": [
+        "cPanel",
+        "Webmail",
+        "MX Records",
+        "SPF",
+        "DKIM",
+        "DMARC"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Set up and configured a professional email server using cPanel webmail, including MX records, SPF, DKIM, and DMARC for email deliverability.",
+      "review": {
+        "status": "overlap_narrow_scope",
+        "source_title": "Email Server Configuration with cPanel Webmail",
+        "original_url": "https://youtu.be/UaTQC4PzrC0",
+        "candidate_url": "https://www.youtube.com/watch?v=UaTQC4PzrC0",
+        "notes": "The original link works but its title covers Cloudflare email DNS records for cPanel. It is the same video used by #46. Recommend consolidating under #46 or narrowing this entry; this is not evidence of installing/configuring a complete mail server. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 6,
+      "title": "WooCommerce Store and Payment Integration",
+      "slug": "woocommerce-store-and-payment-integration",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Developed a complete e-commerce website using WooCommerce with product listings, payment gateway integration, and shipping configuration.",
+      "body": "## Overview\n\nDeveloped a complete e-commerce website using WooCommerce with product listings, payment gateway integration, and shipping configuration.\n\n## Technical focus\n\n- WordPress\n- WooCommerce\n- Payment Gateway\n- SSL\n- E-commerce",
+      "tools": [
+        "WordPress",
+        "WooCommerce",
+        "Payment Gateway",
+        "SSL",
+        "E-commerce"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Developed a complete e-commerce website using WooCommerce with product listings, payment gateway integration, and shipping configuration.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Built a WooCommerce Online Store with Payment Gateway",
+        "original_url": "https://youtu.be/IhJzKaxhDdU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 7,
+      "title": "Linux Server Hardening and Firewall Setup",
+      "slug": "linux-server-hardening-and-firewall-setup",
+      "category": {
+        "slug": "security-ssl",
+        "name": "Security & SSL",
+        "order": 4
+      },
+      "excerpt": "Implemented comprehensive server hardening on Ubuntu/CentOS including UFW/iptables firewall rules, fail2ban, SSH key authentication, and port management.",
+      "body": "## Overview\n\nImplemented comprehensive server hardening on Ubuntu/CentOS including UFW/iptables firewall rules, fail2ban, SSH key authentication, and port management.\n\n## Technical focus\n\n- Linux Security\n- UFW\n- iptables\n- fail2ban\n- SSH\n- Port Management",
+      "tools": [
+        "Linux Security",
+        "UFW",
+        "iptables",
+        "fail2ban",
+        "SSH",
+        "Port Management"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Implemented comprehensive server hardening on Ubuntu/CentOS including UFW/iptables firewall rules, fail2ban, SSH key authentication, and port management.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Linux Server Hardening & Firewall Setup",
+        "original_url": "https://youtu.be/gV0-2XpfmKQ",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 8,
+      "title": "Node.js Deployment with Nginx",
+      "slug": "node-js-deployment-with-nginx",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Deployed a Node.js web application on a VPS using PM2 process manager and configured Nginx as a reverse proxy with SSL termination.",
+      "body": "## Overview\n\nDeployed a Node.js web application on a VPS using PM2 process manager and configured Nginx as a reverse proxy with SSL termination.\n\n## Technical focus\n\n- Node.js\n- Nginx\n- PM2\n- Reverse Proxy\n- SSL\n- VPS",
+      "tools": [
+        "Node.js",
+        "Nginx",
+        "PM2",
+        "Reverse Proxy",
+        "SSL",
+        "VPS"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Deployed a Node.js web application on a VPS using PM2 process manager and configured Nginx as a reverse proxy with SSL termination.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Deployed Node.js Application on VPS with Nginx Reverse Proxy",
+        "original_url": "https://youtu.be/rR0dXX5E3n0",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 9,
+      "title": "WordPress Migration to Cloudways",
+      "slug": "wordpress-migration-to-cloudways",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "A WordPress migration walkthrough to Cloudways, covering migration tools including All-in-One WP Migration, Updraft and WPvivid.",
+      "body": "## Overview\n\nA WordPress migration walkthrough to Cloudways, covering migration tools including All-in-One WP Migration, Updraft and WPvivid.\n\n## Technical focus\n\n- WordPress\n- Cloudways\n- All-in-One WP Migration\n- Updraft\n- WPvivid",
+      "tools": [
+        "WordPress",
+        "Cloudways",
+        "All-in-One WP Migration",
+        "Updraft",
+        "WPvivid"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=FU4Zd3GTgYs",
+      "thumbnail": "FU4Zd3GTgYs.jpg",
+      "seo_description": "A WordPress migration walkthrough to Cloudways, covering migration tools including All-in-One WP Migration, Updraft and WPvivid.",
+      "review": {
+        "status": "replacement_topic_match",
+        "source_title": "WordPress Migration Between Hosting Providers",
+        "original_url": "https://youtu.be/6wLqlG2dKoI",
+        "candidate_url": "https://www.youtube.com/watch?v=FU4Zd3GTgYs",
+        "notes": "Owner and video title match WordPress migration. Narrow destination to Cloudways; the original zero-downtime claim has not been verified. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 10,
+      "title": "Multi-Domain Hosting on a VPS",
+      "slug": "multi-domain-hosting-on-a-vps",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Configured Apache Virtual Hosts to serve multiple websites from a single VPS, each with its own domain, SSL certificate, and document root.",
+      "body": "## Overview\n\nConfigured Apache Virtual Hosts to serve multiple websites from a single VPS, each with its own domain, SSL certificate, and document root.\n\n## Technical focus\n\n- Apache Virtual Hosts\n- Multi-Domain\n- VPS\n- SSL\n- DNS",
+      "tools": [
+        "Apache Virtual Hosts",
+        "Multi-Domain",
+        "VPS",
+        "SSL",
+        "DNS"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Configured Apache Virtual Hosts to serve multiple websites from a single VPS, each with its own domain, SSL certificate, and document root.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Set Up Multi-Domain Hosting on Single VPS",
+        "original_url": "https://youtu.be/zcLRx8ocsyE",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 11,
+      "title": "Automated Server Backups with Bash and Cron",
+      "slug": "automated-server-backups-with-bash-and-cron",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "Created automated backup scripts using bash and cron jobs for database and file system backups with rotation and remote storage.",
+      "body": "## Overview\n\nCreated automated backup scripts using bash and cron jobs for database and file system backups with rotation and remote storage.\n\n## Technical focus\n\n- Bash Scripting\n- Cron Jobs\n- Backup\n- MySQL Dump\n- Automation",
+      "tools": [
+        "Bash Scripting",
+        "Cron Jobs",
+        "Backup",
+        "MySQL Dump",
+        "Automation"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Created automated backup scripts using bash and cron jobs for database and file system backups with rotation and remote storage.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Automated Server Backup System with Cron Jobs",
+        "original_url": "https://youtu.be/RZ3NVUXkY6M",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 12,
+      "title": "Docker Deployment for Web Applications",
+      "slug": "docker-deployment-for-web-applications",
+      "category": {
+        "slug": "automation-devops",
+        "name": "Automation & DevOps",
+        "order": 6
+      },
+      "excerpt": "Containerized a web application using Docker, created Dockerfiles, managed containers, and set up Docker Compose for multi-container orchestration.",
+      "body": "## Overview\n\nContainerized a web application using Docker, created Dockerfiles, managed containers, and set up Docker Compose for multi-container orchestration.\n\n## Technical focus\n\n- Docker\n- Dockerfile\n- Docker Compose\n- Containerization\n- DevOps",
+      "tools": [
+        "Docker",
+        "Dockerfile",
+        "Docker Compose",
+        "Containerization",
+        "DevOps"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Containerized a web application using Docker, created Dockerfiles, managed containers, and set up Docker Compose for multi-container orchestration.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Docker Container Deployment for Web Application",
+        "original_url": "https://youtu.be/dOKYGknf_jI",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 13,
+      "title": "cPanel and WHM on a Dedicated Server",
+      "slug": "cpanel-and-whm-on-a-dedicated-server",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Installed and configured cPanel/WHM on a dedicated server for web hosting management, including account creation, resource allocation, and security configuration.",
+      "body": "## Overview\n\nInstalled and configured cPanel/WHM on a dedicated server for web hosting management, including account creation, resource allocation, and security configuration.\n\n## Technical focus\n\n- cPanel\n- WHM\n- Dedicated Server\n- Web Hosting\n- Server Management",
+      "tools": [
+        "cPanel",
+        "WHM",
+        "Dedicated Server",
+        "Web Hosting",
+        "Server Management"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Installed and configured cPanel/WHM on a dedicated server for web hosting management, including account creation, resource allocation, and security...",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Set Up cPanel/WHM on Dedicated Server",
+        "original_url": "https://youtu.be/6JkW68MINyA",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 14,
+      "title": "WordPress Performance Optimization",
+      "slug": "wordpress-performance-optimization",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "WordPress performance tuning through caching, image optimization, database cleanup and CDN configuration.",
+      "body": "## Overview\n\nWordPress performance tuning through caching, image optimization, database cleanup and CDN configuration.\n\n## Technical focus\n\n- WordPress\n- WP Rocket\n- Image Optimization\n- CDN\n- Performance",
+      "tools": [
+        "WordPress",
+        "WP Rocket",
+        "Image Optimization",
+        "CDN",
+        "Performance"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "WordPress performance tuning through caching, image optimization, database cleanup and CDN configuration.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "WordPress Speed Optimization & Performance Tuning",
+        "original_url": "https://youtu.be/YJuul-_xKJE",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 15,
+      "title": "Nginx Load Balancer Configuration",
+      "slug": "nginx-load-balancer-configuration",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Set up Nginx as a reverse proxy load balancer distributing traffic across multiple backend servers for high availability and performance.",
+      "body": "## Overview\n\nSet up Nginx as a reverse proxy load balancer distributing traffic across multiple backend servers for high availability and performance.\n\n## Technical focus\n\n- Nginx\n- Load Balancing\n- Reverse Proxy\n- High Availability",
+      "tools": [
+        "Nginx",
+        "Load Balancing",
+        "Reverse Proxy",
+        "High Availability"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Set up Nginx as a reverse proxy load balancer distributing traffic across multiple backend servers for high availability and performance.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Configured Nginx as Load Balancer",
+        "original_url": "https://youtu.be/xhm7VYOxcGk",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 16,
+      "title": "DNS Zone and Record Management",
+      "slug": "dns-zone-and-record-management",
+      "category": {
+        "slug": "dns-domains-email",
+        "name": "DNS, Domains & Email",
+        "order": 2
+      },
+      "excerpt": "Managed DNS zones including A, CNAME, MX, TXT, SPF, and DMARC records for domain routing, email delivery, and domain verification.",
+      "body": "## Overview\n\nManaged DNS zones including A, CNAME, MX, TXT, SPF, and DMARC records for domain routing, email delivery, and domain verification.\n\n## Technical focus\n\n- DNS\n- Zone Management\n- A Record\n- CNAME\n- MX\n- SPF\n- DMARC",
+      "tools": [
+        "DNS",
+        "Zone Management",
+        "A Record",
+        "CNAME",
+        "MX",
+        "SPF",
+        "DMARC"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Managed DNS zones including A, CNAME, MX, TXT, SPF, and DMARC records for domain routing, email delivery, and domain verification.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "DNS Zone Management & Record Configuration",
+        "original_url": "https://youtu.be/JX5tqJaW-5E",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 17,
+      "title": "Secure FTP Setup on Ubuntu",
+      "slug": "secure-ftp-setup-on-ubuntu",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Installed and configured vsftpd FTP server on Ubuntu with secure TLS/SSL connections, user management, and directory permissions.",
+      "body": "## Overview\n\nInstalled and configured vsftpd FTP server on Ubuntu with secure TLS/SSL connections, user management, and directory permissions.\n\n## Technical focus\n\n- FTP\n- vsftpd\n- Ubuntu\n- TLS/SSL\n- User Management",
+      "tools": [
+        "FTP",
+        "vsftpd",
+        "Ubuntu",
+        "TLS/SSL",
+        "User Management"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Installed and configured vsftpd FTP server on Ubuntu with secure TLS/SSL connections, user management, and directory permissions.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Set Up FTP Server on Ubuntu VPS",
+        "original_url": "https://youtu.be/UtgZcW9Cswo",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 18,
+      "title": "WordPress Customization with Elementor Pro",
+      "slug": "wordpress-customization-with-elementor-pro",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Designed and customized responsive WordPress websites using Elementor Pro page builder with custom widgets, templates, and dynamic content.",
+      "body": "## Overview\n\nDesigned and customized responsive WordPress websites using Elementor Pro page builder with custom widgets, templates, and dynamic content.\n\n## Technical focus\n\n- WordPress\n- Elementor Pro\n- Responsive Design\n- CSS\n- Theme Development",
+      "tools": [
+        "WordPress",
+        "Elementor Pro",
+        "Responsive Design",
+        "CSS",
+        "Theme Development"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Designed and customized responsive WordPress websites using Elementor Pro page builder with custom widgets, templates, and dynamic content.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "WordPress Theme Customization with Elementor Pro",
+        "original_url": "https://youtu.be/LCjJ_NXBRMU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 19,
+      "title": "VPS Health Monitoring with n8n",
+      "slug": "vps-health-monitoring-with-n8n",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "A demonstration of VPS and server health monitoring using n8n.",
+      "body": "## Overview\n\nA demonstration of VPS and server health monitoring using n8n.\n\n## Technical focus\n\n- n8n\n- VPS\n- Server monitoring",
+      "tools": [
+        "n8n",
+        "VPS",
+        "Server monitoring"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=JWijtRft7lU",
+      "thumbnail": "JWijtRft7lU.jpg",
+      "seo_description": "A demonstration of VPS and server health monitoring using n8n.",
+      "review": {
+        "status": "replacement_topic_match",
+        "source_title": "Set Up Monitoring with Uptime Tools",
+        "original_url": "https://youtu.be/8dFNg5XShIU",
+        "candidate_url": "https://www.youtube.com/watch?v=JWijtRft7lU",
+        "notes": "Owner and title match server monitoring. Use n8n in the tools list. Alert behavior and performance outcomes require content review. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 20,
+      "title": "Plesk Setup on a Cloud VPS",
+      "slug": "plesk-setup-on-a-cloud-vps",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Deployed Plesk control panel on a cloud VPS for streamlined web hosting management with WordPress toolkit integration.",
+      "body": "## Overview\n\nDeployed Plesk control panel on a cloud VPS for streamlined web hosting management with WordPress toolkit integration.\n\n## Technical focus\n\n- Plesk\n- VPS\n- WordPress Toolkit\n- Web Hosting Management",
+      "tools": [
+        "Plesk",
+        "VPS",
+        "WordPress Toolkit",
+        "Web Hosting Management"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Deployed Plesk control panel on a cloud VPS for streamlined web hosting management with WordPress toolkit integration.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Configured Plesk Panel on Cloud VPS",
+        "original_url": "https://youtu.be/gB9K3f4P2cQ",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 21,
+      "title": "WordPress Learning Management System",
+      "slug": "wordpress-learning-management-system",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Built a complete Learning Management System using WordPress with course creation, student enrollment, payment integration, and certificate generation.",
+      "body": "## Overview\n\nBuilt a complete Learning Management System using WordPress with course creation, student enrollment, payment integration, and certificate generation.\n\n## Technical focus\n\n- WordPress\n- LMS\n- LearnDash/Tutor LMS\n- E-learning\n- WooCommerce",
+      "tools": [
+        "WordPress",
+        "LMS",
+        "LearnDash/Tutor LMS",
+        "E-learning",
+        "WooCommerce"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Built a complete Learning Management System using WordPress with course creation, student enrollment, payment integration, and certificate generation.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "WordPress LMS Website Development",
+        "original_url": "https://youtu.be/LCjJ_NXBRMU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 22,
+      "title": "SSH Key Authentication and Access Controls",
+      "slug": "ssh-key-authentication-and-access-controls",
+      "category": {
+        "slug": "security-ssl",
+        "name": "Security & SSL",
+        "order": 4
+      },
+      "excerpt": "Configured passwordless SSH access using key-pair authentication, disabled root login, and set up SSH config for multiple servers.",
+      "body": "## Overview\n\nConfigured passwordless SSH access using key-pair authentication, disabled root login, and set up SSH config for multiple servers.\n\n## Technical focus\n\n- SSH\n- Key Authentication\n- Server Security\n- Linux Administration",
+      "tools": [
+        "SSH",
+        "Key Authentication",
+        "Server Security",
+        "Linux Administration"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Configured passwordless SSH access using key-pair authentication, disabled root login, and set up SSH config for multiple servers.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "SSH Key-Based Authentication Setup",
+        "original_url": "https://youtu.be/gV0-2XpfmKQ",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 23,
+      "title": "PHP Application Deployment on a VPS",
+      "slug": "php-application-deployment-on-a-vps",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Deployed a custom PHP application on a VPS with Apache/Nginx, configured virtual hosts, database connections, and file permissions.",
+      "body": "## Overview\n\nDeployed a custom PHP application on a VPS with Apache/Nginx, configured virtual hosts, database connections, and file permissions.\n\n## Technical focus\n\n- PHP\n- Apache\n- Nginx\n- MySQL\n- VPS\n- Deployment",
+      "tools": [
+        "PHP",
+        "Apache",
+        "Nginx",
+        "MySQL",
+        "VPS",
+        "Deployment"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Deployed a custom PHP application on a VPS with Apache/Nginx, configured virtual hosts, database connections, and file permissions.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Custom PHP Application Deployment on VPS",
+        "original_url": "https://youtu.be/rR0dXX5E3n0",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 24,
+      "title": "Cloudflare WAF Configuration",
+      "slug": "cloudflare-waf-configuration",
+      "category": {
+        "slug": "dns-domains-email",
+        "name": "DNS, Domains & Email",
+        "order": 2
+      },
+      "excerpt": "A demonstration of Cloudflare Web Application Firewall configuration for a website.",
+      "body": "## Overview\n\nA demonstration of Cloudflare Web Application Firewall configuration for a website.\n\n## Technical focus\n\n- Cloudflare\n- WAF",
+      "tools": [
+        "Cloudflare",
+        "WAF"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=VDXC-oScMM8",
+      "thumbnail": "VDXC-oScMM8.jpg",
+      "seo_description": "A demonstration of Cloudflare Web Application Firewall configuration for a website.",
+      "review": {
+        "status": "replacement_topic_match",
+        "source_title": "Cloudflare Page Rules & Security Configuration",
+        "original_url": "https://youtu.be/fwH3p0dZpBQ",
+        "candidate_url": "https://www.youtube.com/watch?v=VDXC-oScMM8",
+        "notes": "Owner and title match a Cloudflare WAF project. Page Rules, rate limiting and security headers are not established by the title. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 25,
+      "title": "WordPress Backup and Disaster Recovery",
+      "slug": "wordpress-backup-and-disaster-recovery",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "Implemented comprehensive WordPress backup strategy using plugins and manual methods with disaster recovery procedures.",
+      "body": "## Overview\n\nImplemented comprehensive WordPress backup strategy using plugins and manual methods with disaster recovery procedures.\n\n## Technical focus\n\n- WordPress\n- Backup\n- UpdraftPlus\n- Disaster Recovery\n- Database",
+      "tools": [
+        "WordPress",
+        "Backup",
+        "UpdraftPlus",
+        "Disaster Recovery",
+        "Database"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Implemented comprehensive WordPress backup strategy using plugins and manual methods with disaster recovery procedures.",
+      "review": {
+        "status": "candidate_scope_change",
+        "source_title": "WordPress Backup & Disaster Recovery",
+        "original_url": "https://youtu.be/RZ3NVUXkY6M",
+        "candidate_url": "https://www.youtube.com/watch?v=_WFtwrC3ylc",
+        "notes": "Working owner video covers cPanel restoration. It does not establish WordPress backup automation, UpdraftPlus, or a full disaster-recovery strategy. Candidate title from phase 1: Website restoration using cPanel. The original project scope is retained here until that change is approved. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 26,
+      "title": "WordPress Multisite Configuration",
+      "slug": "wordpress-multisite-configuration",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Configured WordPress Multisite network for managing multiple websites from a single WordPress installation with shared plugins and themes.",
+      "body": "## Overview\n\nConfigured WordPress Multisite network for managing multiple websites from a single WordPress installation with shared plugins and themes.\n\n## Technical focus\n\n- WordPress Multisite\n- Network Admin\n- Subdomain/Subdirectory",
+      "tools": [
+        "WordPress Multisite",
+        "Network Admin",
+        "Subdomain/Subdirectory"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Configured WordPress Multisite network for managing multiple websites from a single WordPress installation with shared plugins and themes.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Set Up WordPress Multisite Network",
+        "original_url": "https://youtu.be/zcLRx8ocsyE",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 27,
+      "title": "Contabo VPS Setup and Server Configuration",
+      "slug": "contabo-vps-setup-and-server-configuration",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Provisioned and configured Contabo VPS instances including OS installation, security hardening, and web hosting stack deployment.",
+      "body": "## Overview\n\nProvisioned and configured Contabo VPS instances including OS installation, security hardening, and web hosting stack deployment.\n\n## Technical focus\n\n- Contabo\n- VPS\n- Linux\n- Server Configuration\n- Web Hosting",
+      "tools": [
+        "Contabo",
+        "VPS",
+        "Linux",
+        "Server Configuration",
+        "Web Hosting"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Provisioned and configured Contabo VPS instances including OS installation, security hardening, and web hosting stack deployment.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Contabo VPS Setup & Server Configuration",
+        "original_url": "https://youtu.be/0fBVe8hU3FU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 28,
+      "title": "WordPress Directory and Listing Website",
+      "slug": "wordpress-directory-and-listing-website",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Built a directory listing website using WordPress with location-based search, business listings, reviews, and map integration.",
+      "body": "## Overview\n\nBuilt a directory listing website using WordPress with location-based search, business listings, reviews, and map integration.\n\n## Technical focus\n\n- WordPress\n- Directory\n- Listing\n- Google Maps\n- Custom Post Types",
+      "tools": [
+        "WordPress",
+        "Directory",
+        "Listing",
+        "Google Maps",
+        "Custom Post Types"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Built a directory listing website using WordPress with location-based search, business listings, reviews, and map integration.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "WordPress Directory/Listing Website Development",
+        "original_url": "https://youtu.be/LCjJ_NXBRMU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 29,
+      "title": "Apache Performance Tuning",
+      "slug": "apache-performance-tuning",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "Optimized Apache web server configuration including MPM tuning, mod_deflate, mod_expires, and KeepAlive settings for better performance.",
+      "body": "## Overview\n\nOptimized Apache web server configuration including MPM tuning, mod_deflate, mod_expires, and KeepAlive settings for better performance.\n\n## Technical focus\n\n- Apache\n- MPM\n- mod_deflate\n- mod_expires\n- Performance Tuning",
+      "tools": [
+        "Apache",
+        "MPM",
+        "mod_deflate",
+        "mod_expires",
+        "Performance Tuning"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Optimized Apache web server configuration including MPM tuning, mod_deflate, mod_expires, and KeepAlive settings for better performance.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Apache Performance Tuning & Optimization",
+        "original_url": "https://youtu.be/xhm7VYOxcGk",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 30,
+      "title": "CloudPanel for PHP Application Hosting",
+      "slug": "cloudpanel-for-php-application-hosting",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Installed CloudPanel on VPS for lightweight, high-performance PHP application hosting with automated SSL and Nginx optimization.",
+      "body": "## Overview\n\nInstalled CloudPanel on VPS for lightweight, high-performance PHP application hosting with automated SSL and Nginx optimization.\n\n## Technical focus\n\n- CloudPanel\n- Nginx\n- PHP\n- VPS\n- SSL\n- MariaDB",
+      "tools": [
+        "CloudPanel",
+        "Nginx",
+        "PHP",
+        "VPS",
+        "SSL",
+        "MariaDB"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Installed CloudPanel on VPS for lightweight, high-performance PHP application hosting with automated SSL and Nginx optimization.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "CloudPanel Setup for PHP Application Hosting",
+        "original_url": "https://youtu.be/gB9K3f4P2cQ",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 31,
+      "title": "WordPress Booking and Appointment System",
+      "slug": "wordpress-booking-and-appointment-system",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Developed an online booking/appointment system using WordPress with calendar integration, payment processing, and email notifications.",
+      "body": "## Overview\n\nDeveloped an online booking/appointment system using WordPress with calendar integration, payment processing, and email notifications.\n\n## Technical focus\n\n- WordPress\n- Booking\n- WooCommerce\n- Calendar\n- Payment Gateway",
+      "tools": [
+        "WordPress",
+        "Booking",
+        "WooCommerce",
+        "Calendar",
+        "Payment Gateway"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Developed an online booking/appointment system using WordPress with calendar integration, payment processing, and email notifications.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "WordPress Booking System Implementation",
+        "original_url": "https://youtu.be/IhJzKaxhDdU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 32,
+      "title": "MySQL Database Administration",
+      "slug": "mysql-database-administration",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "Managed MySQL databases including user creation, privilege management, performance tuning, backup/restore operations, and query optimization.",
+      "body": "## Overview\n\nManaged MySQL databases including user creation, privilege management, performance tuning, backup/restore operations, and query optimization.\n\n## Technical focus\n\n- MySQL\n- Database Administration\n- phpMyAdmin\n- Backup/Restore",
+      "tools": [
+        "MySQL",
+        "Database Administration",
+        "phpMyAdmin",
+        "Backup/Restore"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Managed MySQL databases including user creation, privilege management, performance tuning, backup/restore operations, and query optimization.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Database Management & MySQL Administration",
+        "original_url": "https://youtu.be/Y7bMa_o5TBM",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 33,
+      "title": "aaPanel on a Namecheap VPS with WordPress",
+      "slug": "aapanel-on-a-namecheap-vps-with-wordpress",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "A walkthrough of aaPanel installation on a Namecheap VPS, with WordPress installation and SSL setup.",
+      "body": "## Overview\n\nA walkthrough of aaPanel installation on a Namecheap VPS, with WordPress installation and SSL setup.\n\n## Technical focus\n\n- aaPanel\n- Namecheap VPS\n- WordPress\n- SSL/TLS",
+      "tools": [
+        "aaPanel",
+        "Namecheap VPS",
+        "WordPress",
+        "SSL/TLS"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=arxbiULVRxU",
+      "thumbnail": "arxbiULVRxU.jpg",
+      "seo_description": "A walkthrough of aaPanel installation on a Namecheap VPS, with WordPress installation and SSL setup.",
+      "review": {
+        "status": "replacement_topic_match",
+        "source_title": "aaPanel Installation & Web Hosting Management",
+        "original_url": "https://youtu.be/gB9K3f4P2cQ",
+        "candidate_url": "https://www.youtube.com/watch?v=arxbiULVRxU",
+        "notes": "Owner and title match aaPanel installation. Narrow provider to Namecheap; detailed hosting stack claims require review. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 34,
+      "title": "Git and GitHub Deployment Workflows",
+      "slug": "git-and-github-deployment-workflows",
+      "category": {
+        "slug": "automation-devops",
+        "name": "Automation & DevOps",
+        "order": 6
+      },
+      "excerpt": "Used Git version control and GitHub for code management, collaboration, and automated deployment workflows for web projects.",
+      "body": "## Overview\n\nUsed Git version control and GitHub for code management, collaboration, and automated deployment workflows for web projects.\n\n## Technical focus\n\n- Git\n- GitHub\n- Version Control\n- Deployment\n- CI/CD",
+      "tools": [
+        "Git",
+        "GitHub",
+        "Version Control",
+        "Deployment",
+        "CI/CD"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Used Git version control and GitHub for code management, collaboration, and automated deployment workflows for web projects.",
+      "review": {
+        "status": "candidate_scope_change",
+        "source_title": "Git & GitHub for Code Deployment",
+        "original_url": "https://github.com/developer-arif",
+        "candidate_url": "https://www.youtube.com/watch?v=bWI6NccA7Qo",
+        "notes": "Original destination is an account with no public repositories. Owner video is a candidate for a narrower static-deployment demo; collaboration and CI/CD claims are not verified. A specific original repository is still needed. Candidate title from phase 1: Deploying a static website with GitHub Pages. The original project scope is retained here until that change is approved. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 35,
+      "title": "WordPress Security and Malware Removal",
+      "slug": "wordpress-security-and-malware-removal",
+      "category": {
+        "slug": "security-ssl",
+        "name": "Security & SSL",
+        "order": 4
+      },
+      "excerpt": "Implemented WordPress security best practices including malware scanning, removal, firewall plugins, and security header configuration.",
+      "body": "## Overview\n\nImplemented WordPress security best practices including malware scanning, removal, firewall plugins, and security header configuration.\n\n## Technical focus\n\n- WordPress Security\n- Wordfence\n- Malware Removal\n- Security Headers",
+      "tools": [
+        "WordPress Security",
+        "Wordfence",
+        "Malware Removal",
+        "Security Headers"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Implemented WordPress security best practices including malware scanning, removal, firewall plugins, and security header configuration.",
+      "review": {
+        "status": "candidate_scope_change",
+        "source_title": "WordPress Security Hardening & Malware Removal",
+        "original_url": "https://youtu.be/YJuul-_xKJE",
+        "candidate_url": "https://www.youtube.com/watch?v=pzX49sF0cc4",
+        "notes": "Working owner video covers a Bash scanner on Linux/AWS Lightsail. It does not establish Wordfence use, completed malware removal, or all original WordPress hardening claims. Candidate title from phase 1: Bash backdoor scanner on AWS Lightsail WordPress. The original project scope is retained here until that change is approved. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 36,
+      "title": "Responsive Website Development",
+      "slug": "responsive-website-development",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Designed and developed responsive websites from scratch using HTML5, CSS3, JavaScript, and jQuery with mobile-first approach.",
+      "body": "## Overview\n\nDesigned and developed responsive websites from scratch using HTML5, CSS3, JavaScript, and jQuery with mobile-first approach.\n\n## Technical focus\n\n- HTML5\n- CSS3\n- JavaScript\n- jQuery\n- Responsive Design\n- Bootstrap",
+      "tools": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "jQuery",
+        "Responsive Design",
+        "Bootstrap"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Designed and developed responsive websites from scratch using HTML5, CSS3, JavaScript, and jQuery with mobile-first approach.",
+      "review": {
+        "status": "needs_specific_repository",
+        "source_title": "Responsive Web Design with HTML, CSS & JavaScript",
+        "original_url": "https://github.com/developer-arif",
+        "candidate_url": null,
+        "notes": "Original GitHub account resolves with HTTP 200 but has zero public repositories and no profile information establishing ownership. The document header's arifbillahcse account links to arifbillah.com. Do not replace with a guessed repository; request the exact repository for this project. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 37,
+      "title": "Domain Registration and Transfer Management",
+      "slug": "domain-registration-and-transfer-management",
+      "category": {
+        "slug": "dns-domains-email",
+        "name": "DNS, Domains & Email",
+        "order": 2
+      },
+      "excerpt": "Managed domain lifecycle including registration, transfer between registrars, DNS pointing, and WHOIS privacy configuration.",
+      "body": "## Overview\n\nManaged domain lifecycle including registration, transfer between registrars, DNS pointing, and WHOIS privacy configuration.\n\n## Technical focus\n\n- Domain Management\n- DNS\n- Registrar\n- WHOIS\n- Transfer",
+      "tools": [
+        "Domain Management",
+        "DNS",
+        "Registrar",
+        "WHOIS",
+        "Transfer"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Managed domain lifecycle including registration, transfer between registrars, DNS pointing, and WHOIS privacy configuration.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Domain Registration, Transfer & Management",
+        "original_url": "https://youtu.be/JX5tqJaW-5E",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 38,
+      "title": "Wix Website Design and Development",
+      "slug": "wix-website-design-and-development",
+      "category": {
+        "slug": "wordpress-web-development",
+        "name": "WordPress & Web Development",
+        "order": 3
+      },
+      "excerpt": "Designed professional websites using Wix platform with custom layouts, SEO optimization, and third-party integrations.",
+      "body": "## Overview\n\nDesigned professional websites using Wix platform with custom layouts, SEO optimization, and third-party integrations.\n\n## Technical focus\n\n- Wix\n- Website Design\n- SEO\n- Drag-and-Drop Builder",
+      "tools": [
+        "Wix",
+        "Website Design",
+        "SEO",
+        "Drag-and-Drop Builder"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Designed professional websites using Wix platform with custom layouts, SEO optimization, and third-party integrations.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Wix Website Design & Development",
+        "original_url": "https://youtu.be/LCjJ_NXBRMU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 39,
+      "title": "Server Log Analysis and Troubleshooting",
+      "slug": "server-log-analysis-and-troubleshooting",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "Analyzed Apache/Nginx access and error logs to diagnose server issues, identify security threats, and optimize server performance.",
+      "body": "## Overview\n\nAnalyzed Apache/Nginx access and error logs to diagnose server issues, identify security threats, and optimize server performance.\n\n## Technical focus\n\n- Log Analysis\n- Apache Logs\n- Nginx Logs\n- Troubleshooting\n- Security",
+      "tools": [
+        "Log Analysis",
+        "Apache Logs",
+        "Nginx Logs",
+        "Troubleshooting",
+        "Security"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Analyzed Apache/Nginx access and error logs to diagnose server issues, identify security threats, and optimize server performance.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "Server Log Analysis & Troubleshooting",
+        "original_url": "https://youtu.be/gV0-2XpfmKQ",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 40,
+      "title": "WHMCS Hosting Automation Setup",
+      "slug": "whmcs-hosting-automation-setup",
+      "category": {
+        "slug": "automation-devops",
+        "name": "Automation & DevOps",
+        "order": 6
+      },
+      "excerpt": "Installed and configured WHMCS billing platform for automated hosting provisioning, client management, and payment processing.",
+      "body": "## Overview\n\nInstalled and configured WHMCS billing platform for automated hosting provisioning, client management, and payment processing.\n\n## Technical focus\n\n- WHMCS\n- Billing Automation\n- Hosting\n- Client Management\n- API",
+      "tools": [
+        "WHMCS",
+        "Billing Automation",
+        "Hosting",
+        "Client Management",
+        "API"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Installed and configured WHMCS billing platform for automated hosting provisioning, client management, and payment processing.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "WHMCS Installation for Hosting Automation",
+        "original_url": "https://youtu.be/6JkW68MINyA",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 41,
+      "title": "WordPress SEO and Search Console Setup",
+      "slug": "wordpress-seo-and-search-console-setup",
+      "category": {
+        "slug": "backup-performance-monitoring",
+        "name": "Backup, Performance & Monitoring",
+        "order": 5
+      },
+      "excerpt": "Implemented SEO best practices on WordPress including Yoast SEO configuration, sitemap submission, schema markup, and Search Console setup.",
+      "body": "## Overview\n\nImplemented SEO best practices on WordPress including Yoast SEO configuration, sitemap submission, schema markup, and Search Console setup.\n\n## Technical focus\n\n- WordPress\n- SEO\n- Yoast SEO\n- Google Search Console\n- Schema Markup",
+      "tools": [
+        "WordPress",
+        "SEO",
+        "Yoast SEO",
+        "Google Search Console",
+        "Schema Markup"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Implemented SEO best practices on WordPress including Yoast SEO configuration, sitemap submission, schema markup, and Search Console setup.",
+      "review": {
+        "status": "candidate_scope_change",
+        "source_title": "WordPress SEO Optimization & Google Search Console",
+        "original_url": "https://youtu.be/YJuul-_xKJE",
+        "candidate_url": "https://www.youtube.com/watch?v=zsxKyO2MPus",
+        "notes": "Working owner title mentions Yoast SEO and HTML/SEO bug fixes. Search Console setup, sitemap submission and schema markup are not established by metadata. Candidate title from phase 1: Website SEO and HTML issue fixes. The original project scope is retained here until that change is approved. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 42,
+      "title": "OVH Dedicated Server Setup and Management",
+      "slug": "ovh-dedicated-server-setup-and-management",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "Provisioned and managed OVH dedicated servers including RAID configuration, OS deployment, network setup, and hosting stack installation.",
+      "body": "## Overview\n\nProvisioned and managed OVH dedicated servers including RAID configuration, OS deployment, network setup, and hosting stack installation.\n\n## Technical focus\n\n- OVH\n- Dedicated Server\n- RAID\n- Linux\n- Network Configuration",
+      "tools": [
+        "OVH",
+        "Dedicated Server",
+        "RAID",
+        "Linux",
+        "Network Configuration"
+      ],
+      "video_url": null,
+      "thumbnail": null,
+      "seo_description": "Provisioned and managed OVH dedicated servers including RAID configuration, OS deployment, network setup, and hosting stack installation.",
+      "review": {
+        "status": "source_unavailable",
+        "source_title": "OVH Dedicated Server Setup & Management",
+        "original_url": "https://youtu.be/0fBVe8hU3FU",
+        "candidate_url": null,
+        "notes": "The original YouTube oEmbed endpoint returned HTTP 404 in two checks. This does not distinguish a typo, private/deleted video, or another availability restriction. No suitable replacement was established from the public channel listing inspected. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 43,
+      "title": "Comodo SSL on Namecheap WordPress Hosting",
+      "slug": "comodo-ssl-on-namecheap-wordpress-hosting",
+      "category": {
+        "slug": "security-ssl",
+        "name": "Security & SSL",
+        "order": 4
+      },
+      "excerpt": "A step-by-step walkthrough of installing a Comodo SSL certificate for WordPress on Namecheap hosting.",
+      "body": "## Overview\n\nA step-by-step walkthrough of installing a Comodo SSL certificate for WordPress on Namecheap hosting.\n\n## Technical focus\n\n- SSL Installation\n- Namecheap Hosting\n- WordPress Security\n- HTTPS Configuration\n- Comodo SSL",
+      "tools": [
+        "SSL Installation",
+        "Namecheap Hosting",
+        "WordPress Security",
+        "HTTPS Configuration",
+        "Comodo SSL"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=YYKVGRjWGFI",
+      "thumbnail": "YYKVGRjWGFI.jpg",
+      "seo_description": "A step-by-step walkthrough of installing a Comodo SSL certificate for WordPress on Namecheap hosting.",
+      "review": {
+        "status": "verified_original",
+        "source_title": "Install Comodo SSL on Namecheap Hosting (WordPress)",
+        "original_url": "https://youtu.be/YYKVGRjWGFI",
+        "candidate_url": null,
+        "notes": "Original link has public YouTube metadata. Author is Arif Billah CSE (@arifbillahcse) and the title matches the project topic. Video contents, client context and claimed outcomes have not been independently verified. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 44,
+      "title": "HostGator Website and WordPress Setup",
+      "slug": "hostgator-website-and-wordpress-setup",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "A HostGator setup walkthrough covering WordPress installation, domains, DNS and the hosting control panel.",
+      "body": "## Overview\n\nA HostGator setup walkthrough covering WordPress installation, domains, DNS and the hosting control panel.\n\n## Technical focus\n\n- HostGator Configuration\n- WordPress Installation\n- Domain Management\n- DNS Setup\n- cPanel",
+      "tools": [
+        "HostGator Configuration",
+        "WordPress Installation",
+        "Domain Management",
+        "DNS Setup",
+        "cPanel"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=FFbGStiqZRk",
+      "thumbnail": "FFbGStiqZRk.jpg",
+      "seo_description": "A HostGator setup walkthrough covering WordPress installation, domains, DNS and the hosting control panel.",
+      "review": {
+        "status": "verified_original",
+        "source_title": "Full HostGator Tutorial (WordPress, Domain, DNS)",
+        "original_url": "https://youtu.be/FFbGStiqZRk",
+        "candidate_url": null,
+        "notes": "Original link has public YouTube metadata. Author is Arif Billah CSE (@arifbillahcse) and the title matches the project topic. Video contents, client context and claimed outcomes have not been independently verified. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 45,
+      "title": "Website and WordPress Deployment on CyberPanel",
+      "slug": "website-and-wordpress-deployment-on-cyberpanel",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "A demonstration of uploading website files or installing WordPress through CyberPanel.",
+      "body": "## Overview\n\nA demonstration of uploading website files or installing WordPress through CyberPanel.\n\n## Technical focus\n\n- CyberPanel\n- WordPress\n- File management\n- OpenLiteSpeed",
+      "tools": [
+        "CyberPanel",
+        "WordPress",
+        "File management",
+        "OpenLiteSpeed"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=UYpGf4Vu0KM",
+      "thumbnail": "UYpGf4Vu0KM.jpg",
+      "seo_description": "A demonstration of uploading website files or installing WordPress through CyberPanel.",
+      "review": {
+        "status": "verified_original",
+        "source_title": "Upload Website Files / Install WordPress on CyberPanel",
+        "original_url": "https://youtu.be/UYpGf4Vu0KM",
+        "candidate_url": null,
+        "notes": "Original link has public YouTube metadata. Author is Arif Billah CSE (@arifbillahcse) and the title matches the project topic. Video contents, client context and claimed outcomes have not been independently verified. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 46,
+      "title": "Cloudflare Email DNS for cPanel Webmail",
+      "slug": "cloudflare-email-dns-for-cpanel-webmail",
+      "category": {
+        "slug": "dns-domains-email",
+        "name": "DNS, Domains & Email",
+        "order": 2
+      },
+      "excerpt": "A walkthrough of configuring MX, SPF, DKIM and DMARC records in Cloudflare for a domain using cPanel webmail.",
+      "body": "## Overview\n\nA walkthrough of configuring MX, SPF, DKIM and DMARC records in Cloudflare for a domain using cPanel webmail.\n\n## Technical focus\n\n- Cloudflare DNS\n- cPanel email\n- MX records\n- SPF\n- DKIM\n- DMARC",
+      "tools": [
+        "Cloudflare DNS",
+        "cPanel email",
+        "MX records",
+        "SPF",
+        "DKIM",
+        "DMARC"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=UaTQC4PzrC0",
+      "thumbnail": "UaTQC4PzrC0.jpg",
+      "seo_description": "A walkthrough of configuring MX, SPF, DKIM and DMARC records in Cloudflare for a domain using cPanel webmail.",
+      "review": {
+        "status": "verified_original",
+        "source_title": "MX, SPF, DMARC & DKIM Records Configuration under Cloudflare for cPanel Webmail",
+        "original_url": "https://www.youtube.com/watch?v=UaTQC4PzrC0",
+        "candidate_url": null,
+        "notes": "Original link has public YouTube metadata. Author is Arif Billah CSE (@arifbillahcse) and the title matches the project topic. Video contents, client context and claimed outcomes have not been independently verified. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    },
+    {
+      "source_id": 47,
+      "title": "HTML Website Deployment on CyberPanel",
+      "slug": "html-website-deployment-on-cyberpanel",
+      "category": {
+        "slug": "cloud-server-deployment",
+        "name": "Cloud & Server Deployment",
+        "order": 1
+      },
+      "excerpt": "A demonstration of adding a raw HTML website to CyberPanel.",
+      "body": "## Overview\n\nA demonstration of adding a raw HTML website to CyberPanel.\n\n## Technical focus\n\n- CyberPanel\n- HTML\n- OpenLiteSpeed",
+      "tools": [
+        "CyberPanel",
+        "HTML",
+        "OpenLiteSpeed"
+      ],
+      "video_url": "https://www.youtube.com/watch?v=7qDroBeHYn8",
+      "thumbnail": "7qDroBeHYn8.jpg",
+      "seo_description": "A demonstration of adding a raw HTML website to CyberPanel.",
+      "review": {
+        "status": "verified_original",
+        "source_title": "Add Raw HTML on CyberPanel",
+        "original_url": "https://youtu.be/7qDroBeHYn8",
+        "candidate_url": null,
+        "notes": "Original link has public YouTube metadata. Author is Arif Billah CSE (@arifbillahcse) and the title matches the project topic. Video contents, client context and claimed outcomes have not been independently verified. Imported as a draft. Review the full demonstration and project details before publishing; no project dates, client names or measured results have been inferred.",
+        "checked_date": "2026-10-28"
+      }
+    }
+  ]
+}

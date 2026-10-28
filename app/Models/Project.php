@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'gallery',
     'external_url',
     'repository_url',
+    'video_url',
     'tools',
     'is_featured',
     'is_demo',
@@ -33,10 +34,13 @@ class Project extends Model
     /** @use HasFactory<ProjectFactory> */
     use HasFactory;
 
+    public const VIDEO_URL_PATTERN = '~\Ahttps://(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)[A-Za-z0-9_-]{11}\z~D';
+
     protected function casts(): array
     {
         return [
             'gallery' => 'array',
+            'catalogue_metadata' => 'array',
             'tools' => 'array',
             'is_featured' => 'boolean',
             'is_demo' => 'boolean',
