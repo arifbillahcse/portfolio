@@ -74,9 +74,9 @@ class ImportProjectCatalogue extends Command
                         'category_id' => $category->id, 'title' => $entry['title'], 'slug' => $slug,
                         'excerpt' => $entry['excerpt'], 'body' => $entry['body'], 'tools' => $entry['tools'],
                         'video_url' => $entry['video_url'], 'cover_image' => $coverImage,
-                        'gallery' => [], 'external_url' => null, 'repository_url' => null,
+                        'gallery' => [], 'external_url' => $entry['external_url'] ?? null, 'repository_url' => null,
                         'is_published' => false, 'published_at' => null, 'is_featured' => false, 'is_demo' => false,
-                        'sort_order' => $entry['source_id'], 'seo_title' => $entry['title'], 'seo_description' => $entry['seo_description'],
+                        'sort_order' => (int) str_replace('web-', '', (string) $entry['source_id']), 'seo_title' => $entry['title'], 'seo_description' => $entry['seo_description'],
                     ]);
                     $project->forceFill(['catalogue_key' => $key, 'catalogue_metadata' => [
                         ...$entry['review'], 'source_file' => $catalogue['source']['filename'],
@@ -117,16 +117,22 @@ class ImportProjectCatalogue extends Command
     {
         $data = json_decode(file_get_contents($path), true, 64, JSON_THROW_ON_ERROR);
 
-        return Validator::make(['catalogue' => $data], [
+        $isWebsiteCatalogue = ($data['schema_version'] ?? null) === 2;
+        $entryFields = 'source_id,title,slug,category,excerpt,body,tools,video_url,thumbnail,seo_description,review'.($isWebsiteCatalogue ? ',external_url' : '');
+        $reviewFields = 'status,source_title,original_url,candidate_url,notes,checked_date'.($isWebsiteCatalogue ? ',source_details' : '');
+
+        $rules = [
             'catalogue' => ['required', 'array:schema_version,catalogue_id,source,entries'],
-            'catalogue.schema_version' => ['required', 'integer', 'in:1'],
+            'catalogue.schema_version' => ['required', 'integer', 'in:1,2'],
             'catalogue.catalogue_id' => ['required', 'string', 'max:80', 'regex:/\A[a-z0-9]+(?:-[a-z0-9]+)*\z/D'],
             'catalogue.source' => ['required', 'array:filename,sha256'],
             'catalogue.source.filename' => ['required', 'string', 'max:255'],
             'catalogue.source.sha256' => ['required', 'string', 'regex:/\A[a-fA-F0-9]{64}\z/D'],
             'catalogue.entries' => ['required', 'array', 'list', 'min:1', 'max:200'],
-            'catalogue.entries.*' => ['required', 'array:source_id,title,slug,category,excerpt,body,tools,video_url,thumbnail,seo_description,review'],
-            'catalogue.entries.*.source_id' => ['required', 'integer', 'min:1', 'max:100000', 'distinct'],
+            'catalogue.entries.*' => ['required', 'array:'.$entryFields],
+            'catalogue.entries.*.source_id' => $isWebsiteCatalogue
+                ? ['required', 'string', 'regex:/\Aweb-[0-9]{3}\z/D', 'distinct']
+                : ['required', 'integer', 'min:1', 'max:100000', 'distinct'],
             'catalogue.entries.*.title' => ['required', 'string', 'max:255'],
             'catalogue.entries.*.slug' => ['required', 'string', 'max:220', 'regex:/\A[a-z0-9]+(?:-[a-z0-9]+)*\z/D', 'distinct'],
             'catalogue.entries.*.category' => ['required', 'array:name,slug,order'],
@@ -140,14 +146,20 @@ class ImportProjectCatalogue extends Command
             'catalogue.entries.*.video_url' => ['present', 'nullable', 'string', 'max:2048', 'regex:'.Project::VIDEO_URL_PATTERN],
             'catalogue.entries.*.thumbnail' => ['present', 'nullable', 'string', 'regex:/\A[A-Za-z0-9_-]{11}\.jpg\z/D'],
             'catalogue.entries.*.seo_description' => ['required', 'string', 'max:320'],
-            'catalogue.entries.*.review' => ['required', 'array:status,source_title,original_url,candidate_url,notes,checked_date'],
-            'catalogue.entries.*.review.status' => ['required', 'in:verified_original,replacement_topic_match,source_unavailable,overlap_narrow_scope,candidate_scope_change,needs_specific_repository'],
+            'catalogue.entries.*.review' => ['required', 'array:'.$reviewFields],
+            'catalogue.entries.*.review.status' => ['required', $isWebsiteCatalogue ? 'in:website_draft_candidate' : 'in:verified_original,replacement_topic_match,source_unavailable,overlap_narrow_scope,candidate_scope_change,needs_specific_repository'],
             'catalogue.entries.*.review.source_title' => ['required', 'string', 'max:255'],
             'catalogue.entries.*.review.original_url' => ['required', 'url:http,https', 'max:2048'],
-            'catalogue.entries.*.review.candidate_url' => ['present', 'nullable', 'url:https', 'max:2048'],
+            'catalogue.entries.*.review.candidate_url' => ['present', 'nullable', $isWebsiteCatalogue ? 'url:http,https' : 'url:https', 'max:2048'],
             'catalogue.entries.*.review.notes' => ['required', 'string', 'max:10000'],
             'catalogue.entries.*.review.checked_date' => ['required', 'date_format:Y-m-d'],
-        ])->validate()['catalogue'];
+        ];
+        if ($isWebsiteCatalogue) {
+            $rules['catalogue.entries.*.external_url'] = ['required', 'url:http,https', 'max:2048'];
+            $rules['catalogue.entries.*.review.source_details'] = ['required', 'string', 'max:20000'];
+        }
+
+        return Validator::make(['catalogue' => $data], $rules)->validate()['catalogue'];
     }
 
     /** @param list<array<string, mixed>> $entries
@@ -157,6 +169,17 @@ class ImportProjectCatalogue extends Command
     {
         $images = [];
         foreach ($entries as $index => $entry) {
+            if ($entry['review']['status'] === 'website_draft_candidate') {
+                $url = $entry['external_url'];
+                $parts = parse_url($url);
+                if ($entry['video_url'] || $entry['thumbnail'] || $url !== $entry['review']['candidate_url']
+                    || isset($parts['user']) || isset($parts['pass'])
+                    || preg_match('~/(?:wp-admin|wp-login\.php)(?:/|$)~i', rawurldecode($parts['path'] ?? ''))) {
+                    throw ValidationException::withMessages(['catalogue.entries.'.$index.'.external_url' => 'Website drafts require the reviewed public URL, without admin paths, credentials or unverified media.']);
+                }
+
+                continue;
+            }
             $matched = in_array($entry['review']['status'], ['verified_original', 'replacement_topic_match'], true);
             if ((! $matched && ($entry['video_url'] || $entry['thumbnail'])) || ($entry['thumbnail'] && ! $entry['video_url'])) {
                 throw ValidationException::withMessages(['catalogue.entries.'.$index.'.video_url' => 'Only matched evidence may supply a video or thumbnail.']);

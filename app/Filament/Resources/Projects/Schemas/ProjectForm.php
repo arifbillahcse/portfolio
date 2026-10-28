@@ -29,13 +29,15 @@ class ProjectForm
                 ContentFields::image('gallery', 'projects/gallery')->multiple()->reorderable()->maxFiles(12),
             ])->columns(2)->columnSpanFull(),
             ContentFields::publishing(featured: true, demo: true), ContentFields::seo(),
-            Section::make('Catalogue source & review')->description('Notes from the original link review. These are admin-only source annotations, not a claim that the full video or project results were verified.')->schema([
+            Section::make('Catalogue source & review')->description('Private source notes. Confirm your delivered work, technology and screenshots before publishing. Link checks do not verify every feature or project result.')->schema([
                 TextInput::make('catalogue_key')->label('Import reference')->disabled()->dehydrated(false),
                 TextInput::make('catalogue_metadata.status')->label('Mapping status at import')->disabled()->dehydrated(false),
                 TextInput::make('catalogue_metadata.source_title')->label('Original project title')->disabled()->dehydrated(false)->columnSpanFull(),
                 TextInput::make('catalogue_metadata.original_url')->label('Original evidence URL')->disabled()->dehydrated(false)->columnSpanFull(),
                 TextInput::make('catalogue_metadata.candidate_url')->label('Candidate URL requiring review')->disabled()->dehydrated(false)->columnSpanFull(),
                 Textarea::make('catalogue_metadata.notes')->label('Review notes')->rows(5)->disabled()->dehydrated(false)->columnSpanFull(),
+                Textarea::make('catalogue_metadata.source_details')->label('Original document specifications (unverified)')->rows(7)->disabled()->dehydrated(false)->columnSpanFull()
+                    ->visible(fn (?Project $record): bool => filled($record?->catalogue_metadata['source_details'] ?? null)),
             ])->columns(2)->columnSpanFull()->visible(fn (?Project $record): bool => filled($record?->catalogue_key)),
         ]);
     }

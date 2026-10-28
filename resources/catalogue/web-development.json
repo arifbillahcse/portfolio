@@ -1,0 +1,582 @@
+{
+  "schema_version": 2,
+  "catalogue_id": "arif-web-development",
+  "source": {
+    "filename": "Website Development.docx",
+    "sha256": "87F8151A7185788D328F4EF73460FC34F5DD256C943F713677D3997B84AEB86E"
+  },
+  "entries": [
+    {
+      "source_id": "web-002",
+      "title": "UPC Mart",
+      "slug": "upc-mart",
+      "category": {
+        "name": "Web & eCommerce",
+        "slug": "commerce",
+        "order": 1
+      },
+      "excerpt": "Menswear storefront with a product-led shopping experience.",
+      "body": "## Overview\n\nUPC Mart brings men’s clothing and everyday essentials into an online storefront. Its public website introduces product categories and shopping collections.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://www.upcmartbd.com/",
+      "seo_description": "Menswear storefront with a product-led shopping experience.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom E-commerce Website",
+        "original_url": "https://www.upcmartbd.com/",
+        "candidate_url": "https://www.upcmartbd.com/",
+        "notes": "Current homepage presents a menswear storefront.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://upcmart.com/logo.png\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 1 (position 1): Custom E-commerce Website\nVisible URL: https://www.upcmartbd.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): WooCommerce Integration, Payment Gateway Integration, Custom Checkout Pages, Inventory Management, Custom Product Pages.\nSource specification (unverified): Develop a fully customized e-commerce website for a niche market, such as handmade crafts or eco-friendly products. Implement unique product pages, custom filters, and a personalized checkout experience."
+      }
+    },
+    {
+      "source_id": "web-006",
+      "title": "ChemSyte",
+      "slug": "chemsyte",
+      "category": {
+        "name": "Web & eCommerce",
+        "slug": "commerce",
+        "order": 1
+      },
+      "excerpt": "Chemical supplier website with a product catalogue for customers in Bangladesh.",
+      "body": "## Overview\n\nChemSyte presents chemicals for a range of commercial and industrial uses. The website brings product information, supplier details and contact options into one place.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://chemsyte.com.bd/",
+      "seo_description": "Chemical supplier website with a product catalogue for customers in Bangladesh.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom E-commerce Website",
+        "original_url": "http://chemsyte.com.bd/",
+        "candidate_url": "https://chemsyte.com.bd/",
+        "notes": "Current homepage presents a chemical supplier and product catalogue.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://i0.wp.com/chemsyte.com.bd/wp-content/uploads/2025/09/images.png\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 1 (position 1): Custom E-commerce Website\nVisible URL: http://chemsyte.com.bd/\nHyperlink target: (plain text)\nSource skill claims (unverified): WooCommerce Integration, Payment Gateway Integration, Custom Checkout Pages, Inventory Management, Custom Product Pages.\nSource specification (unverified): Develop a fully customized e-commerce website for a niche market, such as handmade crafts or eco-friendly products. Implement unique product pages, custom filters, and a personalized checkout experience."
+      }
+    },
+    {
+      "source_id": "web-007",
+      "title": "TrenZ",
+      "slug": "trenz",
+      "category": {
+        "name": "Web & eCommerce",
+        "slug": "commerce",
+        "order": 1
+      },
+      "excerpt": "Online storefront included in the website development portfolio.",
+      "body": "## Overview\n\nTrenZ is included in the source portfolio as an eCommerce website.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://trenzbd.com/",
+      "seo_description": "Online storefront included in the website development portfolio.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom E-commerce Website",
+        "original_url": "https://www.trenzbd.com/",
+        "candidate_url": "https://trenzbd.com/",
+        "notes": "Homepage title is TrenZ; inspected text was dominated by style content, so product details remain unverified.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, direct_body_not_fully_reviewable.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 1 (position 1): Custom E-commerce Website\nVisible URL: https://www.trenzbd.com/\nHyperlink target: https://www.trenzbd.com/\nSource skill claims (unverified): WooCommerce Integration, Payment Gateway Integration, Custom Checkout Pages, Inventory Management, Custom Product Pages.\nSource specification (unverified): Develop a fully customized e-commerce website for a niche market, such as handmade crafts or eco-friendly products. Implement unique product pages, custom filters, and a personalized checkout experience."
+      }
+    },
+    {
+      "source_id": "web-008",
+      "title": "Nebula Cooling",
+      "slug": "nebula-cooling",
+      "category": {
+        "name": "Web & eCommerce",
+        "slug": "commerce",
+        "order": 1
+      },
+      "excerpt": "Air-conditioning product website for homes and businesses.",
+      "body": "## Overview\n\nNebula Cooling presents air-conditioning systems for residential and commercial customers. The website connects product browsing with installation-advice enquiries.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://nebulacooling.nl/",
+      "seo_description": "Air-conditioning product website for homes and businesses.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom E-commerce Website",
+        "original_url": "https://nebulacooling.nl/",
+        "candidate_url": "https://nebulacooling.nl/",
+        "notes": "Current homepage presents air-conditioning products.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://nebulacooling.nl/wp-content/uploads/2024/09/FTXC35C_01-600x600-1.jpg\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 1 (position 1): Custom E-commerce Website\nVisible URL: https://nebulacooling.nl/\nHyperlink target: https://nebulacooling.nl/\nSource skill claims (unverified): WooCommerce Integration, Payment Gateway Integration, Custom Checkout Pages, Inventory Management, Custom Product Pages.\nSource specification (unverified): Develop a fully customized e-commerce website for a niche market, such as handmade crafts or eco-friendly products. Implement unique product pages, custom filters, and a personalized checkout experience."
+      }
+    },
+    {
+      "source_id": "web-010",
+      "title": "Graphics Pixels",
+      "slug": "graphics-pixels",
+      "category": {
+        "name": "Agency & Personal Websites",
+        "slug": "agency-personal-websites",
+        "order": 10
+      },
+      "excerpt": "Service website showcasing commercial photo editing and 3D rendering.",
+      "body": "## Overview\n\nGraphics Pixels presents image post-production services for eCommerce and commercial photography. Its website organizes the service offering for prospective customers.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://graphicspixels.com/",
+      "seo_description": "Service website showcasing commercial photo editing and 3D rendering.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom Portfolio Website for Creative Agencies / Graphics Photo Agencies",
+        "original_url": "https://graphicspixels.com/",
+        "candidate_url": "https://graphicspixels.com/",
+        "notes": "Current site presents commercial photo editing and 3D rendering services.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, multiple_source_sections_merged.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://graphicspixels.com/wp-content/uploads/2026/08/image-4.png\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 2 (position 2): Custom Portfolio Website for Creative Agencies\nVisible URL: https://graphicspixels.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Post Types, Image Galleries, Custom Widgets, SEO Optimization.\nSource specification (unverified): Develop a portfolio website for creative agencies to showcase their work. Include case studies, client testimonials, and a blog for industry insights.\n\nDOCX section 19 (position 19): Graphics Photo Agencies\nVisible URL: https://graphicspixels.com/\nHyperlink target: https://graphicspixels.com/\nSource skill claims (unverified): Custom Post Types, Image Galleries, Custom Widgets, SEO Optimization.\nSource specification (unverified): Develop a portfolio website for creative agencies to showcase their work. Include case studies, client testimonials, and a blog for industry insights."
+      }
+    },
+    {
+      "source_id": "web-011",
+      "title": "Softorio",
+      "slug": "softorio",
+      "category": {
+        "name": "Agency & Personal Websites",
+        "slug": "agency-personal-websites",
+        "order": 10
+      },
+      "excerpt": "Digital agency website connecting development, automation and cloud services.",
+      "body": "## Overview\n\nSoftorio presents a range of digital services, including website development, cloud infrastructure and automation. The website introduces the agency and its service offering.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://softorio.com",
+      "seo_description": "Digital agency website connecting development, automation and cloud services.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom Portfolio Website for Creative Agencies",
+        "original_url": "https://softorio.com",
+        "candidate_url": "https://softorio.com",
+        "notes": "Current homepage presents a digital agency covering development and infrastructure.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 2 (position 2): Custom Portfolio Website for Creative Agencies\nVisible URL: https://softorio.com\nHyperlink target: https://softorio.com\nSource skill claims (unverified): Custom Post Types, Image Galleries, Custom Widgets, SEO Optimization.\nSource specification (unverified): Develop a portfolio website for creative agencies to showcase their work. Include case studies, client testimonials, and a blog for industry insights."
+      }
+    },
+    {
+      "source_id": "web-014",
+      "title": "ProHost",
+      "slug": "prohost",
+      "category": {
+        "name": "Cloud & servers",
+        "slug": "cloud",
+        "order": 3
+      },
+      "excerpt": "Hosting provider website presenting web and cloud hosting services.",
+      "body": "## Overview\n\nProHost introduces web and cloud hosting options for businesses. Its public website presents hosting products and information for prospective customers.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://prohost.sa/",
+      "seo_description": "Hosting provider website presenting web and cloud hosting services.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom Portfolio Website for Creative Agencies",
+        "original_url": "https://prohost.sa/",
+        "candidate_url": "https://prohost.sa/",
+        "notes": "Current site presents web and cloud hosting, rather than a creative-agency portfolio.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 2 (position 2): Custom Portfolio Website for Creative Agencies\nVisible URL: https://prohost.sa/\nHyperlink target: https://prohost.sa/\nSource skill claims (unverified): Custom Post Types, Image Galleries, Custom Widgets, SEO Optimization.\nSource specification (unverified): Develop a portfolio website for creative agencies to showcase their work. Include case studies, client testimonials, and a blog for industry insights."
+      }
+    },
+    {
+      "source_id": "web-017",
+      "title": "Indian Royals School",
+      "slug": "indian-royals-school",
+      "category": {
+        "name": "Education & Nonprofits",
+        "slug": "education-nonprofits",
+        "order": 11
+      },
+      "excerpt": "School website introducing academics, admissions and school life.",
+      "body": "## Overview\n\nIndian Royals School uses its website to introduce the school, academic information and admissions. It provides an online starting point for families learning about the school.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://indianroyalsschool.com/",
+      "seo_description": "School website introducing academics, admissions and school life.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Online Learning Management System (LMS)",
+        "original_url": "https://indianroyalsschool.com/",
+        "candidate_url": "https://indianroyalsschool.com/",
+        "notes": "Current homepage presents a school; the source's LMS, quizzes and certification claims are not established by this page.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 3 (position 3): Online Learning Management System (LMS)\nVisible URL: https://indianroyalsschool.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Learning Management Systems (LMS), Custom Post Types, Custom Taxonomies, User Registration Systems, Video Integration.\nSource specification (unverified): Build an online course platform where instructors can upload lessons, quizzes, and course materials. Include student progress tracking and certification upon course completion."
+      }
+    },
+    {
+      "source_id": "web-024",
+      "title": "Land of Crete",
+      "slug": "land-of-crete",
+      "category": {
+        "name": "Real Estate Websites",
+        "slug": "real-estate-websites",
+        "order": 12
+      },
+      "excerpt": "Real estate website introducing properties and agency services in Crete.",
+      "body": "## Overview\n\nLand of Crete presents a real estate agency and property listings in Greece. Its website connects property discovery with information about the agency and contact options.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://landofcrete.com/",
+      "seo_description": "Real estate website introducing properties and agency services in Crete.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Real Estate Listing Website / Custom Real Estate Management System",
+        "original_url": "https://landofcrete.com/",
+        "candidate_url": "https://landofcrete.com/",
+        "notes": "Current homepage presents a real-estate agency and property listings.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, multiple_source_sections_merged.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 6 (position 6): Real Estate Listing Website\nVisible URL: https://landofcrete.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Post Types, Customrea Taxonomies, Custom Search Functionality, Google Maps Integration.\nSource specification (unverified): Develop a real estate listing website where agents can post property listings. Include advanced search filters, Google Maps integration for location-based searches, and custom listing templates.\n\nDOCX section 47 (position 42): Custom Real Estate Management System\nVisible URL: https://landofcrete.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Post Types, Custom Taxonomies, Google Maps Integration, Custom Forms.\nSource specification (unverified): Build a real estate management system for agents and property managers. Include property listings, search functionality, and location-based filtering."
+      }
+    },
+    {
+      "source_id": "web-025",
+      "title": "Quran is Life",
+      "slug": "quran-is-life",
+      "category": {
+        "name": "Education & Nonprofits",
+        "slug": "education-nonprofits",
+        "order": 11
+      },
+      "excerpt": "Quran-learning website organizing courses and learning resources.",
+      "body": "## Overview\n\nQuran is Life brings course information and Quran-learning resources into a public website. Visitors can explore the available learning topics and programmes.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://thequranislife.net/",
+      "seo_description": "Quran-learning website organizing courses and learning resources.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Non-Profit Organization Website",
+        "original_url": "https://thequranislife.net/",
+        "candidate_url": "https://thequranislife.net/",
+        "notes": "Current homepage presents Quran courses; the source's nonprofit status and donation features are not established.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 7 (position 7): Non-Profit Organization Website\nVisible URL: https://thequranislife.net/\nHyperlink target: https://thequranislife.net/\nSource skill claims (unverified): Custom Themes, Donation Integration, Event Management, Custom Forms, Social Media Integration.\nSource specification (unverified): Build a website for a non-profit organization that includes donation options, event management, volunteer signup forms, and an engaging blog to keep supporters updated."
+      }
+    },
+    {
+      "source_id": "web-029",
+      "title": "Pantera Golf",
+      "slug": "pantera-golf",
+      "category": {
+        "name": "Web & eCommerce",
+        "slug": "commerce",
+        "order": 1
+      },
+      "excerpt": "Product website presenting golf carts and model information.",
+      "body": "## Overview\n\nPantera Golf presents golf-cart models and product information. The website introduces the range and offers contact options for enquiries.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://panteragolf.com/",
+      "seo_description": "Product website presenting golf carts and model information.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Online Marketplace",
+        "original_url": "https://panteragolf.com/",
+        "candidate_url": "https://panteragolf.com/",
+        "notes": "Current homepage presents golf-cart products, rather than evidence of a multi-vendor marketplace.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 11 (position 11): Online Marketplace\nVisible URL: https://panteragolf.com/\nHyperlink target: https://panteragolf.com/\nSource skill claims (unverified): WooCommerce Integration, Multivendor Support, Custom Product Pages, Payment Gateway Integration.\nSource specification (unverified): Create an online marketplace where multiple vendors can sell products. Implement vendor management, custom product pages, and integrated payment solutions."
+      }
+    },
+    {
+      "source_id": "web-031",
+      "title": "Lares Petsitting",
+      "slug": "lares-petsitting",
+      "category": {
+        "name": "Business & Service Websites",
+        "slug": "business-service-websites",
+        "order": 13
+      },
+      "excerpt": "Pet-care service website introducing in-home sitting and enquiry options.",
+      "body": "## Overview\n\nLares Petsitting presents in-home pet-care services in San Diego. Its website introduces the service and helps prospective customers request a meet and greet.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://larespetsitting.com/",
+      "seo_description": "Pet-care service website introducing in-home sitting and enquiry options.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Booking System for Services / Pet Caring Website",
+        "original_url": "https://larespetsitting.com/",
+        "candidate_url": "https://larespetsitting.com/",
+        "notes": "Current homepage presents in-home pet-sitting services.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, multiple_source_sections_merged.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 13 (position 13): Booking System for Services\nVisible URL: https://larespetsitting.com/\nHyperlink target: https://larespetsitting.com/\nSource skill claims (unverified): Custom Forms, Payment Gateway Integration, Custom Post Types, Custom Taxonomies.\nSource specification (unverified): Build a booking system for services like beauty salons, clinics, or consultants. Include features for online scheduling, payment processing, and appointment management.\n\nDOCX section 15 (position 15): Pet Caring Website\nVisible URL: https://larespetsitting.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Booking Systems, User Reviews Integration, Responsive Design, Pet Care Blogs, E-commerce Integration.\nSource specification (unverified): Develop a pet caring website that offers services like pet sitting, grooming, or veterinary care. Include a custom booking system for scheduling services, user reviews for trust-building, and an integrated blog with pet care tips. Additionally, incorporate e-commerce functionality for selling pet products."
+      }
+    },
+    {
+      "source_id": "web-033",
+      "title": "Facial Beauty",
+      "slug": "facial-beauty",
+      "category": {
+        "name": "Healthcare & Wellness",
+        "slug": "healthcare-wellness",
+        "order": 14
+      },
+      "excerpt": "Healthcare practice website with treatment information and appointment enquiries.",
+      "body": "## Overview\n\nFacial Beauty presents a facial-surgery and aesthetic practice. Its public website introduces treatment information and an appointment-enquiry form.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://facialbeauty.com/",
+      "seo_description": "Healthcare practice website with treatment information and appointment enquiries.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Booking System for Services",
+        "original_url": "https://facialbeauty.com/",
+        "candidate_url": "https://facialbeauty.com/",
+        "notes": "Direct HTTP returned compressed bytes that were not decoded by the audit. Separate web-reader content (crawl reported yesterday) presents a facial-surgery practice and an appointment form; no form was submitted.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, direct_body_not_fully_reviewable.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 13 (position 13): Booking System for Services\nVisible URL: https://facialbeauty.com/\nHyperlink target: https://facialbeauty.com/\nSource skill claims (unverified): Custom Forms, Payment Gateway Integration, Custom Post Types, Custom Taxonomies.\nSource specification (unverified): Build a booking system for services like beauty salons, clinics, or consultants. Include features for online scheduling, payment processing, and appointment management."
+      }
+    },
+    {
+      "source_id": "web-036",
+      "title": "Posticy",
+      "slug": "posticy",
+      "category": {
+        "name": "Applications",
+        "slug": "apps",
+        "order": 2
+      },
+      "excerpt": "Marketplace website connecting publishers with content-placement enquiries.",
+      "body": "## Overview\n\nPosticy presents a marketplace for guest posts, niche edits and sponsored content. Its public website introduces the offering for marketers, publishers and SEO teams.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://posticy.com/",
+      "seo_description": "Marketplace website connecting publishers with content-placement enquiries.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Digital Marketing Agencies",
+        "original_url": "https://posticy.com/",
+        "candidate_url": "https://posticy.com/",
+        "notes": "Current homepage presents a guest-post and link-building marketplace.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://posticy.com/wp-content/uploads/2026/04/Screenshot-2026-04-25-at-19.38.20-scaled.png\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 16 (position 16): Digital Marketing Agencies\nVisible URL: https://posticy.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Post Types, Image Galleries, Custom Widgets, SEO Optimization.\nSource specification (unverified): Develop a portfolio website for creative agencies to showcase their work. Include case studies, client testimonials, and a blog for industry insights."
+      }
+    },
+    {
+      "source_id": "web-040",
+      "title": "Nahid Razon",
+      "slug": "nahid-razon",
+      "category": {
+        "name": "Agency & Personal Websites",
+        "slug": "agency-personal-websites",
+        "order": 10
+      },
+      "excerpt": "Personal portfolio website showcasing presentation design services.",
+      "body": "## Overview\n\nNahid Razon’s website presents PowerPoint and presentation-design services. It introduces service areas and a portfolio for prospective clients.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "http://nahidrazon.com/",
+      "seo_description": "Personal portfolio website showcasing presentation design services.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Online Art Gallery",
+        "original_url": "http://nahidrazon.com/",
+        "candidate_url": "http://nahidrazon.com/",
+        "notes": "Current homepage presents a presentation designer, rather than an online art-sales gallery.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://nahidrazon.com/assets/img/nahid-razon-social-preview.png\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 25 (position 23): Online Art Gallery\nVisible URL: http://nahidrazon.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Image Galleries, Custom Post Types, Custom Taxonomies, E-commerce Integration.\nSource specification (unverified): Create an online art gallery where artists can display and sell their work. Include custom galleries, artist profiles, and an integrated e-commerce platform."
+      }
+    },
+    {
+      "source_id": "web-041",
+      "title": "Orange Circle / OC Next",
+      "slug": "orange-circle-oc-next",
+      "category": {
+        "name": "Agency & Personal Websites",
+        "slug": "agency-personal-websites",
+        "order": 10
+      },
+      "excerpt": "Digital product studio website introducing strategy, design and engineering.",
+      "body": "## Overview\n\nOrange Circle / OC Next presents a digital product studio. Its public website introduces product development, design and AI integration services.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://orange-circle.com",
+      "seo_description": "Digital product studio website introducing strategy, design and engineering.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom Survey or Polling Website",
+        "original_url": "https://orange-circle.com",
+        "candidate_url": "https://orange-circle.com",
+        "notes": "Current homepage presents a digital product studio. Survey and polling software described in the DOCX is not established.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 27 (position 24): Custom Survey or Polling Website\nVisible URL: https://orange-circle.com\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Forms, AJAX Integration, User Registration, Custom Post Types.\nSource specification (unverified): Create a platform for conducting surveys or polls. Include features like real-time results, user participation tracking, and custom survey templates."
+      }
+    },
+    {
+      "source_id": "web-048",
+      "title": "MACRS",
+      "slug": "macrs",
+      "category": {
+        "name": "Education & Nonprofits",
+        "slug": "education-nonprofits",
+        "order": 11
+      },
+      "excerpt": "Nonprofit website supporting pathways into accounting careers.",
+      "body": "## Overview\n\nMACRS introduces an accounting-career nonprofit and its programmes. The website presents resources and ways for students and supporters to connect with the organization.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://www.impactmacrs.org/",
+      "seo_description": "Nonprofit website supporting pathways into accounting careers.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Custom E-learning Platform with Certifications",
+        "original_url": "https://www.impactmacrs.org/",
+        "candidate_url": "https://www.impactmacrs.org/",
+        "notes": "Current homepage presents an accounting-career nonprofit. Course certificates or an LMS implementation are not established.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://www.impactmacrs.org/wp-content/uploads/2022/05/naturalogoweb-e1653787307145.png\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 43 (position 38): Custom E-learning Platform with Certifications\nVisible URL: https://www.impactmacrs.org/\nHyperlink target: (plain text)\nSource skill claims (unverified): Learning Management Systems (LMS), Custom Post Types, User Registration, Custom Forms.\nSource specification (unverified): Create an e-learning platform that offers courses and certifications. Include progress tracking, quizzes, and downloadable certificates upon course completion."
+      }
+    },
+    {
+      "source_id": "web-054",
+      "title": "Samskydd",
+      "slug": "samskydd",
+      "category": {
+        "name": "Web & eCommerce",
+        "slug": "commerce",
+        "order": 1
+      },
+      "excerpt": "Home-security product website introducing alarms, cameras and connected devices.",
+      "body": "## Overview\n\nSamskydd presents home-security equipment and app-connected products. The website introduces the product range and information for prospective customers.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://www.samskydd.se/",
+      "seo_description": "Home-security product website introducing alarms, cameras and connected devices.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Membership Website",
+        "original_url": "https://www.samskydd.se/",
+        "candidate_url": "https://www.samskydd.se/",
+        "notes": "Current homepage presents home-security equipment and an app. Paid membership or subscription features are not established.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://www.samskydd.se/og-image.jpg\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 51 (position 45): Membership Website\nVisible URL: https://www.samskydd.se/\nHyperlink target: https://www.samskydd.se/\nSource skill claims (unverified): Membership Sites, Custom User Roles, Custom User Dashboards, Subscription Management.\nSource specification (unverified): Create a membership site for a fitness or educational platform. Offer different membership tiers, and exclusive content, and integrate a subscription payment system."
+      }
+    },
+    {
+      "source_id": "web-057",
+      "title": "Volt Relocation",
+      "slug": "volt-relocation",
+      "category": {
+        "name": "Business & Service Websites",
+        "slug": "business-service-websites",
+        "order": 13
+      },
+      "excerpt": "Moving and storage service website with relocation information.",
+      "body": "## Overview\n\nVolt Relocation presents moving and storage services. Its website introduces service options and provides a starting point for relocation enquiries.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://voltrelocation.com/",
+      "seo_description": "Moving and storage service website with relocation information.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Courier / Delivery Service Website",
+        "original_url": "https://voltrelocation.com/",
+        "candidate_url": "https://voltrelocation.com/",
+        "notes": "Current homepage presents moving and storage services.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://voltrelocation.com/wp-content/uploads/2023/03/cropped-Volt-Relocation-01-scaled-1.jpg\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 53 (position 47): Courier / Delivery Service Website\nVisible URL: https://voltrelocation.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Custom Forms, Real-time Tracking, Payment Gateway Integration, Responsive Design, User Dashboards.\nSource specification (unverified): Create a courier service website that allows customers to book pickups, track their parcels in real-time, and manage their deliveries. Implement custom forms for service requests, integrate payment gateways, and ensure a responsive design for mobile users."
+      }
+    },
+    {
+      "source_id": "web-060",
+      "title": "Medinova Malibagh",
+      "slug": "medinova-malibagh",
+      "category": {
+        "name": "Healthcare & Wellness",
+        "slug": "healthcare-wellness",
+        "order": 14
+      },
+      "excerpt": "Medical service website introducing departments, doctors and contact information.",
+      "body": "## Overview\n\nMedinova Malibagh presents medical services and doctor information. Its public website brings service information and contact options together for patients.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://medinovamalibagh.com/",
+      "seo_description": "Medical service website introducing departments, doctors and contact information.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Medical Health Website",
+        "original_url": "https://medinovamalibagh.com/",
+        "candidate_url": "https://medinovamalibagh.com/",
+        "notes": "Current homepage presents medical services and doctor information.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 54 (position 48): Medical Health Website\nVisible URL: https://medinovamalibagh.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Appointment Booking Systems, Patient Portals, Telemedicine Integration, Secure Data Handling, Custom Forms.\nSource specification (unverified): Develop a medical health website for a clinic or healthcare provider. Include features like online appointment booking, patient portals for accessing medical records, telemedicine integration for virtual consultations, and custom forms for patient intake."
+      }
+    },
+    {
+      "source_id": "web-063",
+      "title": "Finabee",
+      "slug": "finabee",
+      "category": {
+        "name": "Education & Nonprofits",
+        "slug": "education-nonprofits",
+        "order": 11
+      },
+      "excerpt": "Financial education website introducing learning resources for children and families.",
+      "body": "## Overview\n\nFinabee presents financial literacy and entrepreneurship learning for children. Its website introduces the learning approach and resources for parents and families.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://finabee.com/",
+      "seo_description": "Financial education website introducing learning resources for children and families.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Finance/Accounting Website",
+        "original_url": "https://finabee.com/",
+        "candidate_url": "https://finabee.com/",
+        "notes": "Current homepage presents financial education for children. An accounting application is not established.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing, source_category_or_features_need_revision.\nNo project screenshot was embedded in the DOCX. Unverified Open Graph image candidate (not downloaded): https://finabee.com/wp-content/uploads/2024/04/MOBILES_Anim_Tran_50.gif\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 56 (position 50): Finance/Accounting Website\nVisible URL: https://finabee.com/\nHyperlink target: https://finabee.com/\nSource skill claims (unverified): Financial Tools Integration, Secure Data Handling, Custom Forms, User Dashboards, Payment Gateway Integration.\nSource specification (unverified): Develop a finance or accounting website that provides services like tax calculations, budget tracking, or financial advice. Include features like secure client portals, custom forms for data collection, and payment gateway integration for billing."
+      }
+    },
+    {
+      "source_id": "web-064",
+      "title": "Financial Star",
+      "slug": "financial-star",
+      "category": {
+        "name": "Finance & Publishing",
+        "slug": "finance-publishing",
+        "order": 15
+      },
+      "excerpt": "Financial publishing website organizing market and sector content.",
+      "body": "## Overview\n\nFinancial Star presents financial-market and sector-focused content. Its public website provides a publishing platform for readers exploring these topics.",
+      "tools": [],
+      "video_url": null,
+      "thumbnail": null,
+      "external_url": "https://thefinancialstar.com/",
+      "seo_description": "Financial publishing website organizing market and sector content.",
+      "review": {
+        "status": "website_draft_candidate",
+        "source_title": "Finance/Accounting Website",
+        "original_url": "https://thefinancialstar.com/",
+        "candidate_url": "https://thefinancialstar.com/",
+        "notes": "Current homepage presents financial-market content; custom financial tools remain unverified.\n\nPhase 1 decision: draft_candidate. Checked 2026-10-28. Availability and public page text only; authorship, delivered scope and technology remain to be confirmed.\nReview flags: authorship_and_delivered_scope_unconfirmed, source_features_unverified, screenshot_missing.\nNo project screenshot was embedded in the DOCX. No cover image has been supplied.\nConfirm the project details, add suitable screenshots and technology tags, and use Preview saved project before publishing.",
+        "checked_date": "2026-10-28",
+        "source_details": "DOCX section 56 (position 50): Finance/Accounting Website\nVisible URL: https://thefinancialstar.com/\nHyperlink target: (plain text)\nSource skill claims (unverified): Financial Tools Integration, Secure Data Handling, Custom Forms, User Dashboards, Payment Gateway Integration.\nSource specification (unverified): Develop a finance or accounting website that provides services like tax calculations, budget tracking, or financial advice. Include features like secure client portals, custom forms for data collection, and payment gateway integration for billing."
+      }
+    }
+  ]
+}
