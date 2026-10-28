@@ -28,8 +28,11 @@ class PublicSeo
                 $parameters['page'] = request()->integer('page');
             }
         }
-        $canonical = self::url(request()->route()->getName(), $parameters);
         $entry = $data['entry'] ?? null;
+        $isPreview = (bool) ($data['isPreview'] ?? false);
+        $canonical = $isPreview && $entry
+            ? self::url($section.'.show', ['slug' => $entry->slug])
+            : self::url(request()->route()->getName(), $parameters);
         $imagePath = PublicContent::image($entry?->cover_image ?? $profile->portrait_path);
         $image = $imagePath
             ? rtrim(config('app.url'), '/').'/'.ltrim(parse_url($imagePath, PHP_URL_PATH) ?? '', '/')
@@ -77,10 +80,11 @@ class PublicSeo
         $emptyCollection = $collection instanceof LengthAwarePaginator && $collection->isEmpty();
 
         return [
+            'is_preview' => $isPreview,
             'canonical' => $canonical,
             'image' => $image,
             'type' => $section === 'blog' && $entry ? 'article' : 'website',
-            'robots' => $emptyCollection || ! empty($data['search']) || ! empty($data['category']) || ($page === 'projects' && empty($data['hasOriginalProjects'])) ? 'noindex, follow' : null,
+            'robots' => $isPreview ? 'noindex, nofollow' : ($emptyCollection || ! empty($data['search']) || ! empty($data['category']) || ($page === 'projects' && empty($data['hasOriginalProjects'])) ? 'noindex, follow' : null),
             'schema' => ['@context' => 'https://schema.org', '@graph' => $graph],
         ];
     }

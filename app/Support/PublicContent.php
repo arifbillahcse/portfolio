@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -28,5 +29,20 @@ class PublicContent
         }
 
         return $url;
+    }
+
+    /** @return array{id: string, watch_url: string, embed_url: string}|null */
+    public static function video(?string $url): ?array
+    {
+        if (! $url || ! preg_match(Project::VIDEO_URL_PATTERN, $url)) {
+            return null;
+        }
+        $id = substr($url, -11);
+
+        return [
+            'id' => $id,
+            'watch_url' => 'https://www.youtube.com/watch?v='.$id,
+            'embed_url' => 'https://www.youtube-nocookie.com/embed/'.$id.'?rel=0',
+        ];
     }
 }

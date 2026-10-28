@@ -15,6 +15,8 @@ foreach (['about', 'services', 'projects', 'blog', 'contact'] as $page) {
 }
 
 Route::get('/projects/{slug}', [PortfolioController::class, 'project'])->name('projects.show');
+Route::get('/admin/projects/{project}/preview', [PortfolioController::class, 'previewProject'])
+    ->middleware(['auth', 'auth.session'])->name('projects.preview');
 Route::get('/blog/{slug}', [PortfolioController::class, 'post'])->name('blog.show');
 Route::get('/services/{slug}', [PortfolioController::class, 'service'])->name('services.show');
 Route::post('/inquiries', [InquiryController::class, 'store'])->middleware('throttle:inquiries')->name('inquiries.store');

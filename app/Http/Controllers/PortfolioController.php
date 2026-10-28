@@ -14,6 +14,8 @@ use App\Support\PublicSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class PortfolioController extends Controller
@@ -97,6 +99,14 @@ class PortfolioController extends Controller
         return $this->detail(Post::query()->published()->with('category')->where('slug', $slug)->firstOrFail(), 'blog');
     }
 
+    public function previewProject(Project $project): Response
+    {
+        Gate::authorize('view', $project);
+
+        return response($this->detail($project->load('category'), 'projects', isPreview: true))
+            ->header('Cache-Control', 'private, no-store, max-age=0');
+    }
+
     public function service(string $slug): View
     {
         return $this->detail(Service::query()->published()->where('slug', $slug)->firstOrFail(), 'services');
@@ -107,11 +117,12 @@ class PortfolioController extends Controller
         return $this->page('contact');
     }
 
-    private function detail(Project|Post|Service $entry, string $section): View
+    private function detail(Project|Post|Service $entry, string $section, bool $isPreview = false): View
     {
         return $this->page('detail', [
             'entry' => $entry,
             'section' => $section,
+            'isPreview' => $isPreview,
             'bodyHtml' => PublicContent::markdown($entry->body),
         ]);
     }
