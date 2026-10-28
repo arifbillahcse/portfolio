@@ -48,46 +48,12 @@ class PublicSeo
         );
         $canonical = $metadata['canonical'];
         $image = $metadata['image'];
-        $home = self::url('home');
-        $person = [
-            '@type' => 'Person', '@id' => $home.'#person', 'name' => $profile->name,
-            'url' => self::url('about'), 'image' => ($portrait = PublicContent::image($profile->portrait_path))
-                ? SeoMetadata::absoluteImage($portrait) : rtrim(config('app.url'), '/').'/assets/images/arif-formal.png',
-            'sameAs' => array_values(array_filter(array_map(PublicContent::link(...), [$site->facebook_url, $site->linkedin_url, $site->github_url]))),
-        ];
-        $graph = [
-            ['@type' => 'WebSite', '@id' => $home.'#website', 'url' => $home, 'name' => $site->brand_name],
-        ];
-        if (in_array($page, ['home', 'about'], true)) {
-            $graph[] = $person;
+        $attributes = $entry ? $entry->getAttributes() : ($site->page_seo[$page] ?? []);
+        if (blank($attributes['seo_social_image_alt'] ?? null) && blank($attributes['seo_social_image'] ?? null)) {
+            $metadata['image_alt'] = $entry?->cover_image
+                ? MediaSeo::text($entry->cover_image_alt, $entry->title)
+                : MediaSeo::text($profile->portrait_alt, $profile->name);
         }
-        if ($entry) {
-            $breadcrumbs = [['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $home],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => ucfirst($section), 'item' => self::url($section)],
-                ['@type' => 'ListItem', 'position' => 3, 'name' => $entry->title, 'item' => $canonical]];
-            $graph[] = ['@type' => 'BreadcrumbList', 'itemListElement' => $breadcrumbs];
-            if (! $entry->is_demo) {
-                $content = [
-                    '@type' => match ($section) {
-                        'blog' => 'BlogPosting', 'services' => 'Service', default => 'CreativeWork'
-                    },
-                    'name' => $entry->title, 'url' => $canonical,
-                    'description' => $metadata['description'],
-                ];
-                if ($section === 'blog') {
-                    $content += ['headline' => $entry->title, 'image' => $image, 'mainEntityOfPage' => $canonical,
-                        'author' => ['@type' => 'Person', 'name' => $profile->name, 'url' => self::url('about')],
-                        'dateModified' => $entry->updated_at->toIso8601String()];
-                    if ($entry->published_at) {
-                        $content['datePublished'] = $entry->published_at->toIso8601String();
-                    }
-                } elseif ($section === 'services') {
-                    $content['provider'] = ['@type' => 'Person', 'name' => $profile->name, 'url' => self::url('about')];
-                }
-                $graph[] = $content;
-            }
-        }
-
         $collection = $data['projects'] ?? $data['posts'] ?? null;
         $emptyCollection = $collection instanceof LengthAwarePaginator && $collection->isEmpty();
         $restricted = $entry?->is_demo || $emptyCollection || ! empty($data['search']) || ! empty($data['category'])
@@ -102,7 +68,8 @@ class PublicSeo
             'type' => $section === 'blog' && $entry ? 'article' : 'website',
             'robots' => ! config('portfolio.indexable') || $isPreview ? 'noindex, nofollow'
                 : ($restricted ? 'noindex, follow' : $metadata['robots']),
-            'schema' => ['@context' => 'https://schema.org', '@graph' => $graph],
+            'image_dimensions' => app(MediaSeo::class)->size($image),
+            'schema' => PublicSchema::build($page, $profile, $site, $data, $metadata),
         ];
     }
 }

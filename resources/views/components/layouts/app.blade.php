@@ -26,12 +26,18 @@
     <meta property="og:url" content="{{ $seo['canonical'] }}">
     <meta property="og:image" content="{{ $seo['image'] }}">
     <meta property="og:image:alt" content="{{ $seo['image_alt'] ?? $title }}">
+    @if(!empty($seo['image_dimensions']))
+    <meta property="og:image:width" content="{{ $seo['image_dimensions']['width'] }}">
+    <meta property="og:image:height" content="{{ $seo['image_dimensions']['height'] }}">
+    @endif
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $seo['social_title'] ?? $title }}">
     <meta name="twitter:description" content="{{ $seo['social_description'] ?? $description }}">
     <meta name="twitter:image" content="{{ $seo['image'] }}">
     <meta name="twitter:image:alt" content="{{ $seo['image_alt'] ?? $title }}">
+    @if(!empty($seo['schema']))
     <script type="application/ld+json">{!! json_encode($seo['schema'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    @endif
     @endif
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

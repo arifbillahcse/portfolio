@@ -11,7 +11,7 @@ class SeoMetadata
     public const PAGES = ['home' => 'Home', 'about' => 'About', 'services' => 'Services', 'projects' => 'Projects', 'blog' => 'Blog', 'contact' => 'Contact'];
 
     public const FIELDS = ['seo_title', 'seo_description', 'seo_focus_keyword', 'seo_related_keywords', 'seo_canonical_url',
-        'seo_robots', 'seo_social_title', 'seo_social_description', 'seo_social_image', 'seo_social_image_alt'];
+        'seo_robots', 'seo_social_title', 'seo_social_description', 'seo_social_image', 'seo_social_image_alt', 'seo_schema_type'];
 
     public const ROBOTS = ['index_follow' => 'index, follow', 'index_nofollow' => 'index, nofollow',
         'noindex_follow' => 'noindex, follow', 'noindex_nofollow' => 'noindex, nofollow'];

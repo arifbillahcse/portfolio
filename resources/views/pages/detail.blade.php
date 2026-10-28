@@ -7,15 +7,17 @@
 @if($entry->is_demo)<p class="demo-notice">This is {{ $section === 'blog' ? 'a sample article' : 'an illustrative project concept' }}.</p>@endif
 @if($video)
 <section class="project-video" id="project-video" aria-labelledby="project-video-title">
-    <h2 id="project-video-title">Project demonstration</h2>
-    <div class="project-video-frame"><iframe src="{{ $video['embed_url'] }}" title="Video demonstration: {{ $entry->title }}" width="960" height="540" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+    <h2 id="project-video-title">{{ $entry->video_name ?: "Project demonstration" }}</h2>
+    @if($entry->video_description)<p>{{ $entry->video_description }}</p>@endif
+    @if($entry->video_uploaded_at)<p><time datetime="{{ $entry->video_uploaded_at->toIso8601String() }}">Video uploaded {{ $entry->video_uploaded_at->format("F j, Y") }}</time></p>@endif
+    <div class="project-video-frame"><iframe src="{{ $video['embed_url'] }}" title="{{ $entry->video_name ?: ("Video demonstration: ".$entry->title) }}" width="960" height="540" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
     <a class="project-video-link" href="{{ $video['watch_url'] }}" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
 </section>
-@elseif($image = \App\Support\PublicContent::image($entry->cover_image))<img class="detail-cover" src="{{ $image }}" alt="{{ $entry->title }}" width="1200" height="800">@endif
+@elseif($image = \App\Support\PublicContent::image($entry->cover_image))<figure class="detail-media"><x-media-image class="detail-cover" :path="$entry->cover_image" :alt="\App\Support\MediaSeo::text($entry->cover_image_alt, $entry->title)" loading="eager" fetchpriority="high" />@if($entry->cover_image_caption)<figcaption>{{ $entry->cover_image_caption }}</figcaption>@endif</figure>@endif
 <div class="prose">{!! $bodyHtml !!}</div>
 @if($section === 'projects')
 <ul class="tech-tags">@foreach($entry->tools ?? [] as $tool)<li>{{ $tool }}</li>@endforeach</ul>
-<div class="detail-gallery">@foreach($entry->gallery ?? [] as $path) @if($image = \App\Support\PublicContent::image($path))<img src="{{ $image }}" alt="{{ $entry->title }} — screenshot {{ $loop->iteration }}" loading="lazy" width="1000" height="700">@endif @endforeach</div>
+<div class="detail-gallery">@foreach($entry->gallery ?? [] as $path) @if($image = \App\Support\PublicContent::image($path))@php($details = \App\Support\MediaSeo::gallery($entry, $path, $loop->iteration))<figure class="detail-media"><x-media-image :path="$path" :alt="$details['alt']" />@if($details['caption'])<figcaption>{{ $details['caption'] }}</figcaption>@endif</figure>@endif @endforeach</div>
 <div class="detail-links">@if($url = \App\Support\PublicContent::link($entry->external_url))<a class="button" href="{{ $url }}" target="_blank" rel="noopener noreferrer">Visit website ↗</a>@endif @if($url = \App\Support\PublicContent::link($entry->repository_url))<a class="button secondary" href="{{ $url }}" target="_blank" rel="noopener noreferrer">View repository ↗</a>@endif</div>
 @elseif($section === 'services' && $entry->offerings)<h2>What’s included</h2><ul class="service-offerings">@foreach($entry->offerings as $offering)<li>{{ $offering }}</li>@endforeach</ul>
 @endif

@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\SiteSetting;
+use App\Support\MediaSeo;
 use App\Support\PublicSeo;
 use App\Support\SeoMetadata;
 use Illuminate\Database\Eloquent\Builder;
@@ -69,6 +70,7 @@ class SeoController extends Controller
         $entries = $records->map(fn ($record): array => [
             'url' => PublicSeo::url($section.'.show', ['slug' => $record->slug]),
             'modified' => $record->updated_at->toIso8601String(),
+            'images' => MediaSeo::sitemapImages($record),
         ])->all();
 
         return $this->xml($entries);

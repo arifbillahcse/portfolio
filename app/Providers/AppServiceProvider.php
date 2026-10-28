@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Policies\ContentPolicy;
 use App\Policies\SingletonContentPolicy;
+use App\Support\MediaSeo;
 use App\Support\SeoRedirects;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->scoped(MediaSeo::class);
     }
 
     /**

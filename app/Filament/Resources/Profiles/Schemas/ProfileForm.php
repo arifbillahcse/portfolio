@@ -21,6 +21,7 @@ class ProfileForm
                 Textarea::make('intro')->required()->maxLength(2000)->columnSpanFull(),
                 ContentFields::body('biography'),
                 ContentFields::image('portrait_path', 'profile')->columnSpanFull(),
+                TextInput::make('portrait_alt')->label('Portrait alt text')->rule('string')->maxLength(255)->helperText('Describe the portrait. Blank uses your public name.'),
             ])->columns(2)->columnSpanFull(),
             Section::make('Homepage introduction')->schema([
                 TextInput::make('home_heading')->maxLength(255),

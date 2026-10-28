@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
     'intro',
     'biography',
     'portrait_path',
+    'portrait_alt',
     'journey',
     'skill_groups',
     'stats',

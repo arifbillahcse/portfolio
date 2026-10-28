@@ -792,3 +792,6 @@ body.modal-open { overflow:hidden; }
   .btn,.button,.primary-button,.submit-button,.social-icon,.resume-tabs button,.cover-image { transition:none!important; }
 }
 
+
+.detail-media { margin:0; min-width:0; }
+.detail-media figcaption { margin:10px 0 24px; color:var(--muted); font-size:.9rem; line-height:1.6; }

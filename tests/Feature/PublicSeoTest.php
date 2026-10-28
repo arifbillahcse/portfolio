@@ -83,7 +83,7 @@ class PublicSeoTest extends TestCase
         $this->assertSame('Service', $graph[2]['@type']);
         Post::factory()->published()->create(['slug' => 'demo', 'is_demo' => true]);
         $response = $this->get('/blog/demo')->assertOk()->assertSee('content="noindex, follow"', false);
-        $this->assertCount(2, $this->structuredData($response->getContent())['@graph']);
+        $this->assertNotContains('BlogPosting', array_column($this->structuredData($response->getContent())['@graph'], '@type'));
     }
 
     public function test_json_ld_and_social_metadata_cannot_be_broken_out_of_by_cms_text(): void

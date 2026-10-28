@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\ResumeEntry;
 use App\Models\Service;
 use App\Models\SiteSetting;
+use App\Support\MediaSeo;
 use App\Support\PublicContent;
 use App\Support\PublicSeo;
 use Illuminate\Database\Eloquent\Builder;
@@ -132,7 +133,7 @@ class PortfolioController extends Controller
             'entry' => $entry,
             'section' => $section,
             'isPreview' => $isPreview,
-            'bodyHtml' => PublicContent::markdown($entry->body),
+            'bodyHtml' => MediaSeo::body($entry->body, $entry->body_image_metadata),
         ]);
     }
 

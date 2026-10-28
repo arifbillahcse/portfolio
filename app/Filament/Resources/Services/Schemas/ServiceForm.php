@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Services\Schemas;
 
 use App\Filament\Support\ContentFields;
+use App\Filament\Support\MediaFields;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
@@ -21,7 +22,7 @@ class ServiceForm
                 Textarea::make('summary')->required()->maxLength(1000)->rows(3)->columnSpanFull(),
                 ContentFields::body(), TagsInput::make('offerings')->label('Deliverables')->nestedRecursiveRules(['string', 'max:160'])->columnSpanFull(),
             ])->columns(2)->columnSpanFull(),
-            ContentFields::publishing(), ContentFields::seo('services'),
+            MediaFields::body(), ContentFields::publishing(), ContentFields::seo('services'),
         ]);
     }
 }

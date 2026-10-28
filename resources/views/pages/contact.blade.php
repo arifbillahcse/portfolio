@@ -7,7 +7,7 @@
     </section>
     <section class="contact-layout wrap" aria-label="Get in touch">
       <div class="contact-details">
-        <div class="profile"><img src="{{ $portrait }}" width="96" height="96" alt="Arif Billah"><div><h2>{{ $profile->name }}</h2><p>{{ $site->tagline }}</p><span class="location">Based in Bangladesh · Working remotely</span></div></div>
+        <div class="profile"><img src="{{ $portrait }}" width="96" height="96" alt="{{ \App\Support\MediaSeo::text($profile->portrait_alt, $profile->name) }}"><div><h2>{{ $profile->name }}</h2><p>{{ $site->tagline }}</p><span class="location">Based in Bangladesh · Working remotely</span></div></div>
         <h3 class="connect-title">Choose how we connect.</h3>
         <div class="contact-methods">
           <a class="contact-method" href="{{ $contactLinks['whatsapp'] }}" target="_blank" rel="noopener"><span class="method-icon whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4l-4.4 1.4 1.4-4.3a8.5 8.5 0 1 1 15.6-4.5Z"/><path d="M8.5 8c.2 3.7 3.2 6.5 7 7l1-1.7-2.5-1.1-.8 1c-1.6-.6-2.8-1.7-3.5-3.2l.9-.8L9.6 7.7 8.5 8Z"/></svg></span><span class="method-text"><strong>WhatsApp</strong><span>{{ $site->whatsapp_number }}</span></span><span class="method-arrow" aria-hidden="true">↗</span></a>

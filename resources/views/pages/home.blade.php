@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="visual reveal">
-                <div class="portrait-wrap"><img class="portrait" src="{{ $portrait }}" alt="Arif, full-stack developer and Linux system administrator" width="480" height="520" fetchpriority="high"></div>
+                <div class="portrait-wrap"><img class="portrait" src="{{ $portrait }}" alt="{{ \App\Support\MediaSeo::text($profile->portrait_alt, $profile->name) }}" width="480" height="520" fetchpriority="high"></div>
                 <span class="tech t1">WordPress</span>
                 <span class="tech t2">Laravel</span>
                 <span class="tech t3">Linux &amp; cloud</span>

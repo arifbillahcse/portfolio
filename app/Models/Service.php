@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
     'group',
     'summary',
     'body',
+    'body_image_metadata',
+    'seo_schema_type',
     'offerings',
     'icon',
     'is_published',
@@ -38,6 +40,7 @@ class Service extends Model
     protected function casts(): array
     {
         return [
+            'body_image_metadata' => 'array',
             'seo_related_keywords' => 'array',
             'offerings' => 'array',
             'is_published' => 'boolean',

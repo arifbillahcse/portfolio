@@ -189,7 +189,7 @@ class SeoControlsTest extends TestCase
 
         $xpath = $this->document($response->getContent());
         $schema = json_decode($xpath->query('//script[@type="application/ld+json"]')->item(0)->textContent, true, 64, JSON_THROW_ON_ERROR);
-        $this->assertStringEndsWith('/storage/profile/portrait.webp', $schema['@graph'][1]['image']);
+        $this->assertStringEndsWith('/storage/profile/portrait.webp', $schema['@graph'][1]['image']['contentUrl']);
         $this->assertStringEndsWith('/storage/profile/seo/social.webp', $xpath->query('//meta[@property="og:image"]')->item(0)->getAttribute('content'));
     }
 }

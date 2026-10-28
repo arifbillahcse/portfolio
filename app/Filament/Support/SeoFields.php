@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Rules\CanonicalUrl;
 use App\Support\PublicContent;
+use App\Support\PublicSchema;
 use App\Support\PublicSeo;
 use App\Support\SeoMetadata;
 use Filament\Forms\Components\Select;
@@ -25,6 +26,9 @@ class SeoFields
     public static function section(string $type, ?string $page = null): Section
     {
         return Section::make('Search appearance')->description('Blank fields use existing content and defaults. Keywords are private editorial notes, not a ranking guarantee.')->schema([
+            Select::make('seo_schema_type')->label('Structured data')->options(PublicSchema::options($type))
+                ->in(array_keys(PublicSchema::options($type)))->placeholder('Automatic')
+                ->helperText('Automatic matches the visible content. Samples and private previews never receive article or project markup. Disabling this does not change search visibility.'),
             TextInput::make('seo_title')->label('SEO title')->rule('string')->maxLength(255)->live(onBlur: true)
                 ->helperText('The title template is applied after this text. Check the final title in the preview.'),
             Textarea::make('seo_description')->label('Meta description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),

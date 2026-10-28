@@ -16,6 +16,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'excerpt',
     'body',
     'cover_image',
+    'cover_image_alt',
+    'cover_image_caption',
+    'body_image_metadata',
+    'seo_schema_type',
     'reading_minutes',
     'is_featured',
     'is_demo',
@@ -43,6 +47,7 @@ class Post extends Model
     protected function casts(): array
     {
         return [
+            'body_image_metadata' => 'array',
             'seo_related_keywords' => 'array',
             'reading_minutes' => 'integer',
             'is_featured' => 'boolean',

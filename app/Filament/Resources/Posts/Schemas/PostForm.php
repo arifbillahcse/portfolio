@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Posts\Schemas;
 
 use App\Filament\Support\ContentFields;
+use App\Filament\Support\MediaFields;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -23,8 +24,9 @@ class PostForm
                     ->fileAttachmentsAcceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->fileAttachmentsMaxSize(4096)
                     ->helperText('Use the attachment button to insert JPG, PNG or WebP images into the article. Maximum 4 MB per image.'),
                 ContentFields::image('cover_image', 'posts')->columnSpanFull(),
+                ...MediaFields::cover(),
             ])->columns(2)->columnSpanFull(),
-            ContentFields::publishing(featured: true, demo: true), ContentFields::seo('blog'),
+            MediaFields::body(), ContentFields::publishing(featured: true, demo: true), ContentFields::seo('blog'),
         ]);
     }
 }
