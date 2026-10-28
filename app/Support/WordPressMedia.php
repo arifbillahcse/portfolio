@@ -8,9 +8,9 @@ use RuntimeException;
 
 class WordPressMedia
 {
-    public function download(string $url): string
+    public function download(string $url, ?string $exportHost = null): string
     {
-        $url = $this->sourceUrl($url);
+        $url = $this->sourceUrl($url, $exportHost);
         $prefix = 'posts/wordpress/'.hash('sha256', $url);
         foreach (['jpg', 'png', 'webp', 'gif'] as $extension) {
             if (Storage::disk('public')->exists($prefix.'.'.$extension)) {
@@ -51,23 +51,29 @@ class WordPressMedia
         return $path;
     }
 
-    public function sourceUrl(string $url): string
+    public function sourceUrl(string $url, ?string $exportHost = null): string
     {
         $url = html_entity_decode(trim($url), ENT_QUOTES | ENT_HTML5, 'UTF-8');
         if (str_starts_with($url, '//')) {
             $url = 'https:'.$url;
-        } elseif (str_starts_with($url, '/')) {
-            $url = 'https://'.config('wordpress.source_host').$url;
+        } elseif (str_starts_with($url, '/') || str_starts_with($url, 'wp-content/uploads/')) {
+            $url = 'https://'.config('wordpress.source_host').'/'.ltrim($url, '/');
         }
         $parts = parse_url($url);
         $path = $parts['path'] ?? '';
-        if (! $parts || ! in_array(strtolower($parts['host'] ?? ''), config('wordpress.image_hosts'), true)
-            || ! in_array($parts['scheme'] ?? '', ['http', 'https'], true)
+        $hosts = config('wordpress.image_hosts');
+        if ($exportHost && filter_var($exportHost, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) && ! filter_var($exportHost, FILTER_VALIDATE_IP)) {
+            $hosts[] = strtolower($exportHost);
+        }
+        if (! $parts || ! in_array(strtolower($parts['host'] ?? ''), $hosts, true)
+            || ! in_array(strtolower($parts['scheme'] ?? ''), ['http', 'https'], true)
             || isset($parts['user']) || isset($parts['pass']) || isset($parts['port'])
             || ! str_starts_with($path, '/wp-content/uploads/')
-            || preg_match('/[\x00-\x20\\\\]/', rawurldecode($path)) || str_contains(rawurldecode($path), '..')) {
+            || preg_match('/[\x00-\x1F\x7F\\\\]/', rawurldecode($path)) || str_contains(rawurldecode($path), '..')) {
             throw new RuntimeException('Image URL must point to wp-content/uploads on the configured WordPress site.');
         }
+
+        $path = implode('/', array_map(fn (string $segment): string => rawurlencode(rawurldecode($segment)), explode('/', $path)));
 
         return 'https://'.config('wordpress.source_host').$path;
     }

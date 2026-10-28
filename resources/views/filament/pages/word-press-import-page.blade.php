@@ -34,10 +34,14 @@
                     <div class="space-y-4">
                         <p role="status">Imported: {{ $counts['imported'] ?? 0 }} · With image issues: {{ $counts['warnings'] ?? 0 }} · Skipped: {{ $counts['skipped'] ?? 0 }} · Pending: {{ ($counts['queued'] ?? 0) + ($counts['processing'] ?? 0) }} · Failed: {{ $counts['failed'] ?? 0 }}</p>
                         <x-filament::button color="gray" wire:click="resumeImport" wire:loading.attr="disabled">Resume / retry failed images</x-filament::button>
+                        <x-filament::button color="gray" wire:click="repairContentImages" wire:loading.attr="disabled">Repair content images</x-filament::button>
+                        <p>Repair scans the original stored content again, including lazy and responsive images. Unedited imported articles regain missing images in their original positions. Edited text is preserved and flagged for a placement review.</p>
                         <p>Resume continues unfinished work. Successful downloads are reused. On image retry, your edited title, content, publication status and category are preserved.</p>
                         @foreach($items as $item)
                             <div class="border-t border-gray-200 py-4 dark:border-gray-700">
                                 <p><strong>{{ $item->title }}</strong> · {{ ucfirst($item->status) }}</p>
+                                @php($media = collect($item->payload['media'] ?? []))
+                                <p>Images: {{ $media->whereNotNull('path')->count() }} downloaded / {{ $media->count() }} detected · {{ $media->filter(fn ($image) => !empty($image['error']))->count() }} with issues</p>
                                 @if($item->post_id)
                                     <a class="text-primary-600 underline" href="{{ \App\Filament\Resources\Posts\PostResource::getUrl('edit', ['record' => $item->post_id]) }}">Review post</a>
                                 @endif

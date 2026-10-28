@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\WordPressImport;
 use App\Models\WordPressImportItem;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -54,6 +55,39 @@ class WordPressImporter
         });
     }
 
+    /** @return array{queued: int, busy: int} */
+    public function repairImages(WordPressImport $import): array
+    {
+        $counts = ['queued' => 0, 'busy' => 0];
+        $import->items()->where('status', '!=', 'skipped')->each(function (WordPressImportItem $item) use (&$counts): void {
+            $queued = Cache::lock(ImportWordPressItem::lockKey($item->id), 60)->get(function () use ($item): bool {
+                $item->refresh();
+                $payload = $item->payload;
+                $oldMedia = collect($payload['media'])->keyBy('url');
+                $oldImages = $oldMedia->filter(fn (array $image): bool => ! empty($image['path']))->pluck('path', 'url')->all();
+                $payload['body_hash'] ??= hash('sha256', $this->markdown->convert($payload['html'], $oldImages, legacyImages: true));
+                $urls = array_values(array_unique(array_filter([$payload['cover'], ...WordPressImages::extract($payload['html'])])));
+                $payload['media'] = array_map(function (string $url) use ($oldMedia): array {
+                    $previous = $oldMedia->get($url);
+                    $path = $previous['path'] ?? null;
+                    if ($path && ! Storage::disk('public')->exists($path)) {
+                        $path = null;
+                    }
+
+                    return ['url' => $url, 'path' => $path, 'attempted' => (bool) $path, 'error' => null];
+                }, $urls);
+                $payload['image_repair'] = true;
+                $item->update(['payload' => $payload, 'status' => 'queued', 'error' => null]);
+                $this->dispatch($item->id);
+
+                return true;
+            });
+            $counts[$queued ? 'queued' : 'busy']++;
+        });
+
+        return $counts;
+    }
+
     /** Process at most one image per job to fit shared-hosting worker limits. */
     public function process(WordPressImportItem $item): void
     {
@@ -72,7 +106,8 @@ class WordPressImporter
                 continue;
             }
             try {
-                $payload['media'][$index]['path'] = $this->media->download($image['url']);
+                $exportHost = $payload['source_host'] ?? parse_url($payload['link'] ?? '', PHP_URL_HOST);
+                $payload['media'][$index]['path'] = $this->media->download($image['url'], $exportHost ?: null);
             } catch (Throwable $exception) {
                 $payload['media'][$index]['error'] = $exception instanceof \RuntimeException ? Str::limit($exception->getMessage(), 250) : 'Download failed. Check WordPress availability and retry.';
             }
@@ -120,6 +155,7 @@ class WordPressImporter
                 }
                 $path = parse_url($payload['link'], PHP_URL_PATH);
                 $body = $this->markdown->convert($payload['html'], $images);
+                $payload['body_hash'] = hash('sha256', $body);
                 $post = Post::query()->create([
                     'wordpress_id' => $payload['wordpress_id'],
                     'wordpress_path' => is_string($path) && strlen($path) <= 512 && $path !== '/' ? '/'.trim(rawurldecode($path), '/') : null,
@@ -131,12 +167,19 @@ class WordPressImporter
                 ]);
             } else {
                 $body = $post->body ?? '';
-                foreach ($images as $original => $local) {
-                    $body = str_replace($original, Storage::disk('public')->url($local), $body);
+                if (isset($payload['body_hash']) && hash_equals($payload['body_hash'], hash('sha256', $body))) {
+                    $body = $this->markdown->convert($payload['html'], $images);
+                    $payload['body_hash'] = hash('sha256', $body);
+                } else {
+                    $body = $this->markdown->replaceImages($body, $payload['html'], $images);
+                    if (! empty($payload['image_repair'])) {
+                        $payload['notes'][] = 'Edited content was preserved. Review the placement of any previously omitted images; downloaded files are available in storage.';
+                        $payload['notes'] = array_values(array_unique($payload['notes']));
+                    }
                 }
                 $post->update(['body' => $body, 'cover_image' => $post->cover_image ?: ($images[$payload['cover']] ?? null)]);
             }
-            $item->update(['post_id' => $post->id, 'status' => $errors ? 'warnings' : 'imported', 'error' => $errors ? implode("\n", $errors) : null]);
+            $item->update(['post_id' => $post->id, 'payload' => $payload, 'status' => $errors ? 'warnings' : 'imported', 'error' => $errors ? implode("\n", $errors) : null]);
         });
     }
 }

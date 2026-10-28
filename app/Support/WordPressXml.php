@@ -86,13 +86,14 @@ class WordPressXml
 
                     return $markup;
                 }, $html);
-                $images = array_values(array_unique(array_filter([$cover, ...$this->images($html)])));
+                $images = array_values(array_unique(array_filter([$cover, ...WordPressImages::extract($html)])));
                 $category = $xpath->query('category[@domain="category"]', $node)->item(0);
                 $posts[] = [
                     'wordpress_id' => (int) $id,
                     'title' => mb_substr(trim($xpath->evaluate('string(title)', $node)) ?: 'Untitled post '.$id, 0, 255),
                     'slug' => rawurldecode($xpath->evaluate('string(wp:post_name)', $node)),
                     'link' => $xpath->evaluate('string(link)', $node),
+                    'source_host' => parse_url($xpath->evaluate('string(/rss/channel/wp:base_site_url)'), PHP_URL_HOST),
                     'date' => $xpath->evaluate('string(wp:post_date_gmt)', $node),
                     'html' => $html,
                     'excerpt' => $xpath->evaluate('string(*[local-name()="encoded" and contains(namespace-uri(), "/excerpt/")])', $node),
@@ -122,21 +123,5 @@ class WordPressXml
     public function removedCharacters(): int
     {
         return $this->removedCharacters;
-    }
-
-    /** @return list<string> */
-    private function images(string $html): array
-    {
-        $document = new DOMDocument;
-        $document->loadHTML('<?xml encoding="UTF-8"><html><body>'.$html.'</body></html>', LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
-        $images = [];
-        foreach ($document->getElementsByTagName('img') as $image) {
-            $url = $image->getAttribute('data-src') ?: $image->getAttribute('src');
-            if ($url !== '') {
-                $images[] = $url;
-            }
-        }
-
-        return $images;
     }
 }
