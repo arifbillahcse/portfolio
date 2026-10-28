@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\InquiryReceived;
 use App\Models\Inquiry;
+use App\Support\InquiryMailSettings;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Mail;
@@ -31,13 +32,15 @@ class SendInquiryNotification implements ShouldQueue
             return;
         }
 
-        if (in_array(config('mail.default'), ['log', 'array'], true)) {
+        $settings = app(InquiryMailSettings::class);
+        $mailer = $settings->enabled() ? $settings->mailer() : null;
+        if (! $mailer) {
             $inquiry->update(['notification_status' => 'not_configured']);
 
             return;
         }
 
-        Mail::to($this->recipient)->send(new InquiryReceived($inquiry));
+        Mail::mailer($mailer)->to($this->recipient)->send(new InquiryReceived($inquiry));
         $inquiry->update(['notification_status' => 'sent', 'emailed_at' => now()]);
     }
 

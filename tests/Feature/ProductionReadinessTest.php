@@ -59,6 +59,20 @@ class ProductionReadinessTest extends TestCase
         $this->artisan('portfolio:check-production')->expectsOutput('FAIL Database migrations')->assertFailed();
     }
 
+    public function test_admin_smtp_settings_are_recognized_without_environment_mail_configuration(): void
+    {
+        $this->prepareProduction();
+        config(['mail.default' => 'log', 'mail.from.address' => 'hello@example.com']);
+        SiteSetting::query()->where('key', 'main')->firstOrFail()->update([
+            'smtp_enabled' => true, 'smtp_host' => 'mail.portfolio.company', 'smtp_port' => 465, 'smtp_encryption' => 'ssl',
+            'smtp_username' => 'hello@portfolio.company', 'smtp_password' => 'private-smtp-password', 'smtp_from_address' => 'hello@portfolio.company',
+            'lead_notifications_enabled' => true, 'lead_notification_email' => 'leads@portfolio.company',
+        ]);
+
+        $this->artisan('portfolio:check-production')->expectsOutput('PASS Mail transport')->expectsOutput('PASS Mail sender')
+            ->expectsOutput('PASS Profile and recipient')->doesntExpectOutputToContain('private-smtp-password')->assertSuccessful();
+    }
+
     public static function unsafeConfiguration(): array
     {
         return [

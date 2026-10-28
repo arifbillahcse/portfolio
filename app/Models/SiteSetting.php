@@ -22,14 +22,32 @@ use Illuminate\Database\Eloquent\Model;
     'google_site_verification',
     'chat_widget_enabled',
     'chat_widget_code',
+    'lead_notifications_enabled',
+    'lead_notification_email',
+    'smtp_enabled',
+    'smtp_host',
+    'smtp_port',
+    'smtp_encryption',
+    'smtp_username',
+    'smtp_password',
+    'smtp_from_address',
+    'smtp_from_name',
 ])]
 class SiteSetting extends Model
 {
     /** @use HasFactory<SiteSettingFactory> */
     use HasFactory;
 
+    protected $hidden = ['smtp_password'];
+
     protected function casts(): array
     {
-        return ['chat_widget_enabled' => 'boolean'];
+        return [
+            'chat_widget_enabled' => 'boolean',
+            'lead_notifications_enabled' => 'boolean',
+            'smtp_enabled' => 'boolean',
+            'smtp_port' => 'integer',
+            'smtp_password' => 'encrypted',
+        ];
     }
 }

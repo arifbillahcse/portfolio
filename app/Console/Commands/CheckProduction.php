@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Profile;
 use App\Models\SiteSetting;
 use App\Models\User;
+use App\Support\InquiryMailSettings;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -35,14 +36,21 @@ class CheckProduction extends Command
         $this->check('Background queue', config('queue.default') === 'database', 'Use QUEUE_CONNECTION=database and configure the cPanel mail Cron Job.');
 
         $mailer = config('mail.default');
-        $this->check('Mail transport', $mailer === 'smtp', 'Configure MAIL_MAILER=smtp for real delivery.');
-        if ($mailer === 'smtp') {
-            $host = (string) config('mail.mailers.smtp.host', '');
-            $this->check('SMTP endpoint', $this->realHost($host) && filter_var(config('mail.mailers.smtp.port'), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 65535]]) !== false,
+        try {
+            if (! $this->option('before-migrate') && Schema::hasColumn('site_settings', 'smtp_enabled')) {
+                $mailer = app(InquiryMailSettings::class)->mailer() ?? 'not_configured';
+            }
+        } catch (Throwable) {
+            $mailer = 'not_configured';
+        }
+        $this->check('Mail transport', in_array($mailer, ['smtp', 'portfolio_smtp'], true), 'Configure SMTP in Site Settings or set MAIL_MAILER=smtp.');
+        if (in_array($mailer, ['smtp', 'portfolio_smtp'], true)) {
+            $host = (string) config('mail.mailers.'.$mailer.'.host', '');
+            $this->check('SMTP endpoint', $this->realHost($host) && filter_var(config('mail.mailers.'.$mailer.'.port'), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 65535]]) !== false,
                 'Set the real SMTP host and port.');
         }
-        $email = (string) config('mail.from.address', '');
-        $this->check('Mail sender', filter_var($email, FILTER_VALIDATE_EMAIL) !== false && $this->realHost(substr(strrchr($email, '@') ?: '', 1)), 'Set MAIL_FROM_ADDRESS to an address authorized by your mail provider.');
+        $email = (string) config($mailer === 'portfolio_smtp' ? 'mail.mailers.portfolio_smtp.from.address' : 'mail.from.address', '');
+        $this->check('Mail sender', filter_var($email, FILTER_VALIDATE_EMAIL) !== false && $this->realHost(substr(strrchr($email, '@') ?: '', 1)), 'Set the sender in Site Settings or MAIL_FROM_ADDRESS to an address authorized by your mail provider.');
 
         foreach (['ctype', 'curl', 'dom', 'fileinfo', 'gd', 'intl', 'mbstring', 'openssl', 'pdo', 'session', 'tokenizer', 'xml', 'zip'] as $extension) {
             $this->check('PHP '.$extension, extension_loaded($extension), 'Enable the '.$extension.' PHP extension for both the website and CLI.');
@@ -78,8 +86,8 @@ class CheckProduction extends Command
                     $this->check('Admin account', User::query()->where('is_admin', true)->exists(), 'Create your administrator with php artisan portfolio:admin.');
                     $settings = SiteSetting::query()->where('key', 'main')->first();
                     $this->check('Profile and recipient', Profile::query()->where('key', 'main')->exists()
-                        && $settings && filter_var($settings->contact_email, FILTER_VALIDATE_EMAIL) !== false,
-                        'Initialize the portfolio content and set the recipient email in Site Settings.');
+                        && $settings && app(InquiryMailSettings::class)->enabled() && app(InquiryMailSettings::class)->recipient(),
+                        'Initialize the portfolio content and enable lead notifications with a recipient email in Site Settings.');
                 }
             }
         } catch (Throwable) {
