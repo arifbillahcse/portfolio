@@ -10,7 +10,7 @@
                 @csrf
                 <label for="wordpress-xml" class="block font-medium">WordPress export (.xml)</label>
                 <input id="wordpress-xml" name="xml" type="file" accept=".xml,text/xml,application/xml" required aria-describedby="wordpress-upload-help">
-                @error('xml') <p role="alert" class="text-danger-600">{{ $message }}</p> @enderror
+                @if($errors->has('xml'))<div role="alert" class="text-danger-600"><ul>@foreach($errors->get('xml') as $message)<li>{{ $message }}</li>@endforeach</ul></div>@endif
                 <p id="wordpress-upload-help">Upload goes directly to the importer. Wait for the page to return before uploading again.</p>
                 <div><x-filament::button type="submit">Upload XML &amp; import as drafts</x-filament::button></div>
             </form>

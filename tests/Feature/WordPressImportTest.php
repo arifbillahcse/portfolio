@@ -157,6 +157,8 @@ class WordPressImportTest extends TestCase
     {
         return [
             'malformed' => ['<rss><broken>'],
+            'empty' => [''],
+            'html download' => ['<!DOCTYPE html><html><body>Sign in to WordPress</body></html>'],
             'wrong format' => ['<rss><channel/></rss>'],
             'empty export' => ['<rss xmlns:wp="http://wordpress.org/export/1.2/"><channel/></rss>'],
             'external entity' => ['<!DOCTYPE rss [<!ENTITY secret SYSTEM "file:///etc/passwd">]><rss>&secret;</rss>'],
@@ -363,6 +365,43 @@ class WordPressImportTest extends TestCase
         $this->artisan('portfolio:import-wordpress', ['file' => storage_path('app/private/missing-export.xml')])->assertFailed();
         $invalid = UploadedFile::fake()->createWithContent('invalid.xml', '<invalid/>');
         $this->artisan('portfolio:import-wordpress', ['file' => $invalid->getRealPath()])->assertFailed();
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_terminal_validation_checks_xml_without_creating_an_import_or_queueing_jobs(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = $this->export();
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath(), '--validate-only' => true])
+            ->expectsOutputToContain('Valid WordPress XML: 1 importable posts.')
+            ->assertSuccessful();
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_malformed_export_reports_the_xml_line_and_column_without_importing_partial_posts(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = UploadedFile::fake()->createWithContent('broken.xml', "<rss>\n<channel>\n<broken></channel>\n</rss>");
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath(), '--validate-only' => true])
+            ->expectsOutputToContain('XML line 3, column')
+            ->assertFailed();
+        $this->actingAs(User::factory()->create(['is_admin' => true]));
+        $this->post(route('wordpress.import.upload'), ['xml' => $file])->assertRedirect('/admin/wordpress-import')->assertSessionHasErrors('xml');
+        $this->withCookie(session()->getName(), session()->getId())->get('/admin/wordpress-import')
+            ->assertOk()->assertSeeText('XML line 3, column');
+        $this->assertDatabaseCount('word_press_imports', 0);
+        Queue::assertNothingPushed();
+    }
+
+    public function test_an_html_download_is_identified_instead_of_reporting_a_generic_xml_failure(): void
+    {
+        Queue::fake([ImportWordPressItem::class]);
+        $file = UploadedFile::fake()->createWithContent('wordpress.xml', "\xEF\xBB\xBF<!DOCTYPE html><html><body>Access denied</body></html>");
+        $this->artisan('portfolio:import-wordpress', ['file' => $file->getRealPath()])
+            ->expectsOutputToContain('This is an HTML page, not a WordPress XML export.')
+            ->assertFailed();
         $this->assertDatabaseCount('word_press_imports', 0);
         Queue::assertNothingPushed();
     }

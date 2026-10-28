@@ -5,6 +5,7 @@ namespace App\Support;
 use DOMDocument;
 use DOMElement;
 use DOMXPath;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class WordPressXml
@@ -16,14 +17,31 @@ class WordPressXml
             throw ValidationException::withMessages(['xml' => 'Choose a WordPress XML export up to 8 MB.']);
         }
         $contents = file_get_contents($path);
-        if ($contents === false || preg_match('/<!DOCTYPE|<!ENTITY/i', $contents)) {
+        if ($contents === false || trim($contents) === '') {
+            throw ValidationException::withMessages(['xml' => 'The XML file is empty or could not be read. Upload a fresh WordPress export.']);
+        }
+        $prefix = preg_replace('/^\xEF\xBB\xBF/', '', substr($contents, 0, 2048));
+        if (preg_match('/^\s*(?:<\?xml[^?]*\?>\s*)?(?:<!doctype\s+html\b|<html\b)/i', $prefix)) {
+            throw ValidationException::withMessages(['xml' => 'This is an HTML page, not a WordPress XML export. Download the file from WordPress Tools → Export → All content.']);
+        }
+        if (preg_match('/<!DOCTYPE|<!ENTITY/i', $contents)) {
             throw ValidationException::withMessages(['xml' => 'XML document types and entities are not allowed.']);
         }
         $previous = libxml_use_internal_errors(true);
+        libxml_clear_errors();
         try {
             $document = new DOMDocument;
-            if (! $document->loadXML($contents, LIBXML_NONET | LIBXML_COMPACT) || $document->doctype) {
-                throw ValidationException::withMessages(['xml' => 'This file is not valid XML.']);
+            if (! $document->loadXML($contents, LIBXML_NONET | LIBXML_COMPACT)) {
+                $messages = ['This file is not valid XML. No posts have been imported.'];
+                foreach (array_slice(array_filter(libxml_get_errors(), fn (\LibXMLError $error): bool => $error->level >= LIBXML_ERR_ERROR), 0, 3) as $error) {
+                    $reason = trim(preg_replace('/[\x00-\x1F\x7F]/', ' ', $error->message));
+                    $messages[] = 'XML line '.$error->line.', column '.$error->column.': '.Str::limit($reason, 240);
+                }
+                $messages[] = 'Download a fresh WXR export, or use these line numbers to repair the original file. The importer does not discard invalid content.';
+                throw ValidationException::withMessages(['xml' => $messages]);
+            }
+            if ($document->doctype) {
+                throw ValidationException::withMessages(['xml' => 'XML document types and entities are not allowed.']);
             }
             $xpath = new DOMXPath($document);
             $namespace = $document->documentElement?->lookupNamespaceURI('wp');
