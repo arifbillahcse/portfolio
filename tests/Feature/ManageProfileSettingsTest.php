@@ -47,10 +47,14 @@ class ManageProfileSettingsTest extends TestCase
         Livewire::test(EditSiteSetting::class, ['record' => $settings->id])->fillForm([
             'contact_email' => 'contact@example.com', 'whatsapp_number' => '+8801779440297',
             'facebook_url' => 'https://facebook.com/arifbillahcse',
+            'brand_name' => 'Arif Billah', 'tagline' => 'Development and cloud services.', 'footer_text' => 'Arif Billah. All rights reserved.',
+            'linkedin_url' => 'https://linkedin.com/in/arifbillahcse',
         ])->call('save')->assertHasNoFormErrors();
 
         $this->assertSame('contact@example.com', $settings->fresh()->contact_email);
         $this->assertSame('https://facebook.com/arifbillahcse', $settings->fresh()->facebook_url);
+        $this->get('/contact')->assertOk()->assertSeeText('contact@example.com')->assertSeeText('Development and cloud services.')
+            ->assertSee('https://linkedin.com/in/arifbillahcse', false)->assertSeeText('Arif Billah. All rights reserved.');
     }
 
     public function test_invalid_contact_details_are_rejected(): void
@@ -64,6 +68,16 @@ class ManageProfileSettingsTest extends TestCase
         ])->call('save')->assertHasFormErrors(['contact_email', 'whatsapp_number', 'facebook_url']);
 
         $this->assertSame('owner@example.com', $settings->fresh()->contact_email);
+    }
+
+    public function test_formatted_whatsapp_numbers_are_saved_in_link_ready_format(): void
+    {
+        $this->signInAsAdmin();
+        $settings = SiteSetting::factory()->create();
+        Livewire::test(EditSiteSetting::class, ['record' => $settings->id])->fillForm(['whatsapp_number' => '+880 (1779) 440-297'])
+            ->call('save')->assertHasNoFormErrors();
+        $this->assertSame('+8801779440297', $settings->fresh()->whatsapp_number);
+        $this->get('/contact')->assertSee('https://wa.me/8801779440297', false);
     }
 
     public function test_admin_can_create_resume_entries_without_invented_dates(): void

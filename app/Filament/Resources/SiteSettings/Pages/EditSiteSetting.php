@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\SiteSettings\Pages;
 
 use App\Filament\Resources\SiteSettings\SiteSettingResource;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
 
 class EditSiteSetting extends EditRecord
@@ -11,6 +12,6 @@ class EditSiteSetting extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [];
+        return [Action::make('accountSettings')->label('Account & password')->url(route('filament.admin.auth.profile'))];
     }
 }

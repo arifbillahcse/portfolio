@@ -17,12 +17,12 @@ class SiteSettingForm
                 TextInput::make('footer_text')->maxLength(255)->columnSpanFull(),
             ])->columns(2)->columnSpanFull(),
             Section::make('Contact & social links')->schema([
-                TextInput::make('contact_email')->email()->required()->maxLength(254),
-                TextInput::make('whatsapp_number')->tel()->required()->regex('/^\+?[1-9][0-9]{6,14}$/')->maxLength(16)->helperText('Use country code, without spaces. Example: +8801779440297'),
+                TextInput::make('contact_email')->label('Public contact email')->email()->required()->maxLength(254)->helperText('Shown to clients. Change your sign-in email in Account settings.'),
+                TextInput::make('whatsapp_number')->tel()->required()->stripCharacters([' ', '-', '(', ')'])->regex('/^\+?[1-9][0-9]{6,14}$/')->maxLength(16)->helperText('Include the country code. Example: +8801779440297. Spaces, brackets and hyphens are removed.'),
                 TextInput::make('facebook_url')->url()->regex('/^https?:\/\//i')->maxLength(2048),
                 TextInput::make('linkedin_url')->url()->regex('/^https?:\/\//i')->maxLength(2048),
                 TextInput::make('github_url')->url()->regex('/^https?:\/\//i')->maxLength(2048),
-            ])->columns(2)->columnSpanFull(),
+            ])->description('Social profile links must start with https://.')->columns(2)->columnSpanFull(),
             ContentFields::seo(),
         ]);
     }

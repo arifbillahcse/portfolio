@@ -15,8 +15,8 @@ class ProfileForm
     public static function configure(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Introduction')->schema([
-                TextInput::make('name')->required()->maxLength(255),
+            Section::make('Introduction')->description('Public portfolio information. Your admin login and password are in Account settings.')->schema([
+                TextInput::make('name')->label('Public name')->required()->maxLength(255),
                 TextInput::make('headline')->required()->maxLength(255),
                 Textarea::make('intro')->required()->maxLength(2000)->columnSpanFull(),
                 ContentFields::body('biography'),
