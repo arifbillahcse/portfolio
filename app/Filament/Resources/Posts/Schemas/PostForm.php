@@ -24,7 +24,7 @@ class PostForm
                     ->helperText('Use the attachment button to insert JPG, PNG or WebP images into the article. Maximum 4 MB per image.'),
                 ContentFields::image('cover_image', 'posts')->columnSpanFull(),
             ])->columns(2)->columnSpanFull(),
-            ContentFields::publishing(featured: true, demo: true), ContentFields::seo(),
+            ContentFields::publishing(featured: true, demo: true), ContentFields::seo('blog'),
         ]);
     }
 }

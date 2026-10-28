@@ -76,8 +76,12 @@ class ContentFields
         return Section::make('Publishing')->schema($fields)->columns(2)->columnSpanFull();
     }
 
-    public static function seo(): Section
+    public static function seo(?string $type = null): Section
     {
+        if ($type) {
+            return SeoFields::section($type);
+        }
+
         return Section::make('Search appearance')->schema([
             TextInput::make('seo_title')->label('SEO title')->maxLength(255),
             Textarea::make('seo_description')->label('SEO description')->maxLength(320)->rows(3),

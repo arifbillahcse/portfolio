@@ -136,10 +136,13 @@ class PortfolioController extends Controller
             'footer_text' => 'Arif. All rights reserved.',
         ]);
 
+        $seo = PublicSeo::build($page, $profile, $site, $data);
+        request()->attributes->set('portfolio.seo_robots', $seo['robots']);
+
         return view('pages.'.$page, array_merge([
             'profile' => $profile,
             'site' => $site,
-            'seo' => PublicSeo::build($page, $profile, $site, $data),
+            'seo' => $seo,
             'portrait' => PublicContent::image($profile->portrait_path) ?? asset('assets/images/arif-formal.png'),
             'contactLinks' => [
                 'whatsapp' => 'https://wa.me/'.preg_replace('/\D/', '', $site->whatsapp_number ?? ''),

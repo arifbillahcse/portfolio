@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
     'github_url',
     'seo_title',
     'seo_description',
+    'page_seo',
+    'seo_title_templates',
     'footer_text',
     'google_site_verification',
     'chat_widget_enabled',
@@ -43,6 +45,8 @@ class SiteSetting extends Model
     protected function casts(): array
     {
         return [
+            'page_seo' => 'array',
+            'seo_title_templates' => 'array',
             'chat_widget_enabled' => 'boolean',
             'lead_notifications_enabled' => 'boolean',
             'smtp_enabled' => 'boolean',

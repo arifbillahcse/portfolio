@@ -28,7 +28,7 @@ class ProjectForm
                 ContentFields::image('cover_image', 'projects'),
                 ContentFields::image('gallery', 'projects/gallery')->multiple()->reorderable()->maxFiles(12),
             ])->columns(2)->columnSpanFull(),
-            ContentFields::publishing(featured: true, demo: true), ContentFields::seo(),
+            ContentFields::publishing(featured: true, demo: true), ContentFields::seo('projects'),
             Section::make('Catalogue source & review')->description('Private source notes. Confirm your delivered work, technology and screenshots before publishing. Link checks do not verify every feature or project result.')->schema([
                 TextInput::make('catalogue_key')->label('Import reference')->disabled()->dehydrated(false),
                 TextInput::make('catalogue_metadata.status')->label('Mapping status at import')->disabled()->dehydrated(false),

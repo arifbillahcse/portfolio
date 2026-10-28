@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SiteSettings\Pages;
 
+use App\Filament\Pages\SeoSettings;
 use App\Filament\Resources\SiteSettings\SiteSettingResource;
 use App\Mail\SmtpTestMessage;
 use App\Support\InquiryMailSettings;
@@ -19,6 +20,7 @@ class EditSiteSetting extends EditRecord
     {
         return [
             Action::make('accountSettings')->label('Account & password')->url(route('filament.admin.auth.profile')),
+            Action::make('seoSettings')->label('SEO settings')->url(SeoSettings::getUrl()),
             Action::make('testEmail')->label('Send test email')
                 ->action(function (InquiryMailSettings $settings): void {
                     $this->authorizeAccess();

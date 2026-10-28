@@ -24,6 +24,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'sort_order',
     'seo_title',
     'seo_description',
+    'seo_focus_keyword',
+    'seo_related_keywords',
+    'seo_canonical_url',
+    'seo_robots',
+    'seo_social_title',
+    'seo_social_description',
+    'seo_social_image',
+    'seo_social_image_alt',
     'wordpress_id',
     'wordpress_path',
 ])]
@@ -35,6 +43,7 @@ class Post extends Model
     protected function casts(): array
     {
         return [
+            'seo_related_keywords' => 'array',
             'reading_minutes' => 'integer',
             'is_featured' => 'boolean',
             'is_demo' => 'boolean',

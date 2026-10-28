@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\SiteSetting;
 use App\Support\PublicSeo;
+use App\Support\SeoMetadata;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Response;
 
@@ -42,8 +44,12 @@ class SeoController extends Controller
     {
         $entries = [];
         if (config('portfolio.indexable')) {
+            $settings = SiteSetting::query()->where('key', 'main')->first();
             foreach (['home', 'about', 'services', 'projects', 'blog', 'contact'] as $page) {
                 if (in_array($page, ['projects', 'blog'], true) && ! $this->query($page)->exists()) {
+                    continue;
+                }
+                if (! SeoMetadata::sitemapAllowed($settings?->page_seo[$page] ?? [], PublicSeo::url($page))) {
                     continue;
                 }
                 $entries[] = ['url' => PublicSeo::url($page), 'modified' => null];
@@ -70,12 +76,14 @@ class SeoController extends Controller
 
     private function query(string $section): Builder
     {
-        return match ($section) {
+        $query = match ($section) {
             'projects' => Project::query()->published()->where('is_demo', false),
             'blog' => Post::query()->published()->where('is_demo', false),
             'services' => Service::query()->published(),
             default => abort(404),
         };
+
+        return SeoMetadata::indexableQuery($query, $section);
     }
 
     private function xml(array $entries): Response

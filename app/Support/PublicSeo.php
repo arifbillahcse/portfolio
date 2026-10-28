@@ -37,10 +37,22 @@ class PublicSeo
         $image = $imagePath
             ? rtrim(config('app.url'), '/').'/'.ltrim(parse_url($imagePath, PHP_URL_PATH) ?? '', '/')
             : rtrim(config('app.url'), '/').'/assets/images/arif-formal.png';
+        $defaults = $entry ? ['title' => $entry->title, 'description' => $entry->excerpt ?? $entry->summary ?? '']
+            : SeoMetadata::pageDefaults($page, $profile, $site);
+        $pageNumber = ! $entry && in_array($page, ['blog', 'projects'], true) ? max(1, request()->integer('page', 1)) : 1;
+        $metadata = SeoMetadata::resolve(
+            $entry ? $entry->getAttributes() : ($site->page_seo[$page] ?? []), $site, $profile,
+            $entry ? $section : ($page === 'home' ? 'home' : 'pages'),
+            $defaults['title'], $defaults['description'], $canonical, $image, $pageNumber,
+            ! $isPreview && $pageNumber === 1 && empty($data['search']) && empty($data['category']),
+        );
+        $canonical = $metadata['canonical'];
+        $image = $metadata['image'];
         $home = self::url('home');
         $person = [
             '@type' => 'Person', '@id' => $home.'#person', 'name' => $profile->name,
-            'url' => self::url('about'), 'image' => $image,
+            'url' => self::url('about'), 'image' => ($portrait = PublicContent::image($profile->portrait_path))
+                ? SeoMetadata::absoluteImage($portrait) : rtrim(config('app.url'), '/').'/assets/images/arif-formal.png',
             'sameAs' => array_values(array_filter(array_map(PublicContent::link(...), [$site->facebook_url, $site->linkedin_url, $site->github_url]))),
         ];
         $graph = [
@@ -60,7 +72,7 @@ class PublicSeo
                         'blog' => 'BlogPosting', 'services' => 'Service', default => 'CreativeWork'
                     },
                     'name' => $entry->title, 'url' => $canonical,
-                    'description' => $entry->seo_description ?: ($entry->excerpt ?? $entry->summary ?? ''),
+                    'description' => $metadata['description'],
                 ];
                 if ($section === 'blog') {
                     $content += ['headline' => $entry->title, 'image' => $image, 'mainEntityOfPage' => $canonical,
@@ -78,13 +90,18 @@ class PublicSeo
 
         $collection = $data['projects'] ?? $data['posts'] ?? null;
         $emptyCollection = $collection instanceof LengthAwarePaginator && $collection->isEmpty();
+        $restricted = $entry?->is_demo || $emptyCollection || ! empty($data['search']) || ! empty($data['category'])
+            || ($page === 'projects' && empty($data['hasOriginalProjects']))
+            || ($page === 'blog' && empty($data['hasOriginalPosts']));
 
         return [
+            ...$metadata,
             'is_preview' => $isPreview,
             'canonical' => $canonical,
             'image' => $image,
             'type' => $section === 'blog' && $entry ? 'article' : 'website',
-            'robots' => $isPreview ? 'noindex, nofollow' : ($emptyCollection || ! empty($data['search']) || ! empty($data['category']) || ($page === 'projects' && empty($data['hasOriginalProjects'])) ? 'noindex, follow' : null),
+            'robots' => ! config('portfolio.indexable') || $isPreview ? 'noindex, nofollow'
+                : ($restricted ? 'noindex, follow' : $metadata['robots']),
             'schema' => ['@context' => 'https://schema.org', '@graph' => $graph],
         ];
     }

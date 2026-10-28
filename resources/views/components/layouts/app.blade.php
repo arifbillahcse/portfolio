@@ -1,4 +1,8 @@
 @props(['title', 'description', 'page' => 'home', 'robots' => null, 'site', 'profile', 'contactLinks', 'seo' => []])
+@php
+    $title = $seo['title'] ?? $title;
+    $description = $seo['description'] ?? $description;
+@endphp
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,15 +21,16 @@
     <link rel="canonical" href="{{ $seo['canonical'] }}">
     <meta property="og:site_name" content="{{ $site->brand_name }}">
     <meta property="og:type" content="{{ $seo['type'] }}">
-    <meta property="og:title" content="{{ $title }}">
-    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:title" content="{{ $seo['social_title'] ?? $title }}">
+    <meta property="og:description" content="{{ $seo['social_description'] ?? $description }}">
     <meta property="og:url" content="{{ $seo['canonical'] }}">
     <meta property="og:image" content="{{ $seo['image'] }}">
-    <meta property="og:image:alt" content="{{ $title }}">
+    <meta property="og:image:alt" content="{{ $seo['image_alt'] ?? $title }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $title }}">
-    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:title" content="{{ $seo['social_title'] ?? $title }}">
+    <meta name="twitter:description" content="{{ $seo['social_description'] ?? $description }}">
     <meta name="twitter:image" content="{{ $seo['image'] }}">
+    <meta name="twitter:image:alt" content="{{ $seo['image_alt'] ?? $title }}">
     <script type="application/ld+json">{!! json_encode($seo['schema'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
     @endif
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -21,6 +21,14 @@ use Illuminate\Database\Eloquent\Model;
     'sort_order',
     'seo_title',
     'seo_description',
+    'seo_focus_keyword',
+    'seo_related_keywords',
+    'seo_canonical_url',
+    'seo_robots',
+    'seo_social_title',
+    'seo_social_description',
+    'seo_social_image',
+    'seo_social_image_alt',
 ])]
 class Service extends Model
 {
@@ -30,6 +38,7 @@ class Service extends Model
     protected function casts(): array
     {
         return [
+            'seo_related_keywords' => 'array',
             'offerings' => 'array',
             'is_published' => 'boolean',
             'published_at' => 'datetime',

@@ -21,7 +21,7 @@ class ServiceForm
                 Textarea::make('summary')->required()->maxLength(1000)->rows(3)->columnSpanFull(),
                 ContentFields::body(), TagsInput::make('offerings')->label('Deliverables')->nestedRecursiveRules(['string', 'max:160'])->columnSpanFull(),
             ])->columns(2)->columnSpanFull(),
-            ContentFields::publishing(), ContentFields::seo(),
+            ContentFields::publishing(), ContentFields::seo('services'),
         ]);
     }
 }
