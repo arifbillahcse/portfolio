@@ -14,7 +14,7 @@ class PublicContent
 
     public static function image(?string $path): ?string
     {
-        if (! $path || ! preg_match('#^(projects|posts|profile)/[a-zA-Z0-9_./-]+\.(png|jpe?g|webp)$#i', $path) || str_contains($path, '..')) {
+        if (! $path || ! preg_match('#^(projects|posts|profile)/[a-zA-Z0-9_./-]+\.(png|jpe?g|webp|gif)$#i', $path) || str_contains($path, '..')) {
             return null;
         }
 

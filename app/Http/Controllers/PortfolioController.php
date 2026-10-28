@@ -12,13 +12,21 @@ use App\Models\SiteSetting;
 use App\Support\PublicContent;
 use App\Support\PublicSeo;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PortfolioController extends Controller
 {
-    public function home(): View
+    public function home(Request $request): View|RedirectResponse
     {
+        if ($request->query('p') && is_scalar($request->query('p')) && ctype_digit((string) $request->query('p'))) {
+            $post = Post::query()->published()->where('wordpress_id', $request->query('p'))->first();
+            if ($post) {
+                return redirect()->route('blog.show', ['slug' => $post->slug], 301);
+            }
+        }
+
         return $this->page('home', [
             'projects' => Project::query()->published()->with('category')->orderByDesc('is_featured')->orderBy('sort_order')->orderByDesc('id')->limit(6)->get(),
         ]);

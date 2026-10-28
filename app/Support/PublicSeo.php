@@ -4,6 +4,7 @@ namespace App\Support;
 
 use App\Models\Profile;
 use App\Models\SiteSetting;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PublicSeo
 {
@@ -72,11 +73,14 @@ class PublicSeo
             }
         }
 
+        $collection = $data['projects'] ?? $data['posts'] ?? null;
+        $emptyCollection = $collection instanceof LengthAwarePaginator && $collection->isEmpty();
+
         return [
             'canonical' => $canonical,
             'image' => $image,
             'type' => $section === 'blog' && $entry ? 'article' : 'website',
-            'robots' => ! empty($data['search']) || ! empty($data['category']) || ($page === 'projects' && empty($data['hasOriginalProjects'])) ? 'noindex, follow' : null,
+            'robots' => $emptyCollection || ! empty($data['search']) || ! empty($data['category']) || ($page === 'projects' && empty($data['hasOriginalProjects'])) ? 'noindex, follow' : null,
             'schema' => ['@context' => 'https://schema.org', '@graph' => $graph],
         ];
     }

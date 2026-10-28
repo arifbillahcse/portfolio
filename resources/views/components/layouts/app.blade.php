@@ -28,15 +28,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    @php($stylesheetVersion = is_file(public_path('assets/css/styles.css')) ? filemtime(public_path('assets/css/styles.css')) : '1')
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}?v={{ $stylesheetVersion }}">
 </head>
 <body class="{{ $page === 'home' ? 'portfolio ' : '' }}page-{{ $page }}" data-page="{{ $page }}" data-whatsapp="{{ preg_replace('/[^0-9]/', '', $site->whatsapp_number ?? '') }}">
+    <a class="skip-link" href="#main">Skip to content</a>
     @include('partials.header')
 
     {{ $slot }}
 
     @include('partials.footer', ['page' => $page])
 
-    <script src="{{ asset('assets/js/script.js') }}" defer></script>
+    @php($scriptVersion = is_file(public_path('assets/js/script.js')) ? filemtime(public_path('assets/js/script.js')) : '1')
+    <script src="{{ asset('assets/js/script.js') }}?v={{ $scriptVersion }}" defer></script>
 </body>
 </html>

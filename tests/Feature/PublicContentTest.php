@@ -56,6 +56,10 @@ class PublicContentTest extends TestCase
         $this->get('/projects?category=applications&page=2')->assertOk()->assertSeeText('Work 010')->assertDontSeeText('Work 001');
         $this->get('/projects?category=applications&page=12')->assertOk()->assertSeeText('Work 100')->assertViewHas('projects', fn ($projects) => $projects->count() === 1);
         $this->get('/projects?category=unknown')->assertOk()->assertSeeText('No matching projects');
+        $this->get('/projects?category=applications&page=999')->assertOk()
+            ->assertSeeText('No projects on this page')->assertSeeText('Return to the first page')
+            ->assertSee('category=applications&amp;page=1', false)
+            ->assertSee('<meta name="robots" content="noindex, follow">', false);
     }
 
     public function test_blog_search_and_category_are_preserved_when_paginating(): void

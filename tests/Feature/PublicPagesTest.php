@@ -67,6 +67,27 @@ class PublicPagesTest extends TestCase
         foreach (['theme', 'menu', 'nav'] as $id) {
             $this->assertCount(1, $xpath->query('//*[@id="'.$id.'"]'));
         }
+
+        $ids = [];
+        foreach ($xpath->query('//*[@id]') as $element) {
+            $id = $element->getAttribute('id');
+            $this->assertArrayNotHasKey($id, $ids, 'Duplicate ID on '.$path.': '.$id);
+            $ids[$id] = true;
+        }
+        foreach ($xpath->query('//a[starts-with(@href, "#")]') as $anchor) {
+            $target = substr($anchor->getAttribute('href'), 1);
+            $this->assertArrayHasKey($target, $ids, 'Broken section link on '.$path.': #'.$target);
+        }
+        foreach ($xpath->query('//label[@for]') as $label) {
+            $this->assertArrayHasKey($label->getAttribute('for'), $ids, 'A form label has no matching field on '.$path);
+        }
+        foreach ($xpath->query('//*[@aria-controls or @aria-labelledby or @aria-describedby]') as $element) {
+            foreach (['aria-controls', 'aria-labelledby', 'aria-describedby'] as $attribute) {
+                foreach (preg_split('/\s+/', trim($element->getAttribute($attribute)), flags: PREG_SPLIT_NO_EMPTY) as $target) {
+                    $this->assertArrayHasKey($target, $ids, 'Missing accessible control target on '.$path.': '.$target);
+                }
+            }
+        }
     }
 
     /**

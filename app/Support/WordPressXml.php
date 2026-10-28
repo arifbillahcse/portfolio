@@ -13,7 +13,7 @@ class WordPressXml
     public function read(string $path): array
     {
         if (! is_file($path) || filesize($path) > config('wordpress.max_xml_bytes')) {
-            throw ValidationException::withMessages(['xml' => 'Choose a WordPress XML export up to 20 MB.']);
+            throw ValidationException::withMessages(['xml' => 'Choose a WordPress XML export up to 8 MB.']);
         }
         $contents = file_get_contents($path);
         if ($contents === false || preg_match('/<!DOCTYPE|<!ENTITY/i', $contents)) {
@@ -22,7 +22,7 @@ class WordPressXml
         $previous = libxml_use_internal_errors(true);
         try {
             $document = new DOMDocument;
-            if (! $document->loadXML($contents, LIBXML_NONET | LIBXML_COMPACT)) {
+            if (! $document->loadXML($contents, LIBXML_NONET | LIBXML_COMPACT) || $document->doctype) {
                 throw ValidationException::withMessages(['xml' => 'This file is not valid XML.']);
             }
             $xpath = new DOMXPath($document);
@@ -54,6 +54,7 @@ class WordPressXml
                             $markup .= '<p><img src="'.htmlspecialchars($url, ENT_QUOTES, 'UTF-8').'" alt="Gallery image"></p>';
                         }
                     }
+
                     return $markup;
                 }, $html);
                 $images = array_values(array_unique(array_filter([$cover, ...$this->images($html)])));
@@ -80,6 +81,7 @@ class WordPressXml
             if ($posts === []) {
                 throw ValidationException::withMessages(['xml' => 'No importable blog posts were found. Pages and attachments alone are not imported.']);
             }
+
             return $posts;
         } finally {
             libxml_clear_errors();
@@ -99,6 +101,7 @@ class WordPressXml
                 $images[] = $url;
             }
         }
+
         return $images;
     }
 }

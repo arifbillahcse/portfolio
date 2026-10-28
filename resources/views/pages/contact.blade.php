@@ -1,5 +1,5 @@
 <x-layouts.app :seo="$seo" :site="$site" :profile="$profile" :contact-links="$contactLinks" :title="'Contact | '.$profile->name" description="Contact Arif Billah to discuss web development, WordPress, Laravel, Linux servers, and cloud infrastructure. Connect through WhatsApp, email, Facebook, or LinkedIn." page="contact">
-<main id="main">
+<main id="main" tabindex="-1">
     <section class="contact-intro wrap" aria-labelledby="contactTitle">
       <span class="eyebrow">Let’s start a conversation</span>
       <h1 id="contactTitle">Your next project.<br><span>Our first conversation.</span></h1>

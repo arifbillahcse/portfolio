@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Middleware\RobotsHeaders;
+use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Bootstrap\LoadConfiguration;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,6 +22,18 @@ $app = Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PORT);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (NotFoundHttpException $exception, Request $request): ?RedirectResponse {
+            if (! $request->isMethod('GET') || $request->expectsJson() || $request->is('admin', 'admin/*', 'livewire/*', 'api/*')) {
+                return null;
+            }
+            $path = '/'.trim(rawurldecode($request->getPathInfo()), '/');
+            $post = Post::query()->published()->where('wordpress_path', $path)->first();
+            if ($post && $path !== '/blog/'.$post->slug) {
+                return redirect()->route('blog.show', ['slug' => $post->slug], 301);
+            }
+
+            return null;
+        });
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );

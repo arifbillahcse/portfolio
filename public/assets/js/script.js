@@ -69,7 +69,7 @@
       button.disabled = true;
       form.setAttribute('aria-busy', 'true');
       status.textContent = 'Sending your inquiry…';
-      $('[aria-invalid]', form).forEach(field => field.removeAttribute('aria-invalid'));
+      $$('[aria-invalid]', form).forEach(field => field.removeAttribute('aria-invalid'));
       try {
         const response = await fetch(form.action, {
           method: 'POST', body: new FormData(form), credentials: 'same-origin',
@@ -135,18 +135,60 @@
       window.open(url, '_blank', 'noopener');
       dialog.close();
     });
-    const elements = $$('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      elements.forEach(element => element.classList.add('visible'));
-      return;
-    }
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    }), { threshold: 0.12 });
-    elements.forEach(element => observer.observe(element));
+  }
+
+  function initMotion() {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (preference.matches || !('IntersectionObserver' in window) ||
+        typeof Element === 'undefined' || !Element.prototype.animate) return;
+
+    const selector = [
+      '.reveal', '.intro-copy', '.portrait-panel', '.experience-strip',
+      '.section-heading', '.journey > article', '.expertise', '.businesses',
+      '.work-note', '.resume-heading', '.resume-tabs', '.resume-entry', '.vision',
+      '.service-intro', '.category-nav', '.group-heading', '.service-card',
+      '.projects-intro', '.gallery-toolbar', '.work-card', '.blog-intro',
+      '.featured', '.browse-heading', '.blog-filters', '.blog-card',
+      '.contact-intro', '.contact-details', '.form-panel', '.next-heading',
+      '.next-grid > li', '.detail-heading', '.detail-cover', '.detail-gallery > img',
+      '.about-contact > .wrap', '.service-cta > .wrap', '.project-cta > .wrap',
+      '.journal-cta > .wrap'
+    ].join(',');
+    const active = new Map();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const element = entry.target;
+        observer.unobserve(element);
+        if (preference.matches || element.contains(document.activeElement)) return;
+        const siblings = [...element.parentElement.children];
+        const delay = Math.max(0, siblings.indexOf(element) % 3) * 60;
+        const animation = element.animate([
+          { opacity: 0, transform: 'translateY(18px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], { duration: 520, delay, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
+        active.set(element, animation);
+        animation.finished.then(() => active.delete(element), () => active.delete(element));
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+
+    $$(selector).filter(element => {
+      if (element.closest('.home-hero, dialog') || element.parentElement?.closest(selector)) return false;
+      const rect = element.getBoundingClientRect();
+      return !(rect.top < window.innerHeight && rect.bottom > 0);
+    }).slice(0, 180).forEach(element => observer.observe(element));
+
+    preference.addEventListener('change', () => {
+      if (!preference.matches) return;
+      observer.disconnect();
+      active.forEach(animation => animation.cancel());
+      active.clear();
+    });
+    document.addEventListener('focusin', event => {
+      active.forEach((animation, element) => {
+        if (element.contains(event.target)) animation.cancel();
+      });
+    });
   }
 
   function initResume() {
@@ -288,4 +330,5 @@
   else if (page === 'about') initResume();
   else if (page === 'projects' || page === 'blog') initGallery(page === 'blog');
   else if (page === 'contact') bindInquiry($('#contactForm'), $('#formStatus'), url => window.location.assign(url));
+  initMotion();
 })();
