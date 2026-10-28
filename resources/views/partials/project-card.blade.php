@@ -1,0 +1,5 @@
+<article class="work-card">
+<a class="preview preview-shop collection-art" href="{{ route('projects.show', $project->slug) }}" aria-label="View {{ $project->title }}">
+@if($image = \App\Support\PublicContent::image($project->cover_image))<img class="cover-image" src="{{ $image }}" alt="{{ $project->title }}" loading="lazy" width="900" height="600">
+@else<span class="preview-label">{{ $project->is_demo ? 'PROJECT CONCEPT' : 'PROJECT' }}</span><span class="art-symbol">{{ $project->category?->name ?? 'Selected work' }}</span><span class="preview-arrow" aria-hidden="true">↗</span>@endif
+</a><div class="work-copy"><div class="work-meta"><span>{{ $project->category?->name ?? 'Project' }}</span>@if($project->is_demo)<span>Illustrative concept</span>@endif</div><h2><a href="{{ route('projects.show', $project->slug) }}">{{ $project->title }}</a></h2><p>{{ $project->excerpt }}</p><ul class="tech-tags">@foreach($project->tools ?? [] as $tool)<li>{{ $tool }}</li>@endforeach</ul><a class="details-button" href="{{ route('projects.show', $project->slug) }}">View project ↗</a></div></article>

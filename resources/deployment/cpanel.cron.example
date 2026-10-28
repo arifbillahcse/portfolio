@@ -1,0 +1,5 @@
+# Replace CPANEL_USER and PHP_PATH with the real account and PHP 8.3+ CLI path.
+# In cPanel Cron Jobs choose Once Per Minute; paste only the command after the five * fields.
+# Example: /home/CPANEL_USER/portfolio contains the backend; document root is portfolio/public.
+# Leave Cron Email enabled to receive failures. This worker stays quiet when idle.
+* * * * * PHP_BIN=PHP_PATH /bin/bash /home/CPANEL_USER/portfolio/resources/deployment/cpanel-mail-worker.sh
