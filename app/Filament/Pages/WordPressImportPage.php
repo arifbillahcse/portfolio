@@ -58,13 +58,6 @@ class WordPressImportPage extends Page
         Notification::make()->title('Unfinished posts and failed images queued again.')->success()->send();
     }
 
-    public function repairContentImages(): void
-    {
-        abort_unless(static::canAccess(), 403);
-        $result = app(WordPressImporter::class)->repairImages(WordPressImport::query()->findOrFail($this->runId));
-        Notification::make()->title('Image repair queued for '.$result['queued'].' posts. '.$result['busy'].' busy posts skipped.')->success()->send();
-    }
-
     protected function getViewData(): array
     {
         $run = $this->runId ? WordPressImport::query()->find($this->runId) : null;

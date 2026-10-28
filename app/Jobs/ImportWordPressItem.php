@@ -21,12 +21,7 @@ class ImportWordPressItem implements ShouldQueue
 
     public function middleware(): array
     {
-        return [(new WithoutOverlapping(self::lockKey($this->itemId)))->withPrefix('')->shared()->releaseAfter(10)->expireAfter(60)];
-    }
-
-    public static function lockKey(int $itemId): string
-    {
-        return 'wordpress-item-'.$itemId;
+        return [(new WithoutOverlapping('wordpress-item-'.$this->itemId))->releaseAfter(10)->expireAfter(60)];
     }
 
     public function backoff(): array
