@@ -17,7 +17,7 @@ class PostForm
             Section::make('Article')->schema([
                 ContentFields::title(), ContentFields::slug('posts'), ContentFields::category('post'),
                 TextInput::make('reading_minutes')->numeric()->integer()->minValue(1)->maxValue(120)->required()->default(5),
-                Textarea::make('excerpt')->required()->maxLength(1000)->rows(3)->columnSpanFull(),
+                Textarea::make('excerpt')->required()->maxLength(1000)->rows(3)->columnSpanFull()->live(onBlur: true),
                 ContentFields::body()->required()
                     ->toolbarButtons(['bold', 'italic', 'link', 'heading', 'bulletList', 'orderedList', 'blockquote', 'codeBlock', 'table', 'attachFiles'])
                     ->fileAttachmentsDisk('public')->fileAttachmentsDirectory('posts/content')

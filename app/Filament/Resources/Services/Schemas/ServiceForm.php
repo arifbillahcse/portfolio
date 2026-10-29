@@ -19,7 +19,7 @@ class ServiceForm
                 ContentFields::title(), ContentFields::slug('services'),
                 Select::make('group')->options(['development' => '01 · Build your platform', 'integrations' => '02 · Connect & automate', 'infrastructure' => '03 · Deploy', 'care' => '04 · Secure & maintain'])->in(['development', 'integrations', 'infrastructure', 'care'])->required()->default('development'),
                 Select::make('icon')->options(['code' => 'Code', 'store' => 'Store', 'cloud' => 'Cloud', 'server' => 'Server', 'shield' => 'Security', 'link' => 'Integration'])->in(['code', 'store', 'cloud', 'server', 'shield', 'link'])->required()->default('code'),
-                Textarea::make('summary')->required()->maxLength(1000)->rows(3)->columnSpanFull(),
+                Textarea::make('summary')->required()->maxLength(1000)->rows(3)->columnSpanFull()->live(onBlur: true),
                 ContentFields::body(), TagsInput::make('offerings')->label('Deliverables')->nestedRecursiveRules(['string', 'max:160'])->columnSpanFull(),
             ])->columns(2)->columnSpanFull(),
             MediaFields::body(), ContentFields::publishing(), ContentFields::seo('services'),

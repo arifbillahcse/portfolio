@@ -16,4 +16,5 @@
     @if($preview['warnings'])
         <ul style="list-style:disc;padding-left:22px">@foreach($preview['warnings'] as $warning)<li>{{ $warning }}</li>@endforeach</ul>
     @endif
+    @include('filament.content-analysis', ['analysis' => $preview['analysis']])
 </div>

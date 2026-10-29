@@ -31,6 +31,7 @@ class ContentFields
     public static function slug(string $table): TextInput
     {
         return TextInput::make('slug')->required()->maxLength(255)
+            ->live(onBlur: true)
             ->regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
             ->unique(table: $table, ignoreRecord: true)
             ->helperText('Use lowercase English words separated by hyphens. Changing a published slug changes its URL.');
@@ -54,7 +55,7 @@ class ContentFields
 
     public static function body(string $name = 'body'): MarkdownEditor
     {
-        return MarkdownEditor::make($name)->columnSpanFull()->maxLength(100000)
+        return MarkdownEditor::make($name)->columnSpanFull()->maxLength(100000)->live(onBlur: true)
             ->toolbarButtons(['bold', 'italic', 'link', 'heading', 'bulletList', 'orderedList', 'blockquote', 'codeBlock']);
     }
 

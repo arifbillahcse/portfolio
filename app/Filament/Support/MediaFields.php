@@ -30,6 +30,7 @@ class MediaFields
                 TextInput::make('src')->label('Exact image URL used in the content')->required()->rule('string')->maxLength(2048)
                     ->regex('~\A(?:https?://|/(?:storage|assets)/)[^\s<>]+\z~i'),
                 TextInput::make('alt')->label('Image alt text')->rule('string')->maxLength(255)
+                    ->live(onBlur: true)
                     ->required(fn (Get $get): bool => ! $get('decorative')),
                 Toggle::make('decorative')->label('Decorative image (empty alt text)')->default(false)->live(),
             ])->columns(2)->columnSpanFull(),

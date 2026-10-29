@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Rules\CanonicalUrl;
+use App\Support\ContentAnalysis;
 use App\Support\PublicContent;
 use App\Support\PublicSchema;
 use App\Support\PublicSeo;
@@ -32,9 +33,9 @@ class SeoFields
             TextInput::make('seo_title')->label('SEO title')->rule('string')->maxLength(255)->live(onBlur: true)
                 ->helperText('The title template is applied after this text. Check the final title in the preview.'),
             Textarea::make('seo_description')->label('Meta description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
-            TextInput::make('seo_focus_keyword')->label('Focus keyword / topic')->rule('string')->maxLength(255),
+            TextInput::make('seo_focus_keyword')->label('Focus keyword / topic')->rule('string')->maxLength(255)->live(onBlur: true),
             TagsInput::make('seo_related_keywords')->label('Related keywords / topics')->rules(['array', 'max:15'])
-                ->nestedRecursiveRules(['string', 'max:80']),
+                ->nestedRecursiveRules(['string', 'max:80'])->live(onBlur: true),
             TextInput::make('seo_canonical_url')->label('Canonical URL')->maxLength(2048)->rule(new CanonicalUrl)->live(onBlur: true)
                 ->helperText('Normally leave blank. A canonical is a preferred URL, not a redirect. Pagination keeps its own URL.'),
             Select::make('seo_robots')->label('Search visibility')->options([
@@ -126,7 +127,13 @@ class SeoFields
             }
         }
 
-        return [...$preview, 'warnings' => $warnings, 'title_length' => mb_strlen($preview['title']),
+        $analysis = ContentAnalysis::analyze([
+            ...$attributes, 'title' => $defaults['title'], 'summary' => $defaults['description'],
+            'body' => $get('body'), 'body_image_metadata' => $get('body_image_metadata'),
+            'cover_image' => $cover, 'cover_image_alt' => $get('cover_image_alt'),
+        ], [...$preview, 'self_url' => $canonical], ! $page);
+
+        return [...$preview, 'analysis' => $analysis, 'warnings' => $warnings, 'title_length' => mb_strlen($preview['title']),
             'description_length' => mb_strlen($preview['description'])];
     }
 }

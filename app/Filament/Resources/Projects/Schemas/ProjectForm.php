@@ -19,7 +19,7 @@ class ProjectForm
         return $schema->components([
             Section::make('Project details')->schema([
                 ContentFields::title(), ContentFields::slug('projects'), ContentFields::category('project'),
-                Textarea::make('excerpt')->required()->maxLength(1000)->rows(3)->columnSpanFull(),
+                Textarea::make('excerpt')->required()->maxLength(1000)->rows(3)->columnSpanFull()->live(onBlur: true),
                 ContentFields::body(), TagsInput::make('tools')->nestedRecursiveRules(['string', 'max:80'])->columnSpanFull(),
                 TextInput::make('external_url')->label('Live website URL')->url()->regex('/^https?:\/\//i')->maxLength(2048),
                 TextInput::make('repository_url')->url()->regex('/^https?:\/\//i')->maxLength(2048),
