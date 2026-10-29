@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
     'google_site_verification',
     'chat_widget_enabled',
     'chat_widget_code',
+    'chat_widget_load_mode',
     'lead_notifications_enabled',
     'lead_notification_email',
     'smtp_enabled',

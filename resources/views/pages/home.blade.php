@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="visual reveal">
-                <div class="portrait-wrap"><img class="portrait" src="{{ $portrait }}" alt="{{ \App\Support\MediaSeo::text($profile->portrait_alt, $profile->name) }}" width="480" height="520" fetchpriority="high"></div>
+                <div class="portrait-wrap"><x-media-image class="portrait" :path="$portraitPath" :alt="\App\Support\MediaSeo::text($profile->portrait_alt, $profile->name)" sizes="(min-width: 761px) 420px, 310px" loading="eager" fetchpriority="high" /></div>
                 <span class="tech t1">WordPress</span>
                 <span class="tech t2">Laravel</span>
                 <span class="tech t3">Linux &amp; cloud</span>

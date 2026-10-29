@@ -9,9 +9,9 @@ use App\Models\Project;
 use App\Models\ResumeEntry;
 use App\Models\Service;
 use App\Models\SiteSetting;
-use App\Support\MediaSeo;
 use App\Support\PublicContent;
 use App\Support\PublicSeo;
+use App\Support\RenderedContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -133,7 +133,7 @@ class PortfolioController extends Controller
             'entry' => $entry,
             'section' => $section,
             'isPreview' => $isPreview,
-            'bodyHtml' => MediaSeo::body($entry->body, $entry->body_image_metadata),
+            'bodyHtml' => RenderedContent::body($entry, $isPreview),
         ]);
     }
 
@@ -154,6 +154,7 @@ class PortfolioController extends Controller
             'site' => $site,
             'seo' => $seo,
             'portrait' => PublicContent::image($profile->portrait_path) ?? asset('assets/images/arif-formal.png'),
+            'portraitPath' => PublicContent::image($profile->portrait_path) ? $profile->portrait_path : 'assets/images/arif-formal.png',
             'contactLinks' => [
                 'whatsapp' => 'https://wa.me/'.preg_replace('/\D/', '', $site->whatsapp_number ?? ''),
                 'email' => 'mailto:'.$site->contact_email,

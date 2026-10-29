@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "images": {
+    "assets/images/arif-formal.png": {
+      "mtime": 1793148722,
+      "bytes": 2085516,
+      "sha256": "6c6855b2262d4e8184f1550265e2def31169e11da8e01d0452b21b9f9096e5d9",
+      "variants": [
+        {
+          "path": "assets/images/responsive/1fd9202e8cb63254-9131ce279098-320.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 9054
+        },
+        {
+          "path": "assets/images/responsive/1fd9202e8cb63254-ca4108204355-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 29464
+        },
+        {
+          "path": "assets/images/responsive/1fd9202e8cb63254-358aa3f03430-960.webp",
+          "width": 960,
+          "height": 960,
+          "bytes": 60966
+        },
+        {
+          "path": "assets/images/responsive/1fd9202e8cb63254-e90c7c684d2a-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 92806
+        }
+      ]
+    }
+  }
+}

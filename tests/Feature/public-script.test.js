@@ -183,3 +183,65 @@ test('unsupported dialogs leave the Hire link available for normal navigation', 
 
   assert.equal(intercepted, false);
 });
+
+function chatPage(mode, snippets = [{ textContent: 'inline initialization', attributes: [] }], fails = false) {
+  const handlers = new Map(), windowEvents = new Map(), idle = [], executions = [];
+  const button = { hidden: false, disabled: false, addEventListener: (event, fn) => handlers.set(event, fn) };
+  const fallback = { hidden: true }, status = { textContent: '' };
+  let inserted = 0;
+  const originals = snippets.map(item => ({ ...item, replaceWith(script) {
+    executions.push(script.attrs.get('src') ?? script.textContent);
+    if (script.attrs.has('src') || script.type === 'module') script.events.get(fails ? 'error' : 'load')();
+  } }));
+  const config = { textContent: JSON.stringify({ mode, code: '<div>trusted provider snippet</div>' }) };
+  const document = {
+    readyState: 'loading', body: { dataset: { page: 'services' }, appendChild() { inserted++; } },
+    querySelector: selector => ({ '#chat-widget-config': config, '#loadChat': button, '#chatFallback': fallback, '#chatLoadStatus': status })[selector] ?? null,
+    createElement(tag) {
+      if (tag === 'template') return { content: { querySelectorAll: () => originals } };
+      return { attrs: new Map(), events: new Map(), setAttribute(name, value) { this.attrs.set(name, value); },
+        hasAttribute(name) { return this.attrs.has(name); }, get type() { return this.attrs.get('type'); },
+        addEventListener(event, fn) { this.events.set(event, fn); } };
+    }
+  };
+  vm.runInNewContext(script, { document, window: { matchMedia: () => ({ matches: true }),
+    addEventListener: (event, fn) => windowEvents.set(event, fn), requestIdleCallback: fn => idle.push(fn) },
+    setTimeout: () => 1, clearTimeout() {} });
+  return { button, fallback, status, executions, idle, windowEvents, click: () => handlers.get('click')(), inserted: () => inserted };
+}
+
+test('interaction chat stays inert until clicked and is inserted only once', async () => {
+  const page = chatPage('interaction');
+  assert.equal(page.inserted(), 0);
+  await page.click();
+  await page.click();
+  assert.equal(page.inserted(), 1);
+  assert.deepEqual(page.executions, ['inline initialization']);
+  assert.equal(page.button.hidden, true);
+  assert.equal(page.fallback.hidden, true);
+});
+
+test('idle chat waits for the page load and an idle callback', async () => {
+  const page = chatPage('idle');
+  assert.equal(page.inserted(), 0);
+  page.windowEvents.get('load')();
+  assert.equal(page.inserted(), 0);
+  await page.idle[0]();
+  assert.equal(page.inserted(), 1);
+});
+
+test('deferred chat preserves script order and exposes WhatsApp if a provider script fails', async () => {
+  const snippets = [
+    { textContent: 'initialize', attributes: [] },
+    { textContent: '', attributes: [{ name: 'src', value: 'https://chat.example/widget.js' }] },
+    { textContent: 'after provider', attributes: [] }
+  ];
+  const success = chatPage('interaction', snippets);
+  await success.click();
+  assert.deepEqual(success.executions, ['initialize', 'https://chat.example/widget.js', 'after provider']);
+  const failed = chatPage('interaction', snippets, true);
+  await failed.click();
+  assert.equal(failed.fallback.hidden, false);
+  assert.match(failed.status.textContent, /WhatsApp/);
+  assert.deepEqual(failed.executions, ['initialize', 'https://chat.example/widget.js']);
+});

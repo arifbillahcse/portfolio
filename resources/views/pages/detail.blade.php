@@ -17,7 +17,7 @@
 <div class="prose">{!! $bodyHtml !!}</div>
 @if($section === 'projects')
 <ul class="tech-tags">@foreach($entry->tools ?? [] as $tool)<li>{{ $tool }}</li>@endforeach</ul>
-<div class="detail-gallery">@foreach($entry->gallery ?? [] as $path) @if($image = \App\Support\PublicContent::image($path))@php($details = \App\Support\MediaSeo::gallery($entry, $path, $loop->iteration))<figure class="detail-media"><x-media-image :path="$path" :alt="$details['alt']" />@if($details['caption'])<figcaption>{{ $details['caption'] }}</figcaption>@endif</figure>@endif @endforeach</div>
+<div class="detail-gallery">@foreach($entry->gallery ?? [] as $path) @if($image = \App\Support\PublicContent::image($path))@php($details = \App\Support\MediaSeo::gallery($entry, $path, $loop->iteration))<figure class="detail-media"><x-media-image sizes="(min-width: 760px) 550px, calc(100vw - 48px)" :path="$path" :alt="$details['alt']" />@if($details['caption'])<figcaption>{{ $details['caption'] }}</figcaption>@endif</figure>@endif @endforeach</div>
 <div class="detail-links">@if($url = \App\Support\PublicContent::link($entry->external_url))<a class="button" href="{{ $url }}" target="_blank" rel="noopener noreferrer">Visit website ↗</a>@endif @if($url = \App\Support\PublicContent::link($entry->repository_url))<a class="button secondary" href="{{ $url }}" target="_blank" rel="noopener noreferrer">View repository ↗</a>@endif</div>
 @elseif($section === 'services' && $entry->offerings)<h2>What’s included</h2><ul class="service-offerings">@foreach($entry->offerings as $offering)<li>{{ $offering }}</li>@endforeach</ul>
 @endif

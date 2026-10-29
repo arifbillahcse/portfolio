@@ -14,6 +14,7 @@ use App\Models\SiteSetting;
 use App\Policies\ContentPolicy;
 use App\Policies\SingletonContentPolicy;
 use App\Support\MediaSeo;
+use App\Support\ResponsiveImages;
 use App\Support\SeoRedirects;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->scoped(MediaSeo::class);
+        $this->app->scoped(ResponsiveImages::class);
     }
 
     /**

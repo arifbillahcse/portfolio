@@ -68,9 +68,13 @@ class SiteSettingForm
             ])->columnSpanFull(),
             Section::make('Chat widget')->description('Add the embed snippet supplied by your chat provider.')->schema([
                 Toggle::make('chat_widget_enabled')->label('Enable chat widget')->default(false)->live(),
+                Select::make('chat_widget_load_mode')->label('Chat loading')->options([
+                    'immediate' => 'Immediately (existing behavior)', 'idle' => 'After page load / idle', 'interaction' => 'When Open chat is clicked',
+                ])->default('immediate')->required()->in(['immediate', 'idle', 'interaction'])
+                    ->helperText('Deferred modes reduce startup work. Use Immediately if the provider relies on document.write or cannot be loaded dynamically.'),
                 Textarea::make('chat_widget_code')->label('Chat widget embed code')->rule('string')->rows(10)->maxLength(30000)
                     ->required(fn (Get $get): bool => (bool) $get('chat_widget_enabled'))
-                    ->helperText('Paste the complete HTML / JavaScript embed code. When enabled, it runs immediately before </body> on public portfolio pages. It does not run inside the admin panel.')
+                    ->helperText('Paste the complete HTML / JavaScript embed code. It runs on public pages using the selected loading mode. It does not run inside the admin panel or private previews.')
                     ->columnSpanFull(),
             ])->columnSpanFull(),
         ]);

@@ -1,3 +1,5 @@
+@font-face { font-family:"DM Sans"; font-style:normal; font-weight:400 700; font-display:swap; src:url("../fonts/dm-sans-latin-9fea608a947e.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-style:normal; font-weight:600 800; font-display:swap; src:url("../fonts/manrope-latin-8c2def024c1b.woff2") format("woff2"); }
 /* Shared foundations and reusable components */
 :root { --content-width: 1240px; --gutter: 24px; --button: #1600f5; --background: #f7f8ff; --text: #080b45; --muted: #62688e; --accent: #1600f5; --border: #dfe3f7; --active: #eceeff; --surface: #fff; }
 * { box-sizing: border-box; }
@@ -795,3 +797,9 @@ body.modal-open { overflow:hidden; }
 
 .detail-media { margin:0; min-width:0; }
 .detail-media figcaption { margin:10px 0 24px; color:var(--muted); font-size:.9rem; line-height:1.6; }
+
+.responsive-picture { display:contents; }
+.chat-launcher { position:fixed; right:20px; bottom:20px; z-index:80; max-width:calc(100vw - 40px); display:grid; gap:6px; }
+.chat-launcher button,.chat-launcher a { border:0; border-radius:999px; padding:12px 20px; background:var(--accent); color:#fff; font:700 14px "DM Sans",sans-serif; cursor:pointer; text-decoration:none; }
+.chat-launcher span { max-width:250px; padding:4px; background:var(--surface); color:var(--text); font-size:12px; }
+.chat-launcher span:empty { display:none; }

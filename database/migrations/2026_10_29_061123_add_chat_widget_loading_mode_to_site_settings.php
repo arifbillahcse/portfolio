@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('site_settings', function (Blueprint $table): void {
+            $table->string('chat_widget_load_mode', 20)->default('immediate');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('site_settings', fn (Blueprint $table) => $table->dropColumn('chat_widget_load_mode'));
+    }
+};

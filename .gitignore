@@ -21,6 +21,7 @@
 /public/hot
 /public/js/filament
 /public/storage
+/public/assets/images/responsive/.media-*
 /storage/*.key
 /storage/pail
 /vendor

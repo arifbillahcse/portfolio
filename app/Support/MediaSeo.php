@@ -107,7 +107,7 @@ class MediaSeo
             return $html;
         }
         ['document' => $document, 'root' => $root] = self::document($html);
-        foreach ($root->getElementsByTagName('img') as $image) {
+        foreach (iterator_to_array($root->getElementsByTagName('img')) as $image) {
             $source = $image->getAttribute('src');
             $details = collect($metadata ?? [])->first(fn (mixed $item): bool => is_array($item) && ($item['src'] ?? null) === $source);
             if ($details) {
@@ -124,6 +124,20 @@ class MediaSeo
             }
             $image->setAttribute('loading', 'lazy');
             $image->setAttribute('decoding', 'async');
+            $responsive = app(ResponsiveImages::class);
+            $path = $responsive->pathFromUrl($source);
+            $variants = $path ? $responsive->candidates($path) : [];
+            if ($variants) {
+                $picture = $document->createElement('picture');
+                $picture->setAttribute('class', 'responsive-picture');
+                $webp = $document->createElement('source');
+                $webp->setAttribute('type', 'image/webp');
+                $webp->setAttribute('srcset', implode(', ', array_map(fn (array $variant): string => $variant['url'].' '.$variant['width'].'w', $variants)));
+                $webp->setAttribute('sizes', '(min-width: 1280px) 1100px, calc(100vw - 48px)');
+                $image->parentNode->replaceChild($picture, $image);
+                $picture->appendChild($webp);
+                $picture->appendChild($image);
+            }
         }
         $result = '';
         foreach ($root->childNodes as $node) {

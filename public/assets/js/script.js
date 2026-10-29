@@ -121,7 +121,7 @@
       '.projects-intro', '.gallery-toolbar', '.work-card', '.blog-intro',
       '.featured', '.browse-heading', '.blog-filters', '.blog-card',
       '.contact-intro', '.contact-details', '.form-panel', '.next-heading',
-      '.next-grid > li', '.detail-heading', '.detail-cover', '.detail-gallery > img',
+      '.next-grid > li', '.detail-heading', '.detail-cover', '.detail-gallery > figure',
       '.about-contact > .wrap', '.service-cta > .wrap', '.project-cta > .wrap',
       '.journal-cta > .wrap'
     ].join(',');
@@ -189,6 +189,60 @@
     });
   }
 
+
+  function initChat() {
+    const config = $('#chat-widget-config'), button = $('#loadChat');
+    if (!config || !button) return;
+    const status = $('#chatLoadStatus'), fallback = $('#chatFallback');
+    let settings;
+    try { settings = JSON.parse(config.textContent); } catch { return; }
+    if (!['idle', 'interaction'].includes(settings.mode) || typeof settings.code !== 'string') return;
+    let started = false;
+    async function loadChat() {
+      if (started) return;
+      started = true;
+      button.disabled = true;
+      status.textContent = 'Loading chat…';
+      try {
+        const template = document.createElement('template');
+        template.innerHTML = settings.code;
+        const fragment = template.content;
+        const scripts = [...fragment.querySelectorAll('script')];
+        document.body.appendChild(fragment);
+        for (const original of scripts) {
+          const script = document.createElement('script');
+          for (const attribute of original.attributes) script.setAttribute(attribute.name, attribute.value);
+          script.textContent = original.textContent;
+          const waits = script.hasAttribute('src') || script.type === 'module';
+          const loaded = waits ? new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error('Chat script timed out')), 15000);
+            script.addEventListener('load', () => { clearTimeout(timer); resolve(); }, { once: true });
+            script.addEventListener('error', () => { clearTimeout(timer); reject(new Error('Chat script failed')); }, { once: true });
+          }) : Promise.resolve();
+          if (script.hasAttribute('src')) script.async = false;
+          original.replaceWith(script);
+          await loaded;
+        }
+        button.hidden = true;
+        status.textContent = '';
+      } catch {
+        button.hidden = true;
+        fallback.hidden = false;
+        status.textContent = 'Chat could not load. You can message me on WhatsApp.';
+      }
+    }
+    button.addEventListener('click', loadChat);
+    if (settings.mode === 'idle') {
+      const schedule = () => {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(loadChat, { timeout: 2500 });
+        else setTimeout(loadChat, 1500);
+      };
+      if (document.readyState === 'complete') schedule();
+      else window.addEventListener('load', schedule, { once: true });
+    }
+  }
+
+  initChat();
   initHeader();
   const page = document.body.dataset.page;
   if (page === 'home') initHome();
