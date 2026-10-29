@@ -39,6 +39,7 @@
     <script type="application/ld+json">{!! json_encode($seo['schema'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
     @endif
     @endif
+    @include('partials.analytics')
     <link rel="preload" href="{{ asset('assets/fonts/manrope-latin-8c2def024c1b.woff2') }}" as="font" type="font/woff2" crossorigin>
     @php($stylesheetVersion = is_file(public_path('assets/css/styles.css')) ? filemtime(public_path('assets/css/styles.css')) : '1')
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}?v={{ $stylesheetVersion }}">

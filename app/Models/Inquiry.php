@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['name', 'email', 'phone', 'message', 'source', 'status', 'admin_notes', 'notification_status', 'emailed_at'])]
+#[Fillable(['name', 'email', 'phone', 'message', 'source', 'status', 'admin_notes', 'notification_status', 'emailed_at', 'landing_path', 'referrer_host', 'utm_source', 'utm_medium', 'utm_campaign'])]
 class Inquiry extends Model
 {
     use HasFactory;

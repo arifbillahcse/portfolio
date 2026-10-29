@@ -22,6 +22,13 @@ use Illuminate\Database\Eloquent\Model;
     'seo_title_templates',
     'footer_text',
     'google_site_verification',
+    'analytics_enabled',
+    'ga4_measurement_id',
+    'ga4_property_id',
+    'search_console_property',
+    'google_service_account',
+    'next_content_review_on',
+    'content_plan',
     'chat_widget_enabled',
     'chat_widget_code',
     'chat_widget_load_mode',
@@ -41,7 +48,7 @@ class SiteSetting extends Model
     /** @use HasFactory<SiteSettingFactory> */
     use HasFactory;
 
-    protected $hidden = ['smtp_password'];
+    protected $hidden = ['smtp_password', 'google_service_account'];
 
     protected function casts(): array
     {
@@ -50,6 +57,9 @@ class SiteSetting extends Model
             'seo_title_templates' => 'array',
             'chat_widget_enabled' => 'boolean',
             'lead_notifications_enabled' => 'boolean',
+            'analytics_enabled' => 'boolean',
+            'next_content_review_on' => 'date',
+            'google_service_account' => 'encrypted',
             'smtp_enabled' => 'boolean',
             'smtp_port' => 'integer',
             'smtp_password' => 'encrypted',

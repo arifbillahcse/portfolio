@@ -4,7 +4,10 @@ namespace App\Filament\Resources\SiteSettings\Schemas;
 
 use App\Filament\Support\ContentFields;
 use App\Models\SiteSetting;
+use App\Support\GoogleReporting;
 use App\Support\SiteIntegrations;
+use Closure;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -66,6 +69,26 @@ class SiteSettingForm
                     ->helperText('Paste the token or the complete <meta name="google-site-verification" ...> tag. It is added to the head of every public portfolio page. Leave blank to remove it.')
                     ->columnSpanFull(),
             ])->columnSpanFull(),
+            Section::make('Analytics & growth')->description('GA4 tracking loads only on public pages in production, and is skipped for visitors who send Do Not Track or Global Privacy Control. Reporting needs a Google service account added as a viewer in GA4 and Search Console.')->schema([
+                Toggle::make('analytics_enabled')->label('Enable GA4 tracking and lead events')->default(false)->live()->columnSpanFull(),
+                TextInput::make('ga4_measurement_id')->label('GA4 measurement ID')->placeholder('G-XXXXXXXXXX')->maxLength(32)
+                    ->regex('/\AG-[A-Z0-9]{4,20}\z/D')->required(fn (Get $get): bool => (bool) $get('analytics_enabled')),
+                TextInput::make('ga4_property_id')->label('GA4 property ID (reports)')->maxLength(20)->regex('/\A[0-9]{3,20}\z/D')
+                    ->helperText('Numeric ID from GA4 Admin → Property details.'),
+                TextInput::make('search_console_property')->label('Search Console property')->maxLength(255)
+                    ->regex('/\A(?:sc-domain:[a-z0-9.-]+|https?:\/\/[^\s]+\/)\z/iD')
+                    ->helperText('Example: sc-domain:example.com or https://example.com/ (with trailing slash).'),
+                Textarea::make('google_service_account')->label('Google service account JSON')->rows(5)->maxLength(10000)->autocomplete('off')
+                    ->rule(fn (): Closure => function (string $attribute, mixed $value, Closure $fail): void {
+                        if (filled($value) && ! app(GoogleReporting::class)->credentials((new SiteSetting)->forceFill(['google_service_account' => $value]))) {
+                            $fail('Paste the complete service account JSON key file.');
+                        }
+                    })->dehydrated(fn (?string $state): bool => filled($state))
+                    ->helperText('Stored encrypted and never shown again. Leave blank to keep the saved key.')->columnSpanFull(),
+                DatePicker::make('next_content_review_on')->label('Next content review'),
+                Textarea::make('content_plan')->label('Ongoing content plan')->rows(4)->maxLength(5000)->columnSpanFull()
+                    ->helperText('Planned articles, case studies and updates. Shown on the Growth dashboard.'),
+            ])->columns(2)->columnSpanFull(),
             Section::make('Chat widget')->description('Add the embed snippet supplied by your chat provider.')->schema([
                 Toggle::make('chat_widget_enabled')->label('Enable chat widget')->default(false)->live(),
                 Select::make('chat_widget_load_mode')->label('Chat loading')->options([

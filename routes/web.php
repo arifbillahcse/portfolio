@@ -4,21 +4,27 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\WordPressImportController;
+use App\Http\Middleware\CaptureAttribution;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PortfolioController::class, 'home'])->name('home');
+Route::middleware(CaptureAttribution::class)->group(function (): void {
+    Route::get('/', [PortfolioController::class, 'home'])->name('home');
+
+    foreach (['about', 'services', 'projects', 'blog', 'contact'] as $page) {
+        Route::get('/'.$page, [PortfolioController::class, $page])->name($page);
+    }
+});
 Route::permanentRedirect('/index.html', '/');
 
 foreach (['about', 'services', 'projects', 'blog', 'contact'] as $page) {
-    Route::get('/'.$page, [PortfolioController::class, $page])->name($page);
     Route::permanentRedirect('/'.$page.'.html', '/'.$page);
 }
 
-Route::get('/projects/{slug}', [PortfolioController::class, 'project'])->name('projects.show');
+Route::get('/projects/{slug}', [PortfolioController::class, 'project'])->middleware(CaptureAttribution::class)->name('projects.show');
 Route::get('/admin/projects/{project}/preview', [PortfolioController::class, 'previewProject'])
     ->middleware(['auth', 'auth.session'])->name('projects.preview');
-Route::get('/blog/{slug}', [PortfolioController::class, 'post'])->name('blog.show');
-Route::get('/services/{slug}', [PortfolioController::class, 'service'])->name('services.show');
+Route::get('/blog/{slug}', [PortfolioController::class, 'post'])->middleware(CaptureAttribution::class)->name('blog.show');
+Route::get('/services/{slug}', [PortfolioController::class, 'service'])->middleware(CaptureAttribution::class)->name('services.show');
 Route::post('/inquiries', [InquiryController::class, 'store'])->middleware('throttle:inquiries')->name('inquiries.store');
 Route::post('/admin/wordpress-import/upload', [WordPressImportController::class, 'store'])
     ->middleware(['auth', 'throttle:10,1'])->name('wordpress.import.upload');

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('portfolio:prune-seo-404')->daily()->withoutOverlapping();
+Schedule::command('portfolio:sync-growth-report')->dailyAt('03:30')->withoutOverlapping();
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
