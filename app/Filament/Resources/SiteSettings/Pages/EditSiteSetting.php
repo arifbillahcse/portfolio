@@ -20,7 +20,7 @@ class EditSiteSetting extends EditRecord
     {
         return [
             Action::make('accountSettings')->label('Account & password')->url(route('filament.admin.auth.profile')),
-            Action::make('seoSettings')->label('SEO settings')->url(SeoSettings::getUrl()),
+            Action::make('seoSettings')->label('Page SEO')->url(SeoSettings::getUrl()),
             Action::make('testEmail')->label('Send test email')
                 ->action(function (InquiryMailSettings $settings): void {
                     $this->authorizeAccess();

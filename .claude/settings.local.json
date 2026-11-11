@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-PSDrive -PSProvider FileSystem | ForEach-Object { Get-ChildItem \"$\\($_.Root\\)\" -Directory -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName } | Out-String; Get-ChildItem C:\\\\,D:\\\\ -Filter php.exe -Recurse -Depth 4 -ErrorAction SilentlyContinue | Select-Object -First 5 -ExpandProperty FullName)"
+    ]
+  }
+}

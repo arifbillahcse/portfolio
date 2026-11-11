@@ -18,6 +18,8 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\View;
 use Illuminate\Database\Eloquent\Model;
@@ -26,27 +28,38 @@ class SeoFields
 {
     public static function section(string $type, ?string $page = null): Section
     {
-        return Section::make('Search appearance')->description('Blank fields use existing content and defaults. Keywords are private editorial notes, not a ranking guarantee.')->schema([
-            Select::make('seo_schema_type')->label('Structured data')->options(PublicSchema::options($type))
-                ->in(array_keys(PublicSchema::options($type)))->placeholder('Automatic')
-                ->helperText('Automatic matches the visible content. Samples and private previews never receive article or project markup. Disabling this does not change search visibility.'),
-            TextInput::make('seo_title')->label('SEO title')->rule('string')->maxLength(255)->live(onBlur: true)
-                ->helperText('The title template is applied after this text. Check the final title in the preview.'),
-            Textarea::make('seo_description')->label('Meta description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
-            TextInput::make('seo_focus_keyword')->label('Focus keyword / topic')->rule('string')->maxLength(255)->live(onBlur: true),
-            TagsInput::make('seo_related_keywords')->label('Related keywords / topics')->rules(['array', 'max:15'])
-                ->nestedRecursiveRules(['string', 'max:80'])->live(onBlur: true),
-            TextInput::make('seo_canonical_url')->label('Canonical URL')->maxLength(2048)->rule(new CanonicalUrl)->live(onBlur: true)
-                ->helperText('Normally leave blank. A canonical is a preferred URL, not a redirect. Pagination keeps its own URL.'),
-            Select::make('seo_robots')->label('Search visibility')->options([
-                'index_follow' => 'Index, follow', 'index_nofollow' => 'Index, nofollow',
-                'noindex_follow' => 'Noindex, follow', 'noindex_nofollow' => 'Noindex, nofollow',
-            ])->rule('string')->in(array_keys(SeoMetadata::ROBOTS))->placeholder('Automatic')->live()
-                ->helperText('Global indexing restrictions, private previews, sample content and search filters take priority.'),
-            TextInput::make('seo_social_title')->label('Social share title')->rule('string')->maxLength(255)->live(onBlur: true),
-            Textarea::make('seo_social_description')->label('Social share description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
-            ContentFields::image('seo_social_image', 'profile/seo')->label('Social share image'),
-            TextInput::make('seo_social_image_alt')->label('Social image description')->rule('string')->maxLength(255)->live(onBlur: true),
+        return Section::make('Page SEO')->description('Control this page\'s search appearance and social sharing. Blank fields use existing content and defaults.')->schema([
+            Tabs::make('SEO options')->tabs([
+                Tab::make('General')->schema([
+                    TextInput::make('seo_title')->label('SEO title')->rule('string')->maxLength(255)->live(onBlur: true)
+                        ->helperText('The title template is applied after this text. Check the final title in the preview.'),
+                    Textarea::make('seo_description')->label('Meta description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
+                    TextInput::make('seo_focus_keyword')->label('Focus keyword / topic')->rule('string')->maxLength(255)->live(onBlur: true),
+                    TagsInput::make('seo_related_keywords')->label('Related keywords / topics')->rules(['array', 'max:15'])
+                        ->nestedRecursiveRules(['string', 'max:80'])->live(onBlur: true)
+                        ->helperText('Topics for the content review. These are private editorial notes.'),
+                ])->columns(2),
+                Tab::make('Advanced')->schema([
+                    TextInput::make('seo_canonical_url')->label('Canonical URL')->maxLength(2048)->rule(new CanonicalUrl)->live(onBlur: true)
+                        ->helperText('Normally leave blank. A canonical is a preferred URL, not a redirect. Pagination keeps its own URL.'),
+                    Select::make('seo_robots')->label('Search visibility')->options([
+                        'index_follow' => 'Index, follow', 'index_nofollow' => 'Index, nofollow',
+                        'noindex_follow' => 'Noindex, follow', 'noindex_nofollow' => 'Noindex, nofollow',
+                    ])->rule('string')->in(array_keys(SeoMetadata::ROBOTS))->placeholder('Automatic')->live()
+                        ->helperText('Global indexing restrictions, private previews, sample content and search filters take priority.'),
+                ])->columns(2),
+                Tab::make('Social')->schema([
+                    TextInput::make('seo_social_title')->label('Social share title')->rule('string')->maxLength(255)->live(onBlur: true),
+                    Textarea::make('seo_social_description')->label('Social share description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
+                    ContentFields::image('seo_social_image', 'profile/seo')->label('Social share image'),
+                    TextInput::make('seo_social_image_alt')->label('Social image description')->rule('string')->maxLength(255)->live(onBlur: true),
+                ])->columns(2),
+                Tab::make('Schema')->schema([
+                    Select::make('seo_schema_type')->label('Structured data')->options(PublicSchema::options($type))
+                        ->in(array_keys(PublicSchema::options($type)))->placeholder('Automatic')
+                        ->helperText('Automatic matches the visible content. Samples and private previews never receive article or project markup. Disabling this does not change search visibility.'),
+                ]),
+            ])->columnSpanFull(),
             View::make('filament.seo-preview')->viewData(fn (Get $get, ?Model $record = null): array => [
                 'preview' => self::preview($get, $type, $page, $record),
             ])->columnSpanFull(),

@@ -23,6 +23,8 @@ class SeoSettings extends Page
 
     protected static ?string $title = 'SEO settings';
 
+    protected static ?string $navigationLabel = 'Page SEO';
+
     protected static ?string $slug = 'seo-settings';
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-magnifying-glass';
@@ -35,7 +37,7 @@ class SeoSettings extends Page
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Settings';
+        return 'SEO';
     }
 
     public static function canAccess(): bool
@@ -71,9 +73,9 @@ class SeoSettings extends Page
         }
 
         return $schema->components([
-            Section::make('Title templates')->description('Available tokens: {title}, {brand}, {name}. Existing titles are preserved by the defaults. Pagination adds its page number automatically.')
-                ->schema($templates)->columns(2)->collapsible(),
             Tabs::make('Main page SEO')->tabs($tabs)->columnSpanFull(),
+            Section::make('Title templates')->description('Available tokens: {title}, {brand}, {name}. Existing titles are preserved by the defaults. Pagination adds its page number automatically.')
+                ->schema($templates)->columns(2)->collapsible()->collapsed(),
         ])->statePath('data');
     }
 

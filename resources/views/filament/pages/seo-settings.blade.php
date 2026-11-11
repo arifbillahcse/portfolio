@@ -1,4 +1,8 @@
 <x-filament-panels::page>
+    <x-filament::section heading="Page SEO">
+        <p>Select Home, About, Services, Projects, Blog or Contact below to edit that page's SEO title, meta description and focus topics. Use Advanced for canonical URLs and search visibility, Social for sharing previews, and Schema for structured data.</p>
+        <p>Each page has separate settings. Search and social previews update when you finish editing a field. Save SEO settings to apply your changes.</p>
+    </x-filament::section>
     <x-filament::section heading="Search visibility">
         @if(config('portfolio.indexable'))
             <p>Global indexing is enabled. Each page keeps its own visibility settings. Drafts and private previews remain excluded.</p>
