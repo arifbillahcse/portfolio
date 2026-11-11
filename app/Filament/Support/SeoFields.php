@@ -33,8 +33,10 @@ class SeoFields
                 Tab::make('General')->schema([
                     TextInput::make('seo_title')->label('SEO title')->rule('string')->maxLength(255)->live(onBlur: true)
                         ->helperText('The title template is applied after this text. Check the final title in the preview.'),
-                    Textarea::make('seo_description')->label('Meta description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
-                    TextInput::make('seo_focus_keyword')->label('Focus keyword / topic')->rule('string')->maxLength(255)->live(onBlur: true),
+                    Textarea::make('seo_description')->label('Meta description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true)
+                        ->helperText('Describe what a visitor will find on this page. Blank uses the content summary or page default.'),
+                    TextInput::make('seo_focus_keyword')->label('Focus keyword / topic')->rule('string')->maxLength(255)->live(onBlur: true)
+                        ->helperText('Optional: the main subject you want this page to cover. Use natural wording in the title and description.'),
                     TagsInput::make('seo_related_keywords')->label('Related keywords / topics')->rules(['array', 'max:15'])
                         ->nestedRecursiveRules(['string', 'max:80'])->live(onBlur: true)
                         ->helperText('Topics for the content review. These are private editorial notes.'),
@@ -49,8 +51,10 @@ class SeoFields
                         ->helperText('Global indexing restrictions, private previews, sample content and search filters take priority.'),
                 ])->columns(2),
                 Tab::make('Social')->schema([
-                    TextInput::make('seo_social_title')->label('Social share title')->rule('string')->maxLength(255)->live(onBlur: true),
-                    Textarea::make('seo_social_description')->label('Social share description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true),
+                    TextInput::make('seo_social_title')->label('Social share title')->rule('string')->maxLength(255)->live(onBlur: true)
+                        ->helperText('Blank uses the final SEO title, including your title template.'),
+                    Textarea::make('seo_social_description')->label('Social share description')->rule('string')->maxLength(320)->rows(3)->live(onBlur: true)
+                        ->helperText('Blank uses the meta description. Customize it for people discovering this link on social media.'),
                     ContentFields::image('seo_social_image', 'profile/seo')->label('Social share image'),
                     TextInput::make('seo_social_image_alt')->label('Social image description')->rule('string')->maxLength(255)->live(onBlur: true),
                 ])->columns(2),
@@ -146,7 +150,10 @@ class SeoFields
             'cover_image' => $cover, 'cover_image_alt' => $get('cover_image_alt'),
         ], [...$preview, 'self_url' => $canonical], ! $page);
 
-        return [...$preview, 'analysis' => $analysis, 'warnings' => $warnings, 'title_length' => mb_strlen($preview['title']),
+        return [...$preview, 'analysis' => $analysis, 'warnings' => $warnings,
+            'title_source' => filled($attributes['seo_title'] ?? null) ? 'Custom SEO title' : 'Content or default title',
+            'description_source' => filled($attributes['seo_description'] ?? null) ? 'Custom meta description' : 'Content or default description',
+            'title_length' => mb_strlen($preview['title']),
             'description_length' => mb_strlen($preview['description'])];
     }
 }
