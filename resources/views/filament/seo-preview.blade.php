@@ -18,11 +18,5 @@
         </div>
     </div>
     <p style="font-size:13px">Approximate previews. Search engines and social platforms may show different text or crops.</p>
-    @if($preview['warnings'])
-        <section aria-label="Search appearance recommendations" style="padding:18px;border:1px solid #8886;border-radius:10px">
-            <strong>Review before saving</strong>
-            <ul style="list-style:disc;padding-left:22px;margin-top:10px">@foreach($preview['warnings'] as $warning)<li>{{ $warning }}</li>@endforeach</ul>
-        </section>
-    @endif
-    @include('filament.content-analysis', ['analysis' => $preview['analysis']])
+    @include('filament.content-analysis', ['analysis' => $preview['analysis'], 'additionalWarnings' => $preview['warnings']])
 </div>

@@ -8,9 +8,15 @@
         <p style="font-size:13px">Main-page metadata review only. Static layouts, navigation and listing content are outside this editor analysis.</p>
     @endif
     <ul style="display:grid;gap:10px;margin-top:14px">
-        @forelse($analysis['checks'] as $check)
+        @foreach($additionalWarnings ?? [] as $warning)
+        <li><strong>Review:</strong> {{ $warning }}</li>
+        @endforeach
+        @foreach($analysis['checks'] as $check)
         <li><strong>{{ $check['status'] === 'review' ? 'Review' : 'Note' }}:</strong> {{ $check['message'] }}</li>
-        @empty<li>No issues found by these automated checks. Human review is still needed.</li>@endforelse
+        @endforeach
+        @if(empty($analysis['checks']) && empty($additionalWarnings))
+        <li>No issues found by these automated checks. Human review is still needed.</li>
+        @endif
     </ul>
     @if($analysis['outline'])
     <details style="margin-top:16px"><summary>Body heading outline ({{ $analysis['outline_total'] }})</summary>

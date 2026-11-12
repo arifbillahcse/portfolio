@@ -1,7 +1,15 @@
 <x-filament-panels::page>
-    <x-filament::section heading="Page SEO">
-        <p>Select Home, About, Services, Projects, Blog or Contact below to edit that page's SEO title, meta description and focus topics. Use Advanced for canonical URLs and search visibility, Social for sharing previews, and Schema for structured data.</p>
-        <p>Each page has separate settings. Search and social previews update when you finish editing a field. Save SEO settings to apply your changes.</p>
+    <x-filament::section heading="Search visibility">
+        @if(config('portfolio.indexable'))
+            <p>Global indexing is enabled. Each page keeps its own visibility settings. Drafts and private previews remain excluded.</p>
+        @else
+            <p><strong>Global indexing is disabled.</strong> All public pages currently request noindex and are excluded from the sitemap. Page settings cannot override this restriction.</p>
+            <details style="margin-top:12px"><summary style="cursor:pointer">Server indexing configuration</summary>
+                <p style="margin-top:8px">On the production server, review <code>SITE_INDEXABLE</code> and the cached configuration. Enable indexing when the intended public content is ready.</p>
+            </details>
+        @endif
+        <p style="margin-top:12px">Choose Edit SEO in the overview or select a page tab below. Blank fields use defaults; previews follow your edits. Save SEO settings to apply changes.</p>
+        <p style="font-size:13px;margin-top:8px">Post, service and project detail pages have SEO fields in their own content editors.</p>
     </x-filament::section>
     <x-filament::section heading="Page overview">
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px" aria-label="SEO overview totals">
@@ -32,8 +40,10 @@
                             </td>
                             <td style="padding:12px;max-width:240px">
                                 <x-filament::badge :color="str_contains($item['robots'], 'noindex') ? 'warning' : 'success'">{{ $item['robots'] }}</x-filament::badge>
-                                <p style="font-size:12px;margin-top:8px">{{ $item['visibility_reason'] }}</p>
-                                <p style="font-size:12px;margin-top:8px">{{ $item['sitemap'] ? 'Included in sitemap' : 'Excluded from sitemap' }}</p>
+                                @if(config('portfolio.indexable'))
+                                    <p style="font-size:12px;margin-top:8px">{{ $item['visibility_reason'] }}</p>
+                                    <p style="font-size:12px;margin-top:8px">{{ $item['sitemap'] ? 'Included in sitemap' : 'Excluded from sitemap' }}</p>
+                                @endif
                                 @if($item['canonical_elsewhere'])<p style="font-size:12px;margin-top:4px">A different preferred URL is set in Advanced.</p>@endif
                             </td>
                             <td style="padding:12px;max-width:240px">
@@ -55,21 +65,11 @@
             </table>
         </div>
     </x-filament::section>
-    <x-filament::section heading="Search visibility">
-        @if(config('portfolio.indexable'))
-            <p>Global indexing is enabled. Each page keeps its own visibility settings. Drafts and private previews remain excluded.</p>
-        @else
-            <p><strong>Global indexing is disabled.</strong> Public pages currently request noindex. An individual page cannot override this restriction.</p>
-            <p>On the production server, review <code>SITE_INDEXABLE</code> and the cached configuration. Enable it only when the intended public content is ready.</p>
-        @endif
-        <p>Edit post, service and project metadata in their content editors. Home fields below override the existing Site Settings home metadata only when filled.</p>
-    </x-filament::section>
     <form id="page-seo-editor" wire:submit="save" style="display:grid;gap:24px;scroll-margin-top:90px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
             <h2 style="font-size:18px;font-weight:600" aria-live="polite">Editing {{ $activePageLabel }} SEO</h2>
             <x-filament::button type="submit" wire:loading.attr="disabled" wire:target="save">Save SEO settings</x-filament::button>
         </div>
         {{ $this->form }}
-        <div><x-filament::button type="submit" wire:loading.attr="disabled" wire:target="save">Save SEO settings</x-filament::button></div>
     </form>
 </x-filament-panels::page>

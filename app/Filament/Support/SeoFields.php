@@ -28,7 +28,7 @@ class SeoFields
 {
     public static function section(string $type, ?string $page = null): Section
     {
-        return Section::make('Page SEO')->description('Control this page\'s search appearance and social sharing. Blank fields use existing content and defaults.')->schema([
+        return Section::make($page ? 'Search appearance' : 'Page SEO')->description('Control this page\'s search appearance and social sharing. Blank fields use existing content and defaults.')->schema([
             Tabs::make('SEO options')->tabs([
                 Tab::make('General')->schema([
                     TextInput::make('seo_title')->label('SEO title')->rule('string')->maxLength(255)->live(onBlur: true)
@@ -101,17 +101,8 @@ class SeoFields
             $defaults['title'], $defaults['description'], $canonical,
             $fallbackImage ? SeoMetadata::absoluteImage($fallbackImage) : rtrim(config('app.url'), '/').'/assets/images/arif-formal.png');
         $warnings = [];
-        if (! config('portfolio.indexable')) {
+        if (! $page && ! config('portfolio.indexable')) {
             $warnings[] = 'Global search indexing is disabled on this installation. Page settings cannot enable it.';
-        }
-        if (mb_strlen($preview['title']) > 65) {
-            $warnings[] = 'The title may be shortened in search results. Review the preview; character count is only a guide.';
-        }
-        if (mb_strlen($preview['description']) > 170) {
-            $warnings[] = 'The description may be shortened in search results.';
-        }
-        if (blank($preview['description'])) {
-            $warnings[] = 'Add a description or a useful content summary.';
         }
         $class = match ($type) {
             'blog' => Post::class, 'services' => Service::class, 'projects' => Project::class, default => null,
